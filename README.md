@@ -16,3 +16,9 @@ Launches the test runner in the interactive watch mode.
 
 ### `npm run build`
 Builds the app for production to the `build` folder
+
+## `npx cap sync`
+To sync build with android studio
+
+## `npx cap open android`
+To open project in android studio. Here you can build the app.
