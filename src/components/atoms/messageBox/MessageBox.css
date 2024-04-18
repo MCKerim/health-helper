@@ -1,0 +1,31 @@
+.MessageBox {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+
+  margin-bottom: 10px;
+  padding: 0px;
+
+  max-width: 150px;
+  width: 40vw;
+}
+
+.MessageBoxUser {
+  background-color: aquamarine;
+}
+
+.MessageBoxBot {
+  background-color: green;
+}
+
+.MessageText {
+  padding: 0px;
+  margin: 0px;
+  align-items: center;
+}
+
+.MessageSender {
+  padding: 0px;
+  margin: 0px;
+  align-items: center;
+}

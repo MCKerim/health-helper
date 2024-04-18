@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import SignUp from "./pages/signup.tsx/SignUp";
-import SignIn from "./pages/login/SignIn";
+import SignUp from "./pages/signUp/SignUp";
+import SignIn from "./pages/signIn/SignIn";
 import Chat from "./pages/chat/Chat";
 
 function App() {
