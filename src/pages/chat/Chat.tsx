@@ -2,6 +2,7 @@ import { useState } from "react";
 import Textfield from "../../components/atoms/textfield/Textfield";
 import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWindow";
 import { Message } from "../../components/atoms/messageBox/MessageBox";
+import SendTextButton from "../../components/atoms/sendTextButton/SendTextButton";
 
 export default function Chat() {
   const [message, setMessage] = useState("");
@@ -33,7 +34,7 @@ export default function Chat() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button onClick={sendMessagePressed}>Send</button>
+        <SendTextButton  onClick={() =>{}}></SendTextButton>
       </div>
     </div>
   );
