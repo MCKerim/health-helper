@@ -4,6 +4,7 @@ import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWi
 import { Message } from "../../components/atoms/messageBox/MessageBox";
 import SendTextButton from "../../components/atoms/sendTextButton/SendTextButton";
 import SendTextFooter from "../../components/molecules/sendTextFooter/SendTextFooter";
+import HeaderLogo from "../../components/atoms/headerLogo/HeaderLogo";
 
 export default function Chat() {
   const [message, setMessage] = useState("");
@@ -23,7 +24,7 @@ export default function Chat() {
 
   return (
     <div>
-      <h1>Chat</h1>
+      <HeaderLogo></HeaderLogo>
       <nav>
         <a href="/signin">Sign In</a>
         <a href="/signup">Sign Up</a>

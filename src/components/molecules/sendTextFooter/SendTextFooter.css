@@ -10,6 +10,11 @@
   flex-direction: row;
   position: fixed;
   bottom: 0;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  -webkit-box-shadow: -1px -12px 60px -2px rgba(0,0,0,0.24);
+  -moz-box-shadow: -1px -12px 60px -2px rgba(0,0,0,0.24);
+  box-shadow: -1px -12px 60px -2px rgba(0,0,0,0.24);
 }
 
 .send-text-footer-container {
@@ -20,24 +25,25 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 10px; /* Adjust padding to create space around the footer */
+  padding: 10px;
+
 }
 
 .sendTextBox {
-  width: 75%; /* or a fixed width, depending on your layout */
-  padding: 15px 20px; /* Adjust for padding to match the image */
-  font-size: 1rem; /* Adjust the size as needed */
+  width: 75%;
+  padding: 15px 20px;
+  font-size: 1rem;
   background: #e4e4e4;
-  border: 1px solid #e0e0e0; /* Light grey border */
-  border-radius: 25px; /* Fully rounded ends */
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  outline: none; /* Removes the default focus outline */
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
 }
 
 .sendTextBox::placeholder {
-  color: #a9a9a9; /* Placeholder text color */
+  color: #a9a9a9;
 }
 
 .sendTextBox:focus {
-  border-color: #98ceb5; /* Changes the border color on focus */
+  border-color: #98ceb5;
 }
