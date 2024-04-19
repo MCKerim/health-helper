@@ -3,6 +3,7 @@ import Textfield from "../../components/atoms/textfield/Textfield";
 import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWindow";
 import { Message } from "../../components/atoms/messageBox/MessageBox";
 import SendTextButton from "../../components/atoms/sendTextButton/SendTextButton";
+import SendTextFooter from "../../components/molecules/sendTextFooter/SendTextFooter";
 
 export default function Chat() {
   const [message, setMessage] = useState("");
@@ -12,7 +13,11 @@ export default function Chat() {
     if (message === "") {
       return;
     }
-    setMessages([...messages, { sender: "user", message: message }, { sender: "bot", message: "default answear" }]);
+    setMessages([
+      ...messages,
+      { sender: "user", message: message },
+      { sender: "bot", message: "default answer" },
+    ]);
     setMessage("");
   }
 
@@ -29,12 +34,12 @@ export default function Chat() {
 
       {/** Input */}
       <div>
-        <Textfield
-          placeholder="Message"
+        <SendTextFooter
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <SendTextButton  onClick={() =>{}}></SendTextButton>
+          onChange={(e) => {
+            setMessage(e.target.value);
+          }}
+        ></SendTextFooter>
       </div>
     </div>
   );

@@ -1,0 +1,43 @@
+.footer {
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  margin-right: 10px;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+}
+
+.send-text-footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px; /* Adjust padding to create space around the footer */
+}
+
+.sendTextBox {
+  width: 75%; /* or a fixed width, depending on your layout */
+  padding: 15px 20px; /* Adjust for padding to match the image */
+  font-size: 1rem; /* Adjust the size as needed */
+  background: #e4e4e4;
+  border: 1px solid #e0e0e0; /* Light grey border */
+  border-radius: 25px; /* Fully rounded ends */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  outline: none; /* Removes the default focus outline */
+}
+
+.sendTextBox::placeholder {
+  color: #a9a9a9; /* Placeholder text color */
+}
+
+.sendTextBox:focus {
+  border-color: #98ceb5; /* Changes the border color on focus */
+}
