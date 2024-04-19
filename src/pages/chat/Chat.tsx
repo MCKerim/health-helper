@@ -39,6 +39,7 @@ export default function Chat() {
           onChange={(e) => {
             setMessage(e.target.value);
           }}
+          onClick={sendMessagePressed}
         ></SendTextFooter>
       </div>
     </div>

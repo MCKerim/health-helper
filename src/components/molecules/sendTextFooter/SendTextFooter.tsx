@@ -6,9 +6,10 @@ import React from "react";
 type props = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick: () => void;
 };
 
-export default function SendTextFooter({ value, onChange }: props) {
+export default function SendTextFooter({ value, onChange, onClick }: props) {
   return (
     <div className="send-text-footer-container">
       <div className="footer">
@@ -18,7 +19,7 @@ export default function SendTextFooter({ value, onChange }: props) {
           value={value}
           onChange={onChange}
         />
-        <SendTextButton onClick={() => {}} />
+        <SendTextButton onClick={onClick} />
       </div>
     </div>
   );
