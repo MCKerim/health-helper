@@ -37,7 +37,17 @@ export default function Chat() {
         <h1 className={"BackgroundText"}>Health~Helper</h1>
       </div>
       {/** Input */}
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <p className={"BackgroundText"}>
+          ~Bitte sprechen sie mit einem richtigen Arzt~
+        </p>
         <SendTextFooter
           value={message}
           onChange={(e) => {
