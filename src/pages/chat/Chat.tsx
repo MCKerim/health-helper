@@ -4,12 +4,10 @@ import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWi
 import { Message } from "../../components/atoms/messageBox/MessageBox";
 import SendTextButton from "../../components/atoms/sendTextButton/SendTextButton";
 import SendTextFooter from "../../components/molecules/sendTextFooter/SendTextFooter";
-import HeaderLogo from "../../components/atoms/headerLogo/HeaderLogo";
-
+import Header from "../../components/organisms/header/Header";
 export default function Chat() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-
   function sendMessagePressed() {
     if (message === "") {
       return;
@@ -24,7 +22,10 @@ export default function Chat() {
 
   return (
     <div>
-      <HeaderLogo></HeaderLogo>
+      <div>
+        <Header></Header>
+      </div>
+
       <nav>
         <a href="/signin">Sign In</a>
         <a href="/signup">Sign Up</a>
@@ -32,7 +33,9 @@ export default function Chat() {
 
       {/** Messages window */}
       <MessagesWindow messages={messages} />
-
+      <div className={"BackgroundTextContainer"}>
+        <h1 className={"BackgroundText"}>Health~Helper</h1>
+      </div>
       {/** Input */}
       <div>
         <SendTextFooter

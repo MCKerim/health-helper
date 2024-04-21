@@ -1,0 +1,45 @@
+.drawer {
+    width: 250px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+    z-index: 4;
+}
+
+.drawer.isOpen {
+    transform: translateX(0);
+}
+
+.drawer.isClosed {
+    transform: translateX(-100%);
+}
+
+.menuList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menuList li {
+    font-size: 16px;
+    border-bottom: 1px solid #cccccc;
+    font-weight: bold;
+    padding-top: 30px; /* Extra space above the heading */
+    padding-bottom: 10px;
+}
+
+.menuLink {
+    color: inherit; /* Inherits the color from the parent */
+    text-decoration: none; /* Removes underline */
+    display: block; /* Makes the link fill the li for easier clicking */
+}
+
+/* You can also style the link differently when it's active */
+.menuLink.active {
+    font-weight: bold;
+}
+

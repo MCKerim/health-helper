@@ -1,3 +1,17 @@
 .App {
   text-align: center;
 }
+
+.BackgroundTextContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.BackgroundText {
+  color: #bcbebd;
+  font-family: PT, serif;
+  font-weight: bold;
+  user-select: none;
+  cursor: default;
+}
