@@ -11,11 +11,45 @@
 }
 
 .MessageBoxUser {
-  background-color: aquamarine;
+  position: relative;
+  background: #e1e1e1;
+  border-radius: .4em;
+}
+
+.MessageBoxUser:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 1.438em solid transparent;
+  border-left-color: #e1e1e1;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: -0.719em;
+  margin-right: -1.437em;
 }
 
 .MessageBoxBot {
-  background-color: green;
+  position: relative;
+  background: #98ceb5;
+  border-radius: .4em;
+}
+
+.MessageBoxBot:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 1.438em solid transparent;
+  border-right-color: #98ceb5;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -0.719em;
+  margin-left: -1.437em;
 }
 
 .MessageText {
@@ -25,6 +59,7 @@
 }
 
 .MessageSender {
+  font-weight: bold;
   padding: 0px;
   margin: 0px;
   align-items: center;
