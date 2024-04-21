@@ -21,7 +21,7 @@ export default function Chat() {
   }
 
   return (
-    <div>
+    <div className={"App"}>
       <div>
         <Header></Header>
       </div>
@@ -37,17 +37,12 @@ export default function Chat() {
         <h1 className={"BackgroundText"}>Health~Helper</h1>
       </div>
       {/** Input */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignContent: "center",
-        }}
-      >
-        <p className={"BackgroundText"}>
-          ~Bitte sprechen sie mit einem richtigen Arzt~
-        </p>
+      <div>
+        <div className={"BackgroundDisclaimer"}>
+          <p className={"BackgroundText"}>
+            ~Bitte sprechen sie mit einem richtigen Arzt~
+          </p>
+        </div>
         <SendTextFooter
           value={message}
           onChange={(e) => {

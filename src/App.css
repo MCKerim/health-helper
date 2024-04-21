@@ -1,11 +1,22 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 .BackgroundTextContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.BackgroundDisclaimer {
+  position: absolute;
+  bottom: 65px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 .BackgroundText {
