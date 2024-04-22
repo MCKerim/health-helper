@@ -38,7 +38,6 @@
     display: block; /* Makes the link fill the li for easier clicking */
 }
 
-/* You can also style the link differently when it's active */
 .menuLink.active {
     font-weight: bold;
 }

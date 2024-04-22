@@ -28,7 +28,7 @@
   border-right: 0;
   border-bottom: 0;
   margin-top: -0.719em;
-  margin-right: -1.437em;
+  margin-right: -1.337em;
 }
 
 .MessageBoxBot {
@@ -49,7 +49,7 @@
   border-left: 0;
   border-bottom: 0;
   margin-top: -0.719em;
-  margin-left: -1.437em;
+  margin-left: -1.337em;
 }
 
 .MessageText {
@@ -62,5 +62,5 @@
   font-weight: bold;
   padding: 0px;
   margin: 0px;
-  align-items: center;
+  align-items: flex-end;
 }

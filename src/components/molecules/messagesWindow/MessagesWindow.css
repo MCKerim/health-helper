@@ -1,0 +1,9 @@
+.MessagesWindow {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+    justify-content: flex-end;
+    overflow-y: auto;
+    overflow-x: clip;
+}
