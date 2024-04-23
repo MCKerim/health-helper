@@ -9,13 +9,18 @@ export default function MessageBox({ sender, message }: Message) {
   return (
     <div
       className={
-        "MessageBox " + (sender === "user" ? "MessageBoxUser" : "MessageBoxBot")
+        "MessageBox " +
+        (sender === "user"
+          ? "MessageBoxUser fade-in-right "
+          : "MessageBoxBot fade-in-left")
       }
     >
-      <p className="MessageSender">
-        {sender === "user" ? "Du" : "Health Helper"}:
-      </p>
-      <p className="MessageText">{message}</p>
+      <div className={"MessageContentContainer"}>
+        <p className="MessageSender">
+          {sender === "user" ? "Du" : "Health Helper"}
+        </p>
+        <p className="MessageText">{message}</p>
+      </div>
     </div>
   );
 }

@@ -2,18 +2,20 @@
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-
+  flex-wrap: wrap;
   margin-bottom: 10px;
-  padding: 0px;
-
-  max-width: 150px;
-  width: 40vw;
+  padding: 10px;
+  width: 88vw;
 }
 
 .MessageBoxUser {
+  display: flex;
   position: relative;
   background: #e1e1e1;
-  border-radius: .4em;
+  border-radius: .8em;
+  padding: 5px;
+  justify-content: flex-end;
+  align-content: flex-end;
 }
 
 .MessageBoxUser:after {
@@ -34,7 +36,9 @@
 .MessageBoxBot {
   position: relative;
   background: #98ceb5;
-  border-radius: .4em;
+  padding: 5px;
+  border-radius: .8em;
+  align-content: flex-start;
 }
 
 .MessageBoxBot:after {
@@ -53,14 +57,22 @@
 }
 
 .MessageText {
-  padding: 0px;
-  margin: 0px;
+  padding: 3px;
+  margin: 0;
   align-items: center;
 }
 
 .MessageSender {
   font-weight: bold;
-  padding: 0px;
-  margin: 0px;
+  width: fit-content;
+  padding: 4px;
+  border-radius: 15px;
+  margin: 2px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.MessageContentContainer {
+  display: flex;
+  flex-direction: column;
   align-items: flex-end;
 }

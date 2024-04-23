@@ -9,6 +9,7 @@
     height: 20px;
     cursor: pointer;
     z-index: 100;
+    padding-right: 25px;
 }
 
 .menuIcon:before,
