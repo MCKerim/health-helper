@@ -1,0 +1,78 @@
+.SignUpContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.SignUpBox {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    background: #ffffff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.SignUpTitle {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.SignUpInput {
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    background: #e4e4e4;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    outline: none;
+    display: block;
+    width: calc(100% - 40px);
+}
+
+.SignUpInput:focus {
+    border-color: #98ceb5;
+}
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    user-select: none;
+    color: #98ceb5;
+}
+
+.SignUpButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: none;
+    background-color: #98ceb5;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.SignUpButton:hover {
+    background-color: #86b2a4;
+}
+
+.alertBox {
+    margin-top: 10px;
+    color: #d8000c;
+    background-color: #ffbaba;
+    border: 1px solid #d8000c;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}

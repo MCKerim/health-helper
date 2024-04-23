@@ -1,8 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -15,12 +18,30 @@ const firebaseConfig = {
   storageBucket: "health-helper-0.appspot.com",
   messagingSenderId: "1024000881087",
   appId: "1:1024000881087:web:1eda1c68457386e21df10a",
-  measurementId: "G-EF3NW2WPX2"
+  measurementId: "G-EF3NW2WPX2",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-export const db = getFirestore(app)
-export const auth = getAuth(app)
+export const signIn = async (email, password) => {
+  const userCredential = await signInWithEmailAndPassword(
+    auth,
+    email,
+    password,
+  );
+  const user = userCredential.user;
+  console.log(user);
+};
+
+export const signUp = async (email, password) => {
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password,
+  );
+  const user = userCredential.user;
+};
+export const db = getFirestore(app);
+export const auth = getAuth(app);

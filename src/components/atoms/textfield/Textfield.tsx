@@ -5,6 +5,7 @@ type Props = {
   value?: string;
   className?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
 };
 
 export default function Textfield({
@@ -12,10 +13,11 @@ export default function Textfield({
   value,
   onChange,
   className,
+  type,
 }: Props) {
   return (
     <input
-      type="text"
+      type={type || "text"}
       className={className}
       placeholder={placeholder}
       value={value}

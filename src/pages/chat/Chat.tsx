@@ -1,11 +1,13 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Textfield from "../../components/atoms/textfield/Textfield";
 import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWindow";
 import { Message } from "../../components/atoms/messageBox/MessageBox";
 import SendTextButton from "../../components/atoms/sendTextButton/SendTextButton";
 import SendTextFooter from "../../components/molecules/sendTextFooter/SendTextFooter";
 import Header from "../../components/organisms/header/Header";
-export default function Chat() {
+import withAuth from "../../components/HOCs/AuthHOC/AuthHOC";
+
+export const Chat: React.FC = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   function sendMessagePressed() {
@@ -25,11 +27,6 @@ export default function Chat() {
       <div>
         <Header></Header>
       </div>
-
-      <nav>
-        <a href="/signin">Sign In</a>
-        <a href="/signup">Sign Up</a>
-      </nav>
 
       {/** Messages window */}
       <MessagesWindow messages={messages} />
@@ -53,4 +50,6 @@ export default function Chat() {
       </div>
     </div>
   );
-}
+};
+
+export default withAuth(Chat);

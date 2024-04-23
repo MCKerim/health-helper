@@ -1,12 +1,6 @@
 import Textfield from "../../components/atoms/textfield/Textfield";
-
+import SignInWindow from "../../components/molecules/signInWindow/SignInWindow";
 
 export default function SignIn() {
-  return (
-    <div>
-      <h1>Sign In</h1>
-      <Textfield placeholder="Email" />
-      <Textfield placeholder="Password" />
-    </div>
-  );
+  return <SignInWindow />;
 }
