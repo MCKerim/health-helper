@@ -39,7 +39,7 @@ export default function SignIn() {
   return (
     <div className="SignUpContainer">
       <div className="SignUpBox">
-        <h1 className="SignUpTitle">Sign Up</h1>
+        <h1 className="SignUpTitle">Sign In</h1>
         <Textfield
           className="SignUpInput"
           placeholder="Email"
