@@ -3,7 +3,7 @@ import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate } from "react-router-dom";
 import "./SignInWindow.css";
 import { ShowPasswordIcon } from "../../atoms/showPasswordIcon/ShowPasswordIcon";
-import { signIn } from "../../../firebase";
+import { resetPassword, signIn } from "../../../firebase";
 import { redirect } from "react-router-dom";
 
 export default function SignIn() {
@@ -36,6 +36,21 @@ export default function SignIn() {
     );
   };
 
+  const handleForgotPassword = async () => {
+    if (!validateEmail(email)) {
+      setAlertMessage(
+        "Please enter your email address to reset your password.",
+      );
+      return;
+    }
+    try {
+      await resetPassword(email);
+      setAlertMessage("Password reset email sent!");
+    } catch (error: any) {
+      setAlertMessage(error.message);
+    }
+  };
+
   return (
     <div className="SignUpContainer">
       <div className="SignUpBox">
@@ -61,6 +76,14 @@ export default function SignIn() {
           >
             <ShowPasswordIcon showPassword={showPassword} />
           </span>
+        </div>
+        <div className="forgot-password">
+          <button
+            onClick={handleForgotPassword}
+            className="forgot-password-button"
+          >
+            Forgot Password?
+          </button>
         </div>
         <button className="SignUpButton" onClick={handleSignIn}>
           Create Account

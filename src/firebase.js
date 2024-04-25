@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -38,6 +39,10 @@ export const signIn = async (email, password) => {
 
 export const signOutUser = async () => {
   await signOut(auth);
+};
+
+export const resetPassword = async (email) => {
+  await sendPasswordResetEmail(auth, email);
 };
 
 export const signUp = async (email, password) => {
