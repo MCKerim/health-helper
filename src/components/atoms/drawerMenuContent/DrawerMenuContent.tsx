@@ -1,6 +1,7 @@
 import "./DrawerMenuContent.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { signOutUser } from "../../../firebase";
 const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
   return (
     <div className={`drawer ${isOpen ? "isOpen" : "isClosed"}`}>
@@ -15,6 +16,9 @@ const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
         </li>
         <li>Datenschutz</li>
       </ul>
+      <button className={"SignOutButton"} onClick={signOutUser}>
+        Abmelden
+      </button>
     </div>
   );
 };

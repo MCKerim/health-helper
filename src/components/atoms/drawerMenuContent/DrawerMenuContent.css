@@ -42,3 +42,24 @@
     font-weight: bold;
 }
 
+.SignOutButton {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-weight: bold;
+    color: #070707;
+    background-color: #ff9f9f; /* Pink background color */
+    border: none;
+    border-radius: 20px; /* Rounded corners */
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Space from the last list item */
+    width: 90%; /* To stretch within the container */
+    box-sizing: border-box; /* To include padding and border in the width */
+    text-align: center; /* Center the text */
+}
+
+.SignOutButton:hover {
+    background-color: #ff677a;
+}
