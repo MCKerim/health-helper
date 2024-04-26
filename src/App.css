@@ -32,6 +32,11 @@
   text-align: center;
 }
 
+.MainContentContainer {
+  margin-top: 120px;
+  margin-bottom: 50px;
+}
+
 .BackgroundText {
   color: #bcbebd;
   font-family: PT, serif;

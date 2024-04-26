@@ -5,6 +5,7 @@ import { User as FirebaseUser } from "firebase/auth";
 import "./AuthHOC.css";
 import HeaderLogo from "../../atoms/headerLogo/HeaderLogo";
 import AuthGate from "../../molecules/authGate/AuthGate";
+import Header from "../../organisms/header/Header";
 
 function withAuth<T>(Component: ComponentType<T>) {
   const AuthenticatedComponent: React.FC<T> = (props) => {
@@ -38,7 +39,11 @@ function withAuth<T>(Component: ComponentType<T>) {
     }
 
     // If the user is logged in, render the passed component with all its props
-    return <Component {...props} user={user} />;
+    return (
+      <>
+        <Component {...props} user={user} />
+      </>
+    );
   };
 
   return AuthenticatedComponent;

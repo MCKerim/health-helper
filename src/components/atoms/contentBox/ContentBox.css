@@ -1,0 +1,10 @@
+.contentBox {
+  padding: 15px;
+  border-radius: 10px;
+  font-family: Roboto, serif;
+    font-size: 18px;
+  text-align: left;
+  width: 85%;
+  margin-bottom: 15px;
+  background-color: #f3f3f3;
+}
