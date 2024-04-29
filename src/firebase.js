@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  deleteUser,
 } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -39,6 +40,19 @@ export const signIn = async (email, password) => {
 
 export const signOutUser = async () => {
   await signOut(auth);
+};
+
+export const removeUserAccount = async () => {
+  const user = auth.currentUser;
+  try {
+    await deleteUser(user);
+  } catch (error) {
+    if (error.code === "auth/requires-recent-login") {
+      throw new Error("Recent login required");
+    } else {
+      throw error; // Other errors are thrown as is
+    }
+  }
 };
 
 export const resetPassword = async (email) => {

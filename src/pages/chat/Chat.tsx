@@ -7,7 +7,7 @@ import SendTextFooter from "../../components/molecules/sendTextFooter/SendTextFo
 import Header from "../../components/organisms/header/Header";
 import withAuth from "../../components/HOCs/AuthHOC/AuthHOC";
 
-export const Chat: React.FC = () => {
+const Chat: React.FC = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   function sendMessagePressed() {

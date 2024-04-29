@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import SignUp from "./pages/signUp/SignUp";
 import SignIn from "./pages/signIn/SignIn";
 import Chat from "./pages/chat/Chat";
-import { Account } from "./pages/account/Account";
-import { Datenschutz } from "./pages/datenschutz/Datenschutz";
+import Account from "./pages/account/Account";
+import Datenschutz from "./pages/datenschutz/Datenschutz";
 
 function App() {
   return (
