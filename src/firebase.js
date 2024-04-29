@@ -1,6 +1,15 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  arrayUnion,
+  updateDoc,
+  setDoc,
+  collection,
+  addDoc,
+} from "firebase/firestore";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -27,6 +36,37 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+export async function createChat(firstMessage) {
+  // Adjust "chats" to your actual collection name
+  try {
+    const chatRef = await addDoc(collection(db, "chats"), {
+      user: auth.currentUser.uid,
+      messages: [firstMessage], // Initialize with the first message
+    });
+    return chatRef.id;
+  } catch (error) {
+    console.error("Error creating chat in Firestore:", error);
+  }
+}
+
+export async function saveMessageToChat(newMessage, id) {
+  const chatDocRef = doc(db, "chats", id); // Adjust "chats" to your actual collection name
+  try {
+    const chatDoc = await getDoc(chatDocRef);
+    if (chatDoc.exists()) {
+      // If chat exists, append the new message
+      await updateDoc(chatDocRef, {
+        messages: arrayUnion(newMessage),
+      });
+    } else {
+      // If chat does not exist, create it with the new message
+      createChat(newMessage);
+    }
+  } catch (error) {
+    console.error("Error saving message to Firestore:", error);
+  }
+}
 
 export const signIn = async (email, password) => {
   const userCredential = await signInWithEmailAndPassword(

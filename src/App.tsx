@@ -10,7 +10,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Chat />} />
-      <Route path="/chat" element={<Chat />} />
+      <Route path="/chat/:id" element={<Chat />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/Account/:uid" element={<Account />} />
