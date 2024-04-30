@@ -50,6 +50,20 @@ export async function createChat(firstMessage) {
   }
 }
 
+export async function getChat(id) {
+  const chatDocRef = doc(db, "chats", id); // Adjust "chats" to your actual collection name
+  try {
+    const chatDoc = await getDoc(chatDocRef);
+    if (chatDoc.exists()) {
+      return chatDoc.data();
+    } else {
+      console.error("Chat not found");
+    }
+  } catch (error) {
+    console.error("Error getting chat from Firestore:", error);
+  }
+}
+
 export async function saveMessageToChat(newMessage, id) {
   const chatDocRef = doc(db, "chats", id); // Adjust "chats" to your actual collection name
   try {

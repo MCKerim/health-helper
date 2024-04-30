@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { doc, collection, addDoc, getFirestore } from "firebase/firestore";
 import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWindow";
@@ -6,7 +6,7 @@ import { Message } from "../../components/atoms/messageBox/MessageBox";
 import SendTextFooter from "../../components/molecules/sendTextFooter/SendTextFooter";
 import Header from "../../components/organisms/header/Header";
 import withAuth from "../../components/HOCs/AuthHOC/AuthHOC";
-import { createChat, saveMessageToChat } from "../../firebase";
+import { createChat, getChat, saveMessageToChat } from "../../firebase";
 
 const Chat: React.FC = () => {
   const [message, setMessage] = useState("");
@@ -14,6 +14,16 @@ const Chat: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
   const db = getFirestore(); // Ensure Firebase is initialized and Firestore is imported
+
+  useEffect(() => {
+    if (id) {
+      getChat(id).then((chat) => {
+        if (chat) {
+          setMessages(chat.messages);
+        }
+      });
+    }
+  }, []);
 
   async function sendMessagePressed() {
     if (message === "") {
@@ -23,17 +33,23 @@ const Chat: React.FC = () => {
 
     if (!id) {
       // No chat ID available, create a new chat document
-      const newId = await createChat(newMessage);
-      navigate(`/chat/${newId}`); // Redirect to the new chat path
-      // Update local state to include the first message and an automatic bot response
-      setMessages([
-        ...messages,
-        newMessage,
-        { sender: "bot", message: "default answer" },
-      ]);
+      createChat(newMessage).then((docRefId: string | undefined) => {
+        saveMessageToChat(
+          { sender: "bot", message: "default answer" },
+          docRefId,
+        );
+        navigate(`/chat/${docRefId}`); // Redirect to the new chat path
+        // Update local state to include the first message and an automatic bot response
+        setMessages([
+          ...messages,
+          newMessage,
+          { sender: "bot", message: "default answer" },
+        ]);
+      });
     } else {
       // ID exists, just append the new message
       await saveMessageToChat(newMessage, id);
+      await saveMessageToChat({ sender: "bot", message: "default answer" }, id);
       setMessages([
         ...messages,
         newMessage,
