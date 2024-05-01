@@ -9,6 +9,9 @@ import {
   setDoc,
   collection,
   addDoc,
+  getDocs,
+  query,
+  where,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -36,6 +39,37 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+export async function getChatIDsFromUID(uid) {
+  const chatsCollectionRef = collection(db, "chats");
+  try {
+    const chatsQuerySnapshot = await getDocs(
+      query(chatsCollectionRef, where("user", "==", uid)),
+    );
+    return chatsQuerySnapshot.docs.map((doc) => {
+      return doc.id;
+    });
+  } catch (error) {
+    console.error("Error getting chats from Firestore:", error);
+  }
+}
+
+export async function getChatsFromUID(uid) {
+  const chatsCollectionRef = collection(db, "chats");
+  try {
+    const chatsQuerySnapshot = await getDocs(
+      query(chatsCollectionRef, where("user", "==", uid)),
+    );
+    return chatsQuerySnapshot.docs.map((doc) => {
+      return {
+        data: doc.data(),
+        id: doc.id,
+      };
+    });
+  } catch (error) {
+    console.error("Error getting chats from Firestore:", error);
+  }
+}
 
 export async function createChat(firstMessage) {
   // Adjust "chats" to your actual collection name

@@ -16,6 +16,7 @@ const Chat: React.FC = () => {
   const db = getFirestore(); // Ensure Firebase is initialized and Firestore is imported
 
   useEffect(() => {
+    setMessages([]); // Clear messages on load (to prevent duplicates on re-render)
     if (id) {
       getChat(id).then((chat) => {
         if (chat) {
@@ -23,7 +24,7 @@ const Chat: React.FC = () => {
         }
       });
     }
-  }, []);
+  }, [id]);
 
   async function sendMessagePressed() {
     if (message === "") {
