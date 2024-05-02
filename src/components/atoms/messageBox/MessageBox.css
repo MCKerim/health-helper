@@ -23,7 +23,7 @@
   content: '';
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 70%;
   width: 0;
   height: 0;
   border: 1.438em solid transparent;
@@ -46,7 +46,7 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 70%;
   width: 0;
   height: 0;
   border: 1.438em solid transparent;
@@ -67,9 +67,11 @@
   font-weight: bold;
   width: fit-content;
   padding: 4px;
-  border-radius: 15px;
+  padding-left: 12px;
+  padding-right:12px;
+  border-radius: 18px;
   margin: 2px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.075);
 }
 
 .MessageContentContainer {
