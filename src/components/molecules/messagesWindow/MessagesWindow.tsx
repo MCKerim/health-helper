@@ -7,7 +7,7 @@ type Props = {
 export default function MessagesWindow({ messages }: Props) {
   function renderMessages() {
     return (
-      <div className={"MessagesWindow"}>
+      <div className="MessagesWindow">
         {messages.map((message, index) => {
           return (
             <MessageBox
