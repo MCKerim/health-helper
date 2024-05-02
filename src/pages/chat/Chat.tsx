@@ -35,17 +35,15 @@ const Chat: React.FC = () => {
     if (!id) {
       // No chat ID available, create a new chat document
       createChat(newMessage).then((docRefId: string | undefined) => {
-        saveMessageToChat(
-          { sender: "bot", message: "default answer" },
-          docRefId,
-        );
-        navigate(`/chat/${docRefId}`); // Redirect to the new chat path
-        // Update local state to include the first message and an automatic bot response
-        setMessages([
-          ...messages,
-          newMessage,
-          { sender: "bot", message: "default answer" },
-        ]);
+        setMessages([...messages, newMessage]);
+        saveMessageToChat(newMessage, docRefId).then(() => {
+          saveMessageToChat(
+            { sender: "bot", message: "default answer" },
+            docRefId,
+          ).then(() => {
+            navigate(`/chat/${docRefId}`);// Redirect to the new chat path
+          });
+        });
       });
     } else {
       // ID exists, just append the new message
