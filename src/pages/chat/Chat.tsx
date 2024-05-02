@@ -1,61 +1,86 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { doc, collection, addDoc, getFirestore } from "firebase/firestore";
 import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWindow";
 import { Message } from "../../components/atoms/messageBox/MessageBox";
 import SendTextFooter from "../../components/molecules/sendTextFooter/SendTextFooter";
 import Header from "../../components/organisms/header/Header";
 import withAuth from "../../components/HOCs/AuthHOC/AuthHOC";
 import { createChat, getChat, saveMessageToChat } from "../../firebase";
+import { OpenAI } from "openai";
 
 const Chat: React.FC = () => {
-  const [message, setMessage] = useState("");
+  const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const { id } = useParams<{ id?: string }>();
+  const { id: chatId } = useParams<{ id?: string }>();
   const navigate = useNavigate();
-  const db = getFirestore(); // Ensure Firebase is initialized and Firestore is imported
+
+  const openai = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+  });
 
   useEffect(() => {
     setMessages([]); // Clear messages on load (to prevent duplicates on re-render)
-    if (id) {
-      getChat(id).then((chat) => {
+    if (chatId) {
+      getChat(chatId).then((chat) => {
         if (chat) {
           setMessages(chat.messages);
         }
       });
     }
-  }, [id]);
+  }, [chatId]);
+
+  async function makeOpenAICall(messages: Message[]): Promise<Message> {
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "system", content: "You are helpful doctor." }],
+      model: "gpt-3.5-turbo",
+    });
+
+    const newBotMessage: Message = {
+      sender: "bot",
+      message: completion.choices[0].message.content ?? "Error",
+    };
+
+    return newBotMessage;
+  }
 
   async function sendMessagePressed() {
-    if (message === "") {
+    if (messageInput === "") {
       return;
     }
-    const newMessage: Message = { sender: "user", message };
+    const newUserMessage: Message = { sender: "user", message: messageInput };
 
-    if (!id) {
+    if (!chatId) {
+      setMessages([...messages, newUserMessage]);
       // No chat ID available, create a new chat document
-      createChat(newMessage).then((docRefId: string | undefined) => {
-        setMessages([...messages, newMessage]);
-        saveMessageToChat(newMessage, docRefId).then(() => {
-          saveMessageToChat(
-            { sender: "bot", message: "default answer" },
-            docRefId,
-          ).then(() => {
-            navigate(`/chat/${docRefId}`);// Redirect to the new chat path
+      createChat(newUserMessage).then((docRefId: string | undefined) => {
+        if (docRefId) {
+          saveMessageToChat(newUserMessage, docRefId).then(() => {
+            makeOpenAICall(messages)
+              .then((newBotMessage) => {
+                saveMessageToChat(newBotMessage, chatId);
+                setMessages([...messages, newUserMessage, newBotMessage]);
+              })
+              .then(() => navigate(`/chat/${docRefId}`))
+              .catch((error) => {
+                console.error("Error making OpenAI API call:", error);
+              });
           });
-        });
+        }
       });
     } else {
-      // ID exists, just append the new message
-      await saveMessageToChat(newMessage, id);
-      await saveMessageToChat({ sender: "bot", message: "default answer" }, id);
-      setMessages([
-        ...messages,
-        newMessage,
-        { sender: "bot", message: "default answer" },
-      ]);
+      await saveMessageToChat(newUserMessage, chatId).then(() => {
+        makeOpenAICall(messages)
+          .then((newBotMessage) => {
+            saveMessageToChat(newBotMessage, chatId);
+            setMessages([...messages, newUserMessage, newBotMessage]);
+          })
+          .catch((error) => {
+            console.error("Error making OpenAI API call:", error);
+          });
+      });
     }
-    setMessage("");
+    setMessageInput("");
   }
 
   return (
@@ -72,8 +97,8 @@ const Chat: React.FC = () => {
           </p>
         </div>
         <SendTextFooter
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          value={messageInput}
+          onChange={(e) => setMessageInput(e.target.value)}
           onClick={sendMessagePressed}
         />
       </div>
