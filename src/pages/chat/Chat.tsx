@@ -30,15 +30,26 @@ const Chat: React.FC = () => {
     }
   }, [chatId]);
 
-  async function makeOpenAICall(messages: Message[]): Promise<Message> {
+  async function makeOpenAICall(chatMessages: Message[]): Promise<Message> {
+    let messagesConverted = chatMessages.map((message) => {
+      return { role: message.sender, content: message.message };
+    });
+
+    console.log(messagesConverted);
+
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "system", content: "You are helpful doctor." }],
+      messages: [
+        { role: "system", content: "You are doctor." },
+        ...messagesConverted,
+      ],
       model: "gpt-3.5-turbo",
     });
 
     const newBotMessage: Message = {
-      sender: "bot",
-      message: completion.choices[0].message.content ?? "Error",
+      sender: "assistant",
+      message:
+        completion.choices[completion.choices.length - 1].message.content ??
+        "Error",
     };
 
     return newBotMessage;
@@ -49,36 +60,45 @@ const Chat: React.FC = () => {
       return;
     }
     const newUserMessage: Message = { sender: "user", message: messageInput };
+    const updatedMessages = [...messages, newUserMessage];
 
     if (!chatId) {
-      setMessages([...messages, newUserMessage]);
+      setMessages(updatedMessages);
       // No chat ID available, create a new chat document
-      createChat(newUserMessage).then((docRefId: string | undefined) => {
-        if (docRefId) {
-          saveMessageToChat(newUserMessage, docRefId).then(() => {
-            makeOpenAICall(messages)
-              .then((newBotMessage) => {
-                saveMessageToChat(newBotMessage, chatId);
-                setMessages([...messages, newUserMessage, newBotMessage]);
-              })
-              .then(() => navigate(`/chat/${docRefId}`))
-              .catch((error) => {
-                console.error("Error making OpenAI API call:", error);
-              });
-          });
-        }
-      });
+      createChat(newUserMessage)
+        .then((docRefId: string) => {
+            saveMessageToChat(newUserMessage, docRefId).then(() => {
+              makeOpenAICall(updatedMessages)
+                .then((newBotMessage) => {
+                  saveMessageToChat(newBotMessage, docRefId).then(() => {
+                    navigate(`/chat/${docRefId}`);
+                  });
+                })
+                .catch((error) => {
+                  console.error("Error making OpenAI API call:", error);
+                });
+            }).catch((error) => {
+              console.error("Error saving message to Firestore:", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Error creating chat in Firestore:", error);
+        });
     } else {
-      await saveMessageToChat(newUserMessage, chatId).then(() => {
-        makeOpenAICall(messages)
-          .then((newBotMessage) => {
-            saveMessageToChat(newBotMessage, chatId);
-            setMessages([...messages, newUserMessage, newBotMessage]);
-          })
-          .catch((error) => {
-            console.error("Error making OpenAI API call:", error);
-          });
-      });
+      await saveMessageToChat(newUserMessage, chatId)
+        .then(() => {
+          makeOpenAICall(updatedMessages)
+            .then((newBotMessage) => {
+              saveMessageToChat(newBotMessage, chatId);
+              setMessages([...updatedMessages, newBotMessage]);
+            })
+            .catch((error) => {
+              console.error("Error making OpenAI API call:", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Error saving message to Firestore:", error);
+        });
     }
     setMessageInput("");
   }

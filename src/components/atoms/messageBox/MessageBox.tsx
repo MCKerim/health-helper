@@ -1,7 +1,7 @@
 import "./MessageBox.css";
 
 export type Message = {
-  sender: "user" | "bot";
+  sender: "user" | "assistant";
   message: string;
 };
 

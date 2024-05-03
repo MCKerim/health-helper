@@ -82,16 +82,11 @@ export async function getChatsFromUID(uid) {
 }
 
 export async function createChat(firstMessage) {
-  // Adjust "chats" to your actual collection name
-  try {
-    const chatRef = await addDoc(collection(db, "chats"), {
-      user: auth.currentUser.uid,
-      messages: [firstMessage], // Initialize with the first message
-    });
-    return chatRef.id;
-  } catch (error) {
-    console.error("Error creating chat in Firestore:", error);
-  }
+  const chatRef = await addDoc(collection(db, "chats"), {
+    user: auth.currentUser.uid,
+    messages: [firstMessage], // Initialize with the first message
+  });
+  return chatRef.id;
 }
 
 export async function getChat(id) {
