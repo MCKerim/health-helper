@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import withAuth from "../../components/HOCs/AuthHOC/AuthHOC";
 import Header from "../../components/organisms/header/Header";
 import AccountDeletionModal from "../../components/molecules/accountDeletionModal/AccountDeletionModal";
-import { removeUserAccount } from "../../firebase";
 
 const Account: React.FC = () => {
   // State to control visibility of the confirmation modal
