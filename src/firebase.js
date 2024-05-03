@@ -4,6 +4,7 @@ import {
   getFirestore,
   doc,
   getDoc,
+  deleteDoc,
   arrayUnion,
   updateDoc,
   setDoc,
@@ -39,6 +40,15 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+export async function removeChat(id) {
+  const chatDocRef = doc(db, "chats", id);
+  try {
+    await deleteDoc(chatDocRef);
+  } catch (error) {
+    console.error("Error removing chat from Firestore:", error);
+  }
+}
 
 export async function getChatIDsFromUID(uid) {
   const chatsCollectionRef = collection(db, "chats");
@@ -99,20 +109,22 @@ export async function getChat(id) {
 }
 
 export async function saveMessageToChat(newMessage, id) {
-  const chatDocRef = doc(db, "chats", id); // Adjust "chats" to your actual collection name
-  try {
-    const chatDoc = await getDoc(chatDocRef);
-    if (chatDoc.exists()) {
-      // If chat exists, append the new message
-      await updateDoc(chatDocRef, {
-        messages: arrayUnion(newMessage),
-      });
-    } else {
-      // If chat does not exist, create it with the new message
-      createChat(newMessage);
+  if (newMessage) {
+    const chatDocRef = doc(db, "chats", id); // Adjust "chats" to your actual collection name
+    try {
+      const chatDoc = await getDoc(chatDocRef);
+      if (chatDoc.exists()) {
+        // If chat exists, append the new message
+        await updateDoc(chatDocRef, {
+          messages: arrayUnion(newMessage),
+        });
+      } else {
+        // If chat does not exist, create it with the new message
+        createChat(newMessage);
+      }
+    } catch (error) {
+      console.error("Error saving message to Firestore:", error);
     }
-  } catch (error) {
-    console.error("Error saving message to Firestore:", error);
   }
 }
 
