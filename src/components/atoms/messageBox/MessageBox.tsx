@@ -15,7 +15,14 @@ export default function MessageBox({ sender, message }: Message) {
           : "MessageBoxBot fade-in-left")
       }
     >
-      <div className={"MessageContentContainer"}>
+      <div
+        className={
+          "MessageContentContainer " +
+          (sender === "user"
+            ? "MessageBoxUserContentContainer"
+            : "MessageBoxBotContentContainer")
+        }
+      >
         <p className="MessageSender">
           {sender === "user" ? "Du" : "Health Helper"}
         </p>

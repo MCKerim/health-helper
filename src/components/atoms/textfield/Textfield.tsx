@@ -6,6 +6,7 @@ type Props = {
   className?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 };
 
 export default function Textfield({
@@ -14,6 +15,7 @@ export default function Textfield({
   onChange,
   className,
   type,
+  onKeyDown,
 }: Props) {
   return (
     <input
@@ -22,6 +24,7 @@ export default function Textfield({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      onKeyDown={onKeyDown}
     />
   );
 }

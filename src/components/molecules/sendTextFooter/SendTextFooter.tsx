@@ -3,21 +3,30 @@ import Textfield from "../../atoms/textfield/Textfield";
 import SendTextButton from "../../atoms/sendTextButton/SendTextButton";
 import React from "react";
 
-type props = {
+type Props = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClick: () => void;
 };
 
-export default function SendTextFooter({ value, onChange, onClick }: props) {
+export default function SendTextFooter({ value, onChange, onClick }: Props) {
+  // Function to handle key events in the Textfield
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Prevent the default action of moving to the next focusable item
+      onClick(); // Trigger the onClick function
+    }
+  };
+
   return (
     <div className="send-text-footer-container">
       <div className="footer">
         <Textfield
           placeholder="Schreibe deine Frage..."
-          className={"sendTextBox"}
+          className="sendTextBox"
           value={value}
           onChange={onChange}
+          onKeyDown={handleKeyDown} // Bind the key handler
         />
         <SendTextButton onClick={onClick} />
       </div>
