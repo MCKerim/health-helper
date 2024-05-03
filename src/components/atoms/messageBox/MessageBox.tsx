@@ -26,7 +26,10 @@ export default function MessageBox({ sender, message }: Message) {
         <p className="MessageSender">
           {sender === "user" ? "Du" : "Health Helper"}
         </p>
-        <p className="MessageText">{message}</p>
+        <p
+          dangerouslySetInnerHTML={{ __html: message }}
+          className="MessageText"
+        ></p>
       </div>
     </div>
   );

@@ -7,7 +7,8 @@ import Header from "../../components/organisms/header/Header";
 import withAuth from "../../components/HOCs/AuthHOC/AuthHOC";
 import { createChat, getChat, saveMessageToChat } from "../../firebase";
 import { OpenAI } from "openai";
-
+import { marked } from "marked";
+import DOMPurify from "dompurify";
 const Chat: React.FC = () => {
   const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -40,17 +41,25 @@ const Chat: React.FC = () => {
 
     const completion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: "You are a doctor." },
+        {
+          role: "system",
+          content:
+            "You are a doctor and or a Therapist. Try to advise your client to the best of your abilities without diagnosing them. Keep your answers as concise as possible, and avoid using medical jargon. Try to ask if something is not clear. You can Use Markdown to format your messages.",
+        },
         ...messagesConverted,
       ],
       model: "gpt-3.5-turbo",
     });
 
+    const content =
+      completion.choices[completion.choices.length - 1].message.content;
+
+    const markedContent = await marked.parse(content ? content : "Error");
+    const safeContent = content ? DOMPurify.sanitize(markedContent) : "Error";
+
     const newBotMessage: Message = {
       sender: "assistant",
-      message:
-        completion.choices[completion.choices.length - 1].message.content ??
-        "Error",
+      message: safeContent,
     };
 
     return newBotMessage;
