@@ -5,10 +5,12 @@ import SignIn from "./pages/signIn/SignIn";
 import Chat from "./pages/chat/Chat";
 import Account from "./pages/account/Account";
 import Datenschutz from "./pages/datenschutz/Datenschutz";
+import Landingpage from "./pages/landingpage/landingpage";
 
 function App() {
   return (
     <Routes>
+      <Route path="/landingpage" element={<Landingpage />} />
       <Route path="/" element={<Chat />} />
       <Route path="/chat/:id" element={<Chat />} />
       <Route path="/signup" element={<SignUp />} />
