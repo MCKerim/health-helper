@@ -3,8 +3,7 @@ import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate } from "react-router-dom";
 import "./SignUpWindow.css";
 import { ShowPasswordIcon } from "../../atoms/showPasswordIcon/ShowPasswordIcon";
-import { signIn, signUp } from "../../../firebase";
-import { redirect } from "react-router-dom";
+import { signUp } from "../../../firebase";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");

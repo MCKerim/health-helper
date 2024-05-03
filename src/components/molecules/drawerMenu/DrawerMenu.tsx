@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import DrawerMenu from "../../atoms/drawerMenuContent/DrawerMenuContent";
 import HamburgerMenu from "../../atoms/drawerHamburgerIcon/DrawerHamburgerIcon";
 

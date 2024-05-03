@@ -1,11 +1,9 @@
-import React, { ReactNode, useEffect, useState, ComponentType } from "react";
-import firebase from "firebase/app";
+import React, { useEffect, useState, ComponentType } from "react";
 import { auth } from "../../../firebase";
 import { User as FirebaseUser } from "firebase/auth";
 import "./AuthHOC.css";
 import HeaderLogo from "../../atoms/headerLogo/HeaderLogo";
 import AuthGate from "../../molecules/authGate/AuthGate";
-import Header from "../../organisms/header/Header";
 
 function withAuth<T>(Component: ComponentType<T>) {
   const AuthenticatedComponent: React.FC<T> = (props) => {

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./SignInWindow.css";
 import { ShowPasswordIcon } from "../../atoms/showPasswordIcon/ShowPasswordIcon";
 import { resetPassword, signIn } from "../../../firebase";
-import { redirect } from "react-router-dom";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -86,7 +85,7 @@ export default function SignIn() {
           </button>
         </div>
         <button className="SignUpButton" onClick={handleSignIn}>
-          Create Account
+          Sign In
         </button>
         {alertMessage && <div className="alertBox">{alertMessage}</div>}
       </div>
