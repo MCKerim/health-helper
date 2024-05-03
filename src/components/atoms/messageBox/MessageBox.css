@@ -70,6 +70,7 @@
   width: fit-content;
   padding: 4px 12px;
   border-radius: 18px;
+  cursor: default;
   margin: 2px;
   background-color: rgba(0, 0, 0, 0.075);
 }
