@@ -34,6 +34,7 @@
 
 .listStart > div {
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .listStart > div:hover {
@@ -48,52 +49,48 @@
   color: #7fbaa8;
 }
 
-/* Ensure no color change on hover for sub-menu items */
-.menuList .menuListInner ul:hover {
-  color: black; /* This will prevent the hover color effect in sub-menu items */
+.menuListItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.menuListItem a {
+  overflow: hidden;
 }
 
 .menuLink {
   color: inherit; /* Inherits the color from the parent */
   text-decoration: none; /* Removes underline */
-  display: block; /* Makes the link fill the li for easier clicking */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
 }
 
 .menuLink.active {
   font-weight: bold;
 }
 
-.SignOutButton {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  font-weight: bold;
-  color: #070707;
-  background-color: #ff9f9f; /* Pink background color */
-  border: none;
-  border-radius: 20px; /* Rounded corners */
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px; /* Space from the last list item */
-  width: 90%; /* To stretch within the container */
-  box-sizing: border-box; /* To include padding and border in the width */
-  text-align: center; /* Center the text */
-}
 
-.SignOutButton:hover {
-  background-color: #ff677a;
-}
 
 .menuListInner > li {
   position: relative;
 }
 
+.menuListInner a {
+  margin-right: 15px;
+}
+
+.menuListInner svg {
+  margin-right: 15px;
+}
+
 .listStart::after {
   content: "";
   position: absolute;
-  top: 101px; /* Vertically centered */
-  right: 15px; /* Space from the right edge */
+  top: 100px; /* Vertically centered */
+  right: 29px; /* Space from the right edge */
   width: 10px;
   border-radius: 10px;
   height: 3px;
@@ -105,14 +102,24 @@
 .listStart::before {
   content: "";
   position: absolute;
-  top: 101px; /* Vertically centered */
-  right: 9px; /* Closer to the center line */
+  top: 100px; /* Vertically centered */
+  right: 23px; /* Closer to the center line */
   width: 10px;
   border-radius: 10px;
   height: 3px;
   background: black;
   transform: rotate(45deg); /* Start with a slight tilt */
   transition: transform 0.3s ease;
+}
+
+.trashCanIcon svg {
+  color: #98ceb5;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.trashCanIcon:hover svg {
+  color: #7fbaa8 !important;
 }
 
 .menuList li.open {

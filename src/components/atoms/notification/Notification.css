@@ -1,0 +1,35 @@
+.notification {
+    position: fixed;
+    top: 2%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: Roboto, serif;
+    font-size: 18px;
+    width: fit-content;
+    margin-bottom: 15px;
+    background-color: #f3f3f3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.closeButton {
+    overflow: hidden;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-weight: bold;
+    background-color: #98ceb5;
+    border: 1px solid #98ceb5;
+    border-radius: 15px;
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.closeButton:hover {
+    background-color: #7fbaa8;
+}

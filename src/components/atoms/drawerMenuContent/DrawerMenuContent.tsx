@@ -1,8 +1,15 @@
 import "./DrawerMenuContent.css";
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { auth, getChatIDsFromUID, signOutUser } from "../../../firebase";
-import firebase from "firebase/compat";
+import {
+  auth,
+  getChatIDsFromUID,
+  signOutUser,
+  removeChat,
+} from "../../../firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import ActionButton from "../actionButton/ActionButton";
 
 const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
   const [chatList, setChatList] = useState<string[]>([]);
@@ -28,18 +35,30 @@ const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
             Neuer Chat
           </NavLink>
         </li>
-        <li
-          className={`listStart ${isChatListOpen ? "open" : ""}`}
-          onClick={toggleChatList}
-        >
-          <div>Chats</div>
+        <li className={`listStart ${isChatListOpen ? "open" : ""}`}>
+          <div onClick={toggleChatList}>Chats</div>
           {isChatListOpen && (
             <ul className={`menuList menuListInner`}>
               {chatList.map((chat, index) => (
-                <li key={index}>
+                <li key={index + 1} className={"menuListItem"}>
                   <NavLink to={`/chat/${chat}`} className="menuLink">
-                    Chat {index}
+                    Chat {index + 1}
                   </NavLink>
+                  <div className={"trashCanIcon"}>
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      style={{ color: "#98ceb5" }}
+                      onClick={() => {
+                        removeChat(chat);
+                        setChatList(
+                          chatList.filter((chatID) => chatID !== chat),
+                        );
+                        if (chatList.length === 1) {
+                          setIsChatListOpen(false);
+                        }
+                      }}
+                    />
+                  </div>
                 </li>
               ))}
             </ul>
@@ -60,9 +79,7 @@ const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
           </NavLink>
         </li>
       </ul>
-      <button className="SignOutButton" onClick={signOutUser}>
-        Abmelden
-      </button>
+      <ActionButton onClick={signOutUser}>Abmelden</ActionButton>
     </div>
   );
 };

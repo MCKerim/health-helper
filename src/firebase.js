@@ -41,6 +41,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
+export async function deleteAllChatsByUID(uid) {
+  const chatsCollectionRef = collection(db, "chats");
+  try {
+    const chatsQuerySnapshot = await getDocs(
+      query(chatsCollectionRef, where("user", "==", uid)),
+    );
+    chatsQuerySnapshot.docs.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
+  } catch (error) {
+    console.error("Error getting chats from Firestore:", error);
+  }
+}
+
 export async function removeChat(id) {
   const chatDocRef = doc(db, "chats", id);
   try {
@@ -104,7 +118,8 @@ export async function getChat(id) {
 }
 
 export async function saveMessageToChat(newMessage, id) {
-  if (newMessage) {
+  if (newMessage && id) {
+    console.log(newMessage, id);
     const chatDocRef = doc(db, "chats", id); // Adjust "chats" to your actual collection name
     try {
       const chatDoc = await getDoc(chatDocRef);
