@@ -51,7 +51,9 @@ const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
           </NavLink>
         </li>
         <li className={`listStart ${isChatListOpen ? "open" : ""}`}>
-          <div onClick={toggleChatList}>Chats</div>
+          <div onClick={toggleChatList}>Chats</div>{" "}
+          <div className={`ArrowLeft`}></div>
+          <div className={`ArrowRight`}></div>
           {isChatListOpen && (
             <ul className={`menuList menuListInner`}>
               {chatList.map((chat, index) => (

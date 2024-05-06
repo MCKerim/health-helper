@@ -5,5 +5,5 @@ export default function ContentBox({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="contentBox">{children}</div>;
+  return <div className="contentBox fade-in-fwd">{children}</div>;
 }

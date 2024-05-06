@@ -16,6 +16,12 @@
     text-align: center; /* Center the text */
 }
 
+@media (max-width: 768px) {
+    .SignOutButton {
+        margin-left: 10px;
+    }
+}
+
 .SignOutButton:hover {
     background-color: #ff677a;
 }

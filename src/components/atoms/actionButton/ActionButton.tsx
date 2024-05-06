@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./ActionButton.css";
 // Define the props interface
 interface ActionButtonProps {
   onClick: () => void;
@@ -8,7 +8,7 @@ interface ActionButtonProps {
 
 const ActionButton: React.FC<ActionButtonProps> = ({ onClick, children }) => {
   return (
-    <button onClick={onClick} className="ActionButton">
+    <button onClick={onClick} className="SignOutButton fade-in-fwd">
       {children}
     </button>
   );

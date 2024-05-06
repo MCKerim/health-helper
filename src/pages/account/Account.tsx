@@ -16,8 +16,8 @@ const Account: React.FC = () => {
     <div className={"App"}>
       <Header />
       <div className={"MainContentContainer"}>
-        <h1>Account</h1>
-        <button className={"ActionButton"} onClick={toggleModal}>
+        <h1 className={"fade-in-fwd"}>Account</h1>
+        <button className={"ActionButton fade-in-fwd"} onClick={toggleModal}>
           Delete Account
         </button>
         <AccountDeletionModal
