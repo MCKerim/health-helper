@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 export default function Landingpage() {
   return (
     <div>
@@ -28,7 +29,19 @@ export default function Landingpage() {
             borderRadius: "4px",
           }}
         >
-          Log In
+          <NavLink
+            style={{
+              textDecoration: "none", // Removes underline from links
+              color: "inherit", // Inherits color from parent element
+              backgroundColor: "transparent", // Ensures no background color
+              border: "none", // No borders
+              padding: 0, // No padding
+              cursor: "pointer",
+            }}
+            to={"/signIn"}
+          >
+            Log In
+          </NavLink>
         </button>
       </header>
       <section>
@@ -42,7 +55,9 @@ export default function Landingpage() {
         >
           <h1>
             Get your health related questions answered with{" "}
-            <span style={{ fontSize: "40px", color: "#98ceb5", fontWeight: "bold" }}>
+            <span
+              style={{ fontSize: "40px", color: "#98ceb5", fontWeight: "bold" }}
+            >
               Health Helper
             </span>
           </h1>
