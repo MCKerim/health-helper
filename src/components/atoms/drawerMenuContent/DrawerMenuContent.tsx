@@ -6,19 +6,34 @@ import {
   getChatIDsFromUID,
   signOutUser,
   removeChat,
+  getChatsFromUID,
 } from "../../../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ActionButton from "../actionButton/ActionButton";
 
+type ChatInfo = {
+  id: string;
+  timestamp?: number;
+};
+
 const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
-  const [chatList, setChatList] = useState<string[]>([]);
+  const [chatList, setChatList] = useState<ChatInfo[]>([]);
   const [isChatListOpen, setIsChatListOpen] = useState(false);
 
   useEffect(() => {
-    getChatIDsFromUID(auth.currentUser?.uid).then((chats) => {
+    getChatsFromUID(auth.currentUser?.uid).then((chats) => {
       if (chats) {
-        setChatList(chats);
+        // Assuming chats is now an array of objects { id, timestamp }
+        const sortedChats = chats.sort((a, b) => {
+          // Sort such that entries without timestamps are placed at the end
+          return a.data.timestamp === null
+            ? 1
+            : b.data.timestamp === null
+              ? -1
+              : b.data.timestamp - a.data.timestamp;
+        });
+        setChatList(sortedChats);
       }
     });
   }, []);
@@ -40,8 +55,8 @@ const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
           {isChatListOpen && (
             <ul className={`menuList menuListInner`}>
               {chatList.map((chat, index) => (
-                <li key={index + 1} className={"menuListItem"}>
-                  <NavLink to={`/chat/${chat}`} className="menuLink">
+                <li key={chat.id} className={"menuListItem"}>
+                  <NavLink to={`/chat/${chat.id}`} className="menuLink">
                     Chat {index + 1}
                   </NavLink>
                   <div className={"trashCanIcon"}>
@@ -49,9 +64,11 @@ const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
                       icon={faTrashCan}
                       style={{ color: "#98ceb5" }}
                       onClick={() => {
-                        removeChat(chat);
+                        removeChat(chat.id);
                         setChatList(
-                          chatList.filter((chatID) => chatID !== chat),
+                          chatList.filter(
+                            (chatInfo) => chatInfo.id !== chat.id,
+                          ),
                         );
                         if (chatList.length === 1) {
                           setIsChatListOpen(false);

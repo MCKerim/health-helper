@@ -98,6 +98,7 @@ export async function createChat(firstMessage) {
   const chatRef = await addDoc(collection(db, "chats"), {
     user: auth.currentUser.uid,
     messages: [firstMessage], // Initialize with the first message
+    timestamp: new Date(),
   });
   return chatRef.id;
 }
