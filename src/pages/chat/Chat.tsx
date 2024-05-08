@@ -44,10 +44,15 @@ const Chat: React.FC = () => {
         {
           role: "system",
           content:
-            "You are a doctor and or a Therapist. Try to advise your client to the best of your abilities without diagnosing them. Keep your answers as concise as possible, and avoid using medical jargon. Try to ask if something is not clear. You are encouraged to pose a lot of questions if it furthers a possible narrowing down of the problem. You can Use Markdown to format your messages.",
+            "You are a doctor and or a Therapist. Try to advise your client to the best of your abilities without diagnosing them, however do name certain possibilities as clear hypotheticals. Keep your answers as concise as possible, and avoid using medical jargon. Try to ask if something is not clear. You are encouraged to pose a lot of questions if it furthers a possible narrowing down of the problem. You can Use Markdown to format your messages.",
         },
         ...messagesConverted,
       ],
+      temperature: 0.2,
+      max_tokens: 150,
+      top_p: 0.7,
+      frequency_penalty: 0.5,
+      presence_penalty: 0.4,
       model: "gpt-3.5-turbo",
     });
 
