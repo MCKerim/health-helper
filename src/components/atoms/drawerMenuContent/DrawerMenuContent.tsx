@@ -54,34 +54,30 @@ const DrawerMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
           <div onClick={toggleChatList}>Chats</div>{" "}
           <div className={`ArrowLeft`}></div>
           <div className={`ArrowRight`}></div>
-          {isChatListOpen && (
-            <ul className={`menuList menuListInner`}>
-              {chatList.map((chat, index) => (
-                <li key={chat.id} className={"menuListItem"}>
-                  <NavLink to={`/chat/${chat.id}`} className="menuLink">
-                    Chat {index + 1}
-                  </NavLink>
-                  <div className={"trashCanIcon"}>
-                    <FontAwesomeIcon
-                      icon={faTrashCan}
-                      style={{ color: "#98ceb5" }}
-                      onClick={() => {
-                        removeChat(chat.id);
-                        setChatList(
-                          chatList.filter(
-                            (chatInfo) => chatInfo.id !== chat.id,
-                          ),
-                        );
-                        if (chatList.length === 1) {
-                          setIsChatListOpen(false);
-                        }
-                      }}
-                    />
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
+          <ul className={`menuList menuListInner`}>
+            {chatList.map((chat, index) => (
+              <li key={chat.id} className={"menuListItem"}>
+                <NavLink to={`/chat/${chat.id}`} className="menuLink">
+                  Chat {index + 1}
+                </NavLink>
+                <div className={"trashCanIcon"}>
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    style={{ color: "#98ceb5" }}
+                    onClick={() => {
+                      removeChat(chat.id);
+                      setChatList(
+                        chatList.filter((chatInfo) => chatInfo.id !== chat.id),
+                      );
+                      if (chatList.length === 1) {
+                        setIsChatListOpen(false);
+                      }
+                    }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
         </li>
         <li>Einstellungen</li>
         <li>

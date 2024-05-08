@@ -19,7 +19,11 @@
   }
 
   .menuList li {
-    padding-bottom: 30px;
+    padding-bottom: 30px!important;
+    font-size: 20px!important;
+    border-bottom: transparent!important;
+    text-align: left;
+    margin-left: 10px;
   }
 }
 
@@ -85,7 +89,21 @@
   font-weight: bold;
 }
 
+.listStart {
+  transition: max-height 0.3s ease-in-out;
+  max-height: 25px;
+  overflow: hidden;
+}
 
+.open.listStart {
+  max-height: 500px;
+  overflow: auto;
+  animation: hide-scroll 1.2s backwards;
+}
+
+@keyframes hide-scroll {
+  from, to { overflow: hidden; }
+}
 
 .menuListInner > li {
   position: relative;

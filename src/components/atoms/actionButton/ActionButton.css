@@ -19,6 +19,7 @@
 @media (max-width: 768px) {
     .SignOutButton {
         margin-left: 10px;
+        margin-bottom: 10px;
     }
 }
 
