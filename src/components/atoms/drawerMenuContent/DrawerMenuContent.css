@@ -5,26 +5,13 @@
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   transition: transform 0.2s ease-out;
   z-index: 4;
-}
 
-@media (max-width: 768px) {
-  .drawer {
-    display: flex;
-    overflow-y: auto;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .menuList li {
-    padding-bottom: 30px!important;
-    font-size: 20px!important;
-    border-bottom: transparent!important;
-    text-align: left;
-    margin-left: 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .drawer.isOpen {
@@ -32,48 +19,63 @@
 }
 
 .drawer.isClosed {
-  transform: translateX(-100%);
-}
-
-.menuList {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.menuList li {
-  font-size: 16px;
-  border-bottom: 1px solid #cccccc;
-  font-weight: bold;
-  padding-top: 30px; /* Extra space above the heading */
-  padding-bottom: 10px;
+  transform: translateX(100%);
 }
 
 .listStart > div {
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
+  border-radius: 8px;
+  margin: 0px 10px;
 }
 
 .listStart > div:hover {
-  color: #7fbaa8;
+  background-color: lightgray;
 }
 
-.menuList a {
-  transition: color 0.3s ease;
-}
-
-.menuList a:hover {
-  color: #7fbaa8;
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0px;
 }
 
 .menuListItem {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 5px 0px;
 }
 
-.menuListItem a {
+.menuListItem:hover {
+  background-color: lightgray;
+}
+
+.newChatButton {
+  color: inherit; /* Inherits the color from the parent */
+  text-decoration: none; /* Removes underline */
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: #98ceb5;
+
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: bold;
+
+  transition: all 0.3s ease;
+}
+
+.newChatButton:hover {
+  background-color: #7fbaa8;
 }
 
 .menuLink {
@@ -82,7 +84,20 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 16px;
+  font-weight: bold;
 
+  transition: all 0.3s ease;
+  text-align: start;
+  padding: 10px 20px;
+
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+.menuLink:hover {
+  background-color: lightgray;
 }
 
 .menuLink.active {
@@ -91,12 +106,12 @@
 
 .listStart {
   transition: max-height 0.3s ease-in-out;
-  max-height: 25px;
+  max-height: 30px;
   overflow: hidden;
 }
 
 .open.listStart {
-  max-height: 500px;
+  max-height: 100%;
   overflow: auto;
   animation: hide-scroll 1.2s backwards;
 }
@@ -105,36 +120,11 @@
   from, to { overflow: hidden; }
 }
 
-.menuListInner > li {
-  position: relative;
-}
-
-.menuListInner a {
-  margin-right: 15px;
-}
-
-.menuListInner svg {
-  margin-right: 15px;
-}
-
 .ArrowLeft {
   content: "";
   position: relative;
   top: -13px; /* Vertically centered */
-  left: 88%;
-  width: 10px;
-  border-radius: 10px;
-  height: 3px;
-  background: black;
-  transform: rotate(-45deg); /* Start with a slight tilt */
-  transition: transform 0.3s ease!important;
-}
-
-.ArrowRight {
-  content: "";
-  position: relative;
-  top: -16px; /* Vertically centered */
-  left: 90%;
+  left: 80%;
   width: 10px;
   border-radius: 10px;
   height: 3px;
@@ -143,24 +133,34 @@
   transition: transform 0.3s ease!important;
 }
 
+.ArrowRight {
+  content: "";
+  position: relative;
+  top: -16px; /* Vertically centered */
+  left: 82%;
+  width: 10px;
+  border-radius: 10px;
+  height: 3px;
+  background: black;
+  transform: rotate(-45deg); /* Start with a slight tilt */
+  transition: transform 0.3s ease!important;
+}
+
 .trashCanIcon svg {
-  color: #98ceb5;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
+  padding: 5px;
+  border-radius: 8px;
 }
 
 .trashCanIcon:hover svg {
-  color: #7fbaa8 !important;
-}
-
-.menuList li.open {
-  border-bottom: transparent;
+  color: #ff4949 !important;
 }
 
 .open > .ArrowLeft {
-  transform: rotate(45deg); /* Rotate to vertical, pointing down */
+  transform: rotate(-45deg); /* Rotate to vertical, pointing down */
 }
 
 .open > .ArrowRight {
-  transform: rotate(-45deg); /* Rotate to vertical, pointing down */
+  transform: rotate(45deg); /* Rotate to vertical, pointing down */
 }

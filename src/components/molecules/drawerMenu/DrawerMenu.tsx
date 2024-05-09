@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import DrawerMenu from "../../atoms/drawerMenuContent/DrawerMenuContent";
+import DrawerMenuContent from "../../atoms/drawerMenuContent/DrawerMenuContent";
 import HamburgerMenu from "../../atoms/drawerHamburgerIcon/DrawerHamburgerIcon";
 
-interface AppProps {
+interface Props {
   isOpen: boolean;
   toggleDrawer: () => void;
 }
 
-const App: React.FC<AppProps> = ({ isOpen, toggleDrawer }) => {
+export default function DrawerMenu({ isOpen, toggleDrawer }: Props) {
   const node = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,9 +34,7 @@ const App: React.FC<AppProps> = ({ isOpen, toggleDrawer }) => {
   return (
     <div ref={node}>
       <HamburgerMenu isOpen={isOpen} toggleDrawer={toggleDrawer} />
-      <DrawerMenu isOpen={isOpen} />
+      <DrawerMenuContent isOpen={isOpen} toggleDrawer={toggleDrawer} />
     </div>
   );
-};
-
-export default App;
+}

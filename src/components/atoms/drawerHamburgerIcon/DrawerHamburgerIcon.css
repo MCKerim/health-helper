@@ -8,7 +8,7 @@
     width: 30px;
     height: 20px;
     cursor: pointer;
-    z-index: 100;
+    z-index: 3;
     padding-right: 25px;
     position: relative;
 }
