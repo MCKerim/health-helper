@@ -25,35 +25,17 @@
 .listStart > div {
   transition: all 0.3s ease;
   cursor: pointer;
-  border-radius: 8px;
   margin: 0px 10px;
-}
-
-.listStart > div:hover {
-  background-color: lightgray;
 }
 
 .menuList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 5px;
   margin: 0px;
-}
-
-.menuListItem {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 30px;
+  padding: 0px;
   font-weight: bold;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  border-radius: 8px;
-  padding: 5px 0px;
-}
-
-.menuListItem:hover {
-  background-color: lightgray;
 }
 
 .newChatButton {
@@ -64,7 +46,9 @@
   text-overflow: ellipsis;
   background-color: #98ceb5;
 
-  padding: 10px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
   border-radius: 8px;
   text-align: left;
   margin-left: 10px;
@@ -72,6 +56,11 @@
   font-weight: bold;
 
   transition: all 0.3s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .newChatButton:hover {
@@ -89,11 +78,17 @@
 
   transition: all 0.3s ease;
   text-align: start;
-  padding: 10px 20px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
 
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .menuLink:hover {
@@ -118,6 +113,23 @@
 
 @keyframes hide-scroll {
   from, to { overflow: hidden; }
+}
+
+.chatButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 8px;
+  padding: 2.5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: all 0.3s ease;
+  width: 75%;
+}
+
+.chatButton:hover {
+  background-color: lightgray;
 }
 
 .ArrowLeft {
