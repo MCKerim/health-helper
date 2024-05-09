@@ -5,3 +5,10 @@
     font-family: PT, serif;
     font-weight: bold;
 }
+
+@media (max-width: 768px) {
+    .HeaderLogo {
+        flex-grow: 1;
+        padding-left: 42px;
+    }
+}

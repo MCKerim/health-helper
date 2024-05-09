@@ -33,7 +33,7 @@
   background: #e4e4e4;
   border: 1px solid #e0e0e0;
   margin-left: 10px;
-  border-radius: 18px;
+  border-radius: 8px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   outline: none;
 }
@@ -43,5 +43,5 @@
 }
 
 .sendTextBox:focus {
-  border-color: #98ceb5;
+  border-color: #c6c6c6;
 }

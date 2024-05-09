@@ -105,15 +105,15 @@ const Chat: React.FC = () => {
   }
 
   return (
-    <div className={"App"}>
+    <div className="App">
       <Header />
       <MessagesWindow messages={messages} isLoading={isLoading} />
-      <div className={"BackgroundTextContainer"}>
-        <h1 className={"BackgroundText"}>Health~Helper</h1>
+      <div className="BackgroundTextContainer">
+        <h1 className="BackgroundText">{messages.length === 0 && "Health~Helper"}</h1>
       </div>
       <div>
-        <div className={"BackgroundDisclaimer"}>
-          <p className={"BackgroundText"}>
+        <div className="BackgroundDisclaimer">
+          <p className="BackgroundText">
             ~Bitte sprechen sie mit einem richtigen Arzt~
           </p>
         </div>
