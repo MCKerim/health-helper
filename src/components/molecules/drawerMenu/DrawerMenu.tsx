@@ -32,9 +32,9 @@ export default function DrawerMenu({ isOpen, toggleDrawer }: Props) {
   }, [isOpen, toggleDrawer]);
 
   return (
-    <div ref={node}>
+    <>
       <HamburgerMenu isOpen={isOpen} toggleDrawer={toggleDrawer} />
       <DrawerMenuContent isOpen={isOpen} toggleDrawer={toggleDrawer} />
-    </div>
+    </>
   );
 }
