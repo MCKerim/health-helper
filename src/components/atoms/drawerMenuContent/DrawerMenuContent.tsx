@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   auth,
-  getChatIDsFromUID,
-  signOutUser,
   removeChat,
   getChatsFromUID,
 } from "../../../firebase";

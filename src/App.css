@@ -22,7 +22,7 @@
   color: #070707;
   background-color: #ff9f9f; /* Pink background color */
   border: none;
-  border-radius: 20px; /* Rounded corners */
+  border-radius: 8px; /* Rounded corners */
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -56,11 +56,6 @@
   left: 0;
   right: 0;
   text-align: center;
-}
-
-.MainContentContainer {
-  margin-top: 120px;
-  margin-bottom: 50px;
 }
 
 .BackgroundText {

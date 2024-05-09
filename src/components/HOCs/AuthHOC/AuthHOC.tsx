@@ -4,6 +4,7 @@ import { User as FirebaseUser } from "firebase/auth";
 import "./AuthHOC.css";
 import HeaderLogo from "../../atoms/headerLogo/HeaderLogo";
 import AuthGate from "../../molecules/authGate/AuthGate";
+import Landingpage from "../../../pages/landingpage/landingpage";
 
 function withAuth<T>(Component: ComponentType<T>) {
   const AuthenticatedComponent: React.FC<T> = (props) => {
@@ -33,7 +34,7 @@ function withAuth<T>(Component: ComponentType<T>) {
     }
 
     if (!user) {
-      return <AuthGate />;
+      return <Landingpage />;
     }
 
     // If the user is logged in, render the passed component with all its props
