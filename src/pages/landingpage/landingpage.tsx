@@ -49,6 +49,7 @@ export default function Landingpage() {
           style={{
             minHeight: "100vh",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -61,26 +62,58 @@ export default function Landingpage() {
               Health Helper
             </span>
           </h1>
+          <button
+            style={{
+              color: "white",
+              fontSize: "16px",
+              fontWeight: "bold",
+              cursor: "pointer",
+              backgroundColor: "#121212",
+              border: "none",
+              paddingRight: "10px",
+              paddingLeft: "10px",
+              paddingTop: "5px",
+              paddingBottom: "5px",
+              borderRadius: "4px",
+            }}
+          >
+            <NavLink
+              style={{
+                textDecoration: "none", // Removes underline from links
+                color: "inherit", // Inherits color from parent element
+                backgroundColor: "transparent", // Ensures no background color
+                border: "none", // No borders
+                padding: 0, // No padding
+                cursor: "pointer",
+              }}
+              to={"/signUp"}
+            >
+              Create Account
+            </NavLink>
+          </button>
         </div>
       </section>
       <footer
         style={{
-          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           padding: "10px",
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "black",
           borderTop: "1px solid #ddd",
-          color: "#777",
+          color: "white",
           fontSize: "14px",
           lineHeight: "20px",
           position: "fixed",
           bottom: 0,
           width: "100%",
-          height: "60px",
+          height: "20px",
         }}
       >
         <p>
           This product is fully free and still in BETA. Keep in mind that we
-          reserve the rights to remove access and delete any data uploaded.
+          reserve the rights to remove access and delete any data uploaded
         </p>
       </footer>
     </div>
