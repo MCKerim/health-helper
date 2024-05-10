@@ -5,6 +5,8 @@ import "./AuthHOC.css";
 import HeaderLogo from "../../atoms/headerLogo/HeaderLogo";
 import AuthGate from "../../molecules/authGate/AuthGate";
 import Landingpage from "../../../pages/landingpage/landingpage";
+import LoadingSpinner from "../../atoms/loadingSpinner/LoadingSpinner";
+import LoadingContainer from "../../molecules/loadingContainer/LoadingContainer";
 
 function withAuth<T>(Component: ComponentType<T>) {
   const AuthenticatedComponent: React.FC<T> = (props) => {
@@ -25,12 +27,7 @@ function withAuth<T>(Component: ComponentType<T>) {
     }, []);
 
     if (isLoading) {
-      return (
-        <div className="centered-container">
-          <HeaderLogo />
-          <div className="loader" />
-        </div>
-      );
+      return <LoadingContainer />;
     }
 
     if (!user) {
