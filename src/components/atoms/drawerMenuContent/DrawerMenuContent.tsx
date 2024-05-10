@@ -1,14 +1,11 @@
 import "./DrawerMenuContent.css";
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  auth,
-  removeChat,
-  getChatsFromUID,
-} from "../../../firebase";
+import { auth, removeChat, getChatsFromUID } from "../../../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import ActionButton from "../actionButton/ActionButton";
+import { useSwipeable } from "react-swipeable";
 
 type ChatInfo = {
   id: string;
@@ -45,6 +42,12 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
     setIsChatListOpen(!isChatListOpen);
   };
 
+  const drawerSwipeTrigger = useSwipeable({
+    onSwipedRight: () => isOpen && toggleDrawer(), // Only close if open
+    trackMouse: true,
+    delta: 10, // How far the swipe needs to move to be recognized
+  });
+
   return (
     <>
       <div
@@ -63,7 +66,10 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
         }}
         onClick={toggleDrawer}
       />
-      <div className={`drawer ${isOpen ? "isOpen" : "isClosed"}`}>
+      <div
+        {...drawerSwipeTrigger}
+        className={`drawer ${isOpen ? "isOpen" : "isClosed"}`}
+      >
         <div
           style={{
             display: "flex",
@@ -120,7 +126,9 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
                       onClick={() => {
                         removeChat(chat.id);
                         setChatList(
-                          chatList.filter((chatInfo) => chatInfo.id !== chat.id)
+                          chatList.filter(
+                            (chatInfo) => chatInfo.id !== chat.id,
+                          ),
                         );
                         if (chatList.length === 1) {
                           setIsChatListOpen(false);

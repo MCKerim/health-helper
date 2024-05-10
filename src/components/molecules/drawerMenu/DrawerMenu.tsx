@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import DrawerMenuContent from "../../atoms/drawerMenuContent/DrawerMenuContent";
 import HamburgerMenu from "../../atoms/drawerHamburgerIcon/DrawerHamburgerIcon";
+import { useSwipeable } from "react-swipeable";
 
 interface Props {
   isOpen: boolean;
@@ -11,30 +12,52 @@ export default function DrawerMenu({ isOpen, toggleDrawer }: Props) {
   const node = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Function to handle click events on document
     const handleClickOutside = (event: MouseEvent) => {
-      // Check if the click is outside the node
-      if (node.current && !node.current.contains(event.target as Node)) {
-        // If drawer is open and click is outside, toggle the drawer
-        if (isOpen) {
-          toggleDrawer();
-        }
+      if (
+        node.current &&
+        !node.current.contains(event.target as Node) &&
+        isOpen
+      ) {
+        toggleDrawer();
       }
     };
 
-    // Add event listener to document
     document.addEventListener("mousedown", handleClickOutside);
-
-    // Clean up event listener from the document
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen, toggleDrawer]);
 
+  // Always visible swipe trigger
+  const edgeSwipeTrigger = useSwipeable({
+    onSwipedLeft: () => !isOpen && toggleDrawer(), // Only open if closed
+    onSwipedRight: () => isOpen && toggleDrawer(), // Only close if open
+    trackMouse: true,
+    delta: 10, // How far the swipe needs to move to be recognized
+  });
+
+  const drawerSwipeTrigger = useSwipeable({
+    onSwipedRight: () => isOpen && toggleDrawer(), // Only close if open
+    trackMouse: true,
+    delta: 10, // How far the swipe needs to move to be recognized
+  });
+
   return (
-    <>
-      <HamburgerMenu isOpen={isOpen} toggleDrawer={toggleDrawer} />
+    <div ref={node}>
+      <div
+        {...edgeSwipeTrigger}
+        style={{
+          width: "250px",
+          height: "100vh",
+          position: "absolute",
+          right: 0,
+          top: "80px",
+          bottom: 0,
+          zIndex: 2,
+        }}
+      />
       <DrawerMenuContent isOpen={isOpen} toggleDrawer={toggleDrawer} />
-    </>
+      <HamburgerMenu isOpen={isOpen} toggleDrawer={toggleDrawer} />
+    </div>
   );
 }
