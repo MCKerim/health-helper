@@ -5,11 +5,13 @@ const HamburgerMenu: React.FC<{
   toggleDrawer: () => void;
 }> = ({ isOpen, toggleDrawer }) => {
   return (
-    <div
-      className={`menuIcon ${isOpen ? "isOpen" : ""}`}
-      onClick={toggleDrawer}
-    >
-      <div className={`${isOpen ? "isOpen" : ""}`}></div>
+    <div className={"container"}>
+      <div
+        className={`menuIcon ${isOpen ? "isOpen" : ""}`}
+        onClick={toggleDrawer}
+      >
+        <div className={`${isOpen ? "isOpen" : ""}`}></div>
+      </div>
     </div>
   );
 };

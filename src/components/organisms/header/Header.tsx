@@ -12,8 +12,8 @@ export default function Header() {
 
   return (
     <div className="header">
-      <HeaderLogo />
       <DrawerMenu isOpen={isOpen} toggleDrawer={toggleDrawer} />
+      <HeaderLogo />
     </div>
   );
-};
+}
