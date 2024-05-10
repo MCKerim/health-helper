@@ -9,7 +9,11 @@ const Datenschutz: React.FC = () => {
       <div>
         <Header />
       </div>
-      <div className={"MainContentContainer"}>
+      <div
+        style={{
+          marginTop: "100px",
+        }}
+      >
         <DatenschutzWindow />
       </div>
     </div>
