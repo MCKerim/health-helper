@@ -1,6 +1,6 @@
 import "./DrawerMenuContent.css";
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { auth, removeChat, getChatsFromUID } from "../../../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +21,8 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
   const [isChatListOpen, setIsChatListOpen] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     getChatsFromUID(auth.currentUser?.uid).then((chats) => {
@@ -44,13 +46,23 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
   };
 
   const handleRemoveChat = (chatId: string) => {
-    removeChat(chatId);
-    setChatList(chatList.filter((chatInfo) => chatInfo.id !== chatId));
-    setShowNotification(true);
-    setNotificationMessage("Chat erfolgreich gelöscht.");
-    if (chatList.length === 1) {
-      setIsChatListOpen(false);
-    }
+    removeChat(chatId)
+      .then(() => {
+        if (location.pathname.includes(`/chat/${chatId}`)) {
+          navigate("/"); // Redirect to main or default chat page
+        }
+        setChatList(chatList.filter((chatInfo) => chatInfo.id !== chatId));
+        setShowNotification(true);
+        setNotificationMessage("Chat erfolgreich gelöscht.");
+        if (chatList.length === 1) {
+          setIsChatListOpen(false);
+        }
+      })
+      .catch((error) => {
+        setShowNotification(true);
+        setNotificationMessage("Fehler beim Löschen des Chats.");
+        console.error("Error removing chat:", error);
+      });
   };
 
   const closeNotification = () => {
