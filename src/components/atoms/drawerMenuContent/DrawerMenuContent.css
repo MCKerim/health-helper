@@ -100,7 +100,7 @@
 }
 
 .listStart {
-  transition: max-height 0.1s ease-in;
+  transition: max-height 0.2s ease-in;
   max-height: 30px;
   overflow: hidden;
 }

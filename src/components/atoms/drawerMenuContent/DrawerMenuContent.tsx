@@ -144,7 +144,9 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
                   <div className="trashCanIcon">
                     <FontAwesomeIcon
                       icon={faTrashCan}
-                      onClick={() => {
+                      onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
                         handleRemoveChat(chat.id);
                       }}
                     />
