@@ -6,10 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useSwipeable } from "react-swipeable";
 import Notification from "../notification/Notification";
-type ChatInfo = {
-  id: string;
-  timestamp?: number;
-};
+import { useChats } from "../../contexts/chatContext/ChatContext";
 
 type Props = {
   isOpen: boolean;
@@ -17,28 +14,15 @@ type Props = {
 };
 
 export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
-  const [chatList, setChatList] = useState<ChatInfo[]>([]);
   const [isChatListOpen, setIsChatListOpen] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const { chats, updateChats } = useChats();
 
   useEffect(() => {
-    getChatsFromUID(auth.currentUser?.uid).then((chats) => {
-      if (chats) {
-        // Assuming chats is now an array of objects { id, timestamp }
-        const sortedChats = chats.sort((a, b) => {
-          // Sort such that entries without timestamps are placed at the end
-          return a.data.timestamp === null
-            ? 1
-            : b.data.timestamp === null
-              ? -1
-              : b.data.timestamp - a.data.timestamp;
-        });
-        setChatList(sortedChats);
-      }
-    });
+    updateChats();
   }, []);
 
   const toggleChatList = () => {
@@ -49,12 +33,12 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
     removeChat(chatId)
       .then(() => {
         if (location.pathname.includes(`/chat/${chatId}`)) {
-          navigate("/"); // Redirect to main or default chat page
+          navigate("/");
         }
-        setChatList(chatList.filter((chatInfo) => chatInfo.id !== chatId));
+        updateChats();
         setShowNotification(true);
         setNotificationMessage("Chat erfolgreich gelöscht.");
-        if (chatList.length === 1) {
+        if (chats.length === 1) {
           setIsChatListOpen(false);
         }
       })
@@ -140,7 +124,7 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
             <div className="ArrowRight" />
 
             <div className="menuList">
-              {chatList.map((chat, index) => (
+              {chats.map((chat, index) => (
                 <NavLink
                   key={chat.id}
                   className="chatButton"

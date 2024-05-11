@@ -9,13 +9,14 @@ import { createChat, getChat, saveMessageToChat } from "../../firebase";
 import { OpenAI } from "openai";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
+import { useChats } from "../../components/contexts/chatContext/ChatContext";
 const Chat: React.FC = () => {
   const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { id: chatId } = useParams<{ id?: string }>();
   const navigate = useNavigate();
-
+  const { updateChats } = useChats();
   const openai = new OpenAI({
     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
@@ -96,7 +97,10 @@ const Chat: React.FC = () => {
       await saveMessageToChat(newBotMessage, docRefId);
       setMessages([...updatedMessages, newBotMessage]);
 
-      if (!chatId) navigate(`/chat/${docRefId}`);
+      if (!chatId) {
+        navigate(`/chat/${docRefId}`);
+        updateChats();
+      }
     } catch (error) {
       console.error("Error during chat operation:", error);
     } finally {
@@ -109,7 +113,9 @@ const Chat: React.FC = () => {
       <Header />
       <MessagesWindow messages={messages} isLoading={isLoading} />
       <div className="BackgroundTextContainer">
-        <h1 className="BackgroundText">{messages.length === 0 && "Health~Helper"}</h1>
+        <h1 className="BackgroundText">
+          {messages.length === 0 && "Health~Helper"}
+        </h1>
       </div>
       <div>
         <div className="BackgroundDisclaimer">
