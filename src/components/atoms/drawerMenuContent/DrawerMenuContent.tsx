@@ -4,9 +4,8 @@ import { NavLink } from "react-router-dom";
 import { auth, removeChat, getChatsFromUID } from "../../../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import ActionButton from "../actionButton/ActionButton";
 import { useSwipeable } from "react-swipeable";
-
+import Notification from "../notification/Notification";
 type ChatInfo = {
   id: string;
   timestamp?: number;
@@ -20,6 +19,8 @@ type Props = {
 export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
   const [chatList, setChatList] = useState<ChatInfo[]>([]);
   const [isChatListOpen, setIsChatListOpen] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   useEffect(() => {
     getChatsFromUID(auth.currentUser?.uid).then((chats) => {
@@ -42,6 +43,20 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
     setIsChatListOpen(!isChatListOpen);
   };
 
+  const handleRemoveChat = (chatId: string) => {
+    removeChat(chatId);
+    setChatList(chatList.filter((chatInfo) => chatInfo.id !== chatId));
+    setShowNotification(true);
+    setNotificationMessage("Chat erfolgreich gelöscht.");
+    if (chatList.length === 1) {
+      setIsChatListOpen(false);
+    }
+  };
+
+  const closeNotification = () => {
+    setShowNotification(false);
+  };
+
   const drawerSwipeTrigger = useSwipeable({
     onSwipedRight: () => isOpen && toggleDrawer(), // Only close if open
     trackMouse: true,
@@ -50,6 +65,12 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
 
   return (
     <>
+      {showNotification && (
+        <Notification
+          message={notificationMessage}
+          onClose={closeNotification}
+        />
+      )}
       <div
         style={{
           backgroundColor: "rgba(0, 0, 0, 0.25)",
@@ -124,15 +145,7 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
                     <FontAwesomeIcon
                       icon={faTrashCan}
                       onClick={() => {
-                        removeChat(chat.id);
-                        setChatList(
-                          chatList.filter(
-                            (chatInfo) => chatInfo.id !== chat.id,
-                          ),
-                        );
-                        if (chatList.length === 1) {
-                          setIsChatListOpen(false);
-                        }
+                        handleRemoveChat(chat.id);
                       }}
                     />
                   </div>
