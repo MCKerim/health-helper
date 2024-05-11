@@ -48,7 +48,7 @@ export default function DrawerMenu({ isOpen, toggleDrawer }: Props) {
         {...edgeSwipeTrigger}
         style={{
           width: "250px",
-          height: "100vh",
+          height: "calc(100vh - 150px)",
           position: "absolute",
           right: 0,
           top: "80px",
