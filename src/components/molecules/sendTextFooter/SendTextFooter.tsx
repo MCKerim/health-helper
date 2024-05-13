@@ -2,6 +2,7 @@ import "./SendTextFooter.css";
 import Textfield from "../../atoms/textfield/Textfield";
 import SendTextButton from "../../atoms/sendTextButton/SendTextButton";
 import React from "react";
+import SpeechToTextButton from "../../atoms/speechToTextButton/SpeechToTextButton";
 
 type Props = {
   value: string;
@@ -21,6 +22,7 @@ export default function SendTextFooter({ value, onChange, onClick }: Props) {
   return (
     <div className="send-text-footer-container">
       <div className="footer">
+        <SpeechToTextButton />
         <Textfield
           placeholder="Schreibe deine Frage..."
           className="sendTextBox"

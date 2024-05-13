@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { ChatProvider } from "./components/contexts/chatContext/ChatContext";
+import { SpeechProvider } from "./components/contexts/speechContext/SpeechContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <ChatProvider>
-      <App />
+      <SpeechProvider>
+        <App />
+      </SpeechProvider>
     </ChatProvider>
   </BrowserRouter>,
 );

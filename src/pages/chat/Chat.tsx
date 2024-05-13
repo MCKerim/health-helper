@@ -10,6 +10,7 @@ import { OpenAI } from "openai";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { useChats } from "../../components/contexts/chatContext/ChatContext";
+import { useSpeech } from "../../components/contexts/speechContext/SpeechContext";
 const Chat: React.FC = () => {
   const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -21,6 +22,7 @@ const Chat: React.FC = () => {
     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
   });
+  const { transcript, listening } = useSpeech();
 
   useEffect(() => {
     setMessages([]); // Clear messages on load (to prevent duplicates on re-render)
@@ -32,6 +34,11 @@ const Chat: React.FC = () => {
       });
     }
   }, [chatId]);
+
+  useEffect(() => {
+    setMessageInput(transcript);
+    console.log(transcript);
+  }, [listening]);
 
   async function makeOpenAICall(chatMessages: Message[]): Promise<Message> {
     let messagesConverted = chatMessages.map((message) => {

@@ -1,0 +1,32 @@
+.SpeechButton {
+    overflow: hidden;
+    position: relative;
+    background-color: #98ceb5;
+    border: 1px solid #98ceb5;
+    border-radius: 15px;
+    padding: 5px 5px 2px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.SpeechButton:hover {
+    background-color: #7fbaa8;
+}
+
+.SpeechButton.Listening {
+    background-color: #578671;
+    border-color: #578671;
+    animation: pulseShadow 1.5s infinite;
+}
+
+@keyframes pulseShadow {
+    0%, 100% {
+        box-shadow: 0 0 0 0px rgba(87, 134, 113, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 10px 10px rgba(87, 134, 113, 0);
+    }
+}
