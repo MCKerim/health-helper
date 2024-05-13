@@ -3,8 +3,8 @@ export default function SendTextButton({ onClick }: { onClick: () => void }) {
   return (
     <button onClick={onClick} className="SendTextButton">
       <svg
-        width="35px"
-        height="35px"
+        width="45px"
+        height="45px"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

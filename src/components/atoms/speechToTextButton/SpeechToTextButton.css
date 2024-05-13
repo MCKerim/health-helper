@@ -1,10 +1,14 @@
 .SpeechButton {
+    display: flex;
+    align-items: center;  /* Vertically centers the content */
+    justify-content: center; /* Horizontally centers the content */
     overflow: hidden;
     position: relative;
     background-color: #98ceb5;
     border: 1px solid #98ceb5;
     border-radius: 15px;
-    padding: 5px 5px 2px;
+    padding: 5px;
+    margin-left: 10px;
     color: #ffffff;
     cursor: pointer;
     font-size: 1.2rem;
@@ -12,6 +16,11 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+@media (max-width: 768px) {
+    .SpeechButton {
+        padding: 10px;
+    }
+}
 .SpeechButton:hover {
     background-color: #7fbaa8;
 }
