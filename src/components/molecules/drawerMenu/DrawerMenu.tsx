@@ -54,7 +54,29 @@ export default function DrawerMenu({ isOpen, toggleDrawer }: Props) {
           top: "80px",
           bottom: 0,
         }}
-      />
+      >
+        <svg
+          style={{
+            position: "absolute",
+            right: 0,
+            top: "50%",
+            color: "rgba(0, 0, 0, 0.075)",
+          }}
+          width={50}
+          height={50}
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m15 7-5 5 5 5"
+            stroke="currentcolor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
       <DrawerMenuContent isOpen={isOpen} toggleDrawer={toggleDrawer} />
       <HamburgerMenu isOpen={isOpen} toggleDrawer={toggleDrawer} />
     </div>
