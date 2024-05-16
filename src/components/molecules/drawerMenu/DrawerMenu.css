@@ -1,2 +1,13 @@
+.Arrow {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    color: rgba(0, 0, 0, 0.075);
+    transition: color 0.3s, filter 0.3s; /* Ensure transitions are specified for both properties */
+}
 
-
+.Arrow:hover {
+    text-shadow: black 0px 0px 5px;
+    color: rgba(0, 0, 0, 0.15); /* Slight change in opacity */
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4)); /* Change in filter */
+}

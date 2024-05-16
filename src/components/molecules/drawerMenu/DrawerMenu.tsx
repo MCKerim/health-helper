@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import DrawerMenuContent from "../../atoms/drawerMenuContent/DrawerMenuContent";
 import HamburgerMenu from "../../atoms/drawerHamburgerIcon/DrawerHamburgerIcon";
 import { useSwipeable } from "react-swipeable";
-
+import "./DrawerMenu.css";
 interface Props {
   isOpen: boolean;
   toggleDrawer: () => void;
@@ -56,12 +56,7 @@ export default function DrawerMenu({ isOpen, toggleDrawer }: Props) {
         }}
       >
         <svg
-          style={{
-            position: "absolute",
-            right: 0,
-            top: "50%",
-            color: "rgba(0, 0, 0, 0.075)",
-          }}
+          className={"Arrow"}
           width={50}
           height={50}
           viewBox="0 0 24 24"
