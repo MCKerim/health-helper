@@ -65,6 +65,23 @@
   align-items: center;
 }
 
+.MessageText a {
+  text-decoration: none;
+}
+
+.MessageText pre code {
+  font-family: 'Courier New', monospace; /* Sets a monospaced font for code */
+  background-color: #e1e1e1; /* Light grey background */
+  color: #333; /* Dark grey text color */
+  padding: 8px; /* Adds space inside the code block */
+  border-radius: 4px; /* Rounded corners */
+  border: 1px solid #ccc; /* Light grey border */
+  display: block; /* Ensures it takes its own line */
+  overflow-x: auto; /* Adds horizontal scrollbar if needed */
+  white-space: pre-wrap; /* Maintains whitespace formatting */
+}
+
+
 .MessageSender {
   font-weight: bold;
   width: fit-content;
