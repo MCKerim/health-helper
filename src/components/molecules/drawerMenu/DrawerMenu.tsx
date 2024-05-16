@@ -47,13 +47,12 @@ export default function DrawerMenu({ isOpen, toggleDrawer }: Props) {
       <div
         {...edgeSwipeTrigger}
         style={{
-          width: "250px",
+          width: "12%",
           height: "calc(100vh - 150px)",
           position: "absolute",
           right: 0,
           top: "80px",
           bottom: 0,
-          zIndex: 2,
         }}
       />
       <DrawerMenuContent isOpen={isOpen} toggleDrawer={toggleDrawer} />
