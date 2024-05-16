@@ -81,6 +81,10 @@
   white-space: pre-wrap; /* Maintains whitespace formatting */
 }
 
+.MessageText li {
+  margin-bottom: 10px;
+}
+
 
 .MessageSender {
   font-weight: bold;
