@@ -29,7 +29,8 @@ const SpeechToTextButton = () => {
   };
 
   return browserSupportsSpeechRecognition &&
-    (device !== "ios" || device !== "android") ? (
+    device !== "ios" &&
+    device !== "android" ? (
     <button
       className={`SpeechButton ${listening ? "Listening" : ""}`}
       onClick={toggleListening}
