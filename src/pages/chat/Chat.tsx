@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWindow";
 import { Message } from "../../components/atoms/messageBox/MessageBox";
 import SendTextFooter from "../../components/molecules/sendTextFooter/SendTextFooter";
 import Header from "../../components/organisms/header/Header";
 import withAuth from "../../components/HOCs/AuthHOC/AuthHOC";
-import { createChat, getChat, saveMessageToChat } from "../../firebase";
+import {
+  changeChatTitle,
+  createChat,
+  getChat,
+  saveMessageToChat,
+} from "../../firebase";
 import { OpenAI } from "openai";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { useChats } from "../../components/contexts/chatContext/ChatContext";
 import { useSpeech } from "../../components/contexts/speechContext/SpeechContext";
+
 const Chat: React.FC = () => {
   const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -57,13 +63,14 @@ Guidelines:
 
 Hypothesize, Don't Diagnose: Offer possible scenarios or causes for symptoms in a hypothetical manner without giving a definitive diagnosis. When mentioning specific conditions or diseases, subtly link to a reputable medical resource embedded within the relevant terms for further information.
 Simplicity and Clarity: Keep your responses concise and free of medical jargon. Use simple, clear language to explain possible conditions and advice.
-Active Engagement: Ask clarifying questions to better understand the client's situation. This helps in narrowing down potential issues.
+Active Engagement: Ask one clarifying question, the most probable to ask, to better understand the client's situation. This helps in narrowing down potential issues.
 Encourage Detailed Responses: Use open-ended questions to encourage clients to provide more detailed information, which can be crucial for understanding their situation.
-Markdown Formatting: Utilize Markdown to format your messages for better readability. This includes using bullet points, bold for emphasis, and italics for hypothetical scenarios.
+Markdown Formatting: Utilize HTML to format your messages for better readability. This includes using bullet points, a bold tag for emphasis, and italics for hypothetical scenarios.
+
 Example Interaction:
 
 User: I've been feeling unusually tired lately with some occasional headaches.
-AI (as Doctor/Therapist): It sounds like you're dealing with some challenging symptoms. Fatigue and headaches can be caused by a variety of factors, such as stress or dietary changes. Could it be stress-related, or have there been any recent changes in your lifestyle? Additionally, how would you rate your headaches on a scale from 1 to 10, and are there specific times of the day they occur? For more information, you might find articles on stress-related symptoms helpful.`,
+AI (as Doctor/Therapist): It sounds like you're dealing with some challenging symptoms. Fatigue and headaches can be caused by a variety of factors, such as stress or dietary changes. Could it be stress-related, or have there been any recent changes in your lifestyle? Additionally, how would you rate your headaches on a scale from 1 to 10, and are there specific times of the day they occur?`,
         },
         ...messagesConverted,
       ],
@@ -86,6 +93,30 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
     };
 
     return newBotMessage;
+  }
+
+  async function makeOpenAISummaryCall(updatedMessages: Message[]) {
+    let messagesConverted = updatedMessages.map((message) => {
+      return { role: message.sender, content: message.message };
+    });
+
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content: `Create a Caption for the provided conversation. It should not exceed 3 words.`,
+        },
+        ...messagesConverted,
+      ],
+      temperature: 0.2,
+      top_p: 0.7,
+      max_tokens: 20,
+      frequency_penalty: 0.5,
+      presence_penalty: 0.4,
+      model: "gpt-3.5-turbo",
+    });
+
+    return completion.choices[completion.choices.length - 1].message.content;
   }
 
   async function sendMessagePressed() {
@@ -116,6 +147,12 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
 
       if (!chatId) {
         navigate(`/chat/${docRefId}`);
+        await updateChats();
+      }
+
+      if (messages.length === 4) {
+        const title = await makeOpenAISummaryCall(messages);
+        await changeChatTitle(chatId, title);
         updateChats();
       }
     } catch (error) {

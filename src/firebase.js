@@ -97,10 +97,24 @@ export async function getChatsFromUID(uid) {
 export async function createChat(firstMessage) {
   const chatRef = await addDoc(collection(db, "chats"), {
     user: auth.currentUser.uid,
-    messages: [firstMessage], // Initialize with the first message
+    messages: [firstMessage],
     timestamp: new Date(),
+    title: "New Chat",
   });
   return chatRef.id;
+}
+
+export async function changeChatTitle(id, newTitle) {
+  const chatDocRef = doc(db, "chats", id); // Get a reference to the chat document
+
+  try {
+    await updateDoc(chatDocRef, {
+      title: newTitle,
+    });
+  } catch (error) {
+    console.error("Error updating chat title:", error);
+    throw new Error("Failed to update chat title");
+  }
 }
 
 export async function getChat(id) {

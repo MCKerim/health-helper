@@ -7,10 +7,11 @@ import React, {
 } from "react";
 import { getChatsFromUID } from "../../../firebase";
 import { auth } from "../../../firebase";
+import { DocumentData } from "firebase/firestore";
 
 interface Chat {
   id: string;
-  timestamp?: number;
+  data: DocumentData;
 }
 
 interface ChatContextType {

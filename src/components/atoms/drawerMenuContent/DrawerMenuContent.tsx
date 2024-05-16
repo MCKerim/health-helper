@@ -133,10 +133,12 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
                   style={{
                     color: "inherit",
                     textDecoration: "none",
-                    textOverflow: "ellipsis",
+                    textOverflow: "clip",
                   }}
                 >
-                  Chat {index + 1}
+                  {chat.data.title || chat.data.title === "New Chat"
+                    ? chat.data.title
+                    : `Chat ${index + 1}`}
                   <div className="trashCanIcon">
                     <FontAwesomeIcon
                       icon={faTrashCan}

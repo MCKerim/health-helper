@@ -119,14 +119,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   border-radius: 8px;
-  padding: 2.5px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 2.5px 15px;
   transition: all 0.3s ease;
   width: 75%;
+
+  overflow: hidden;        /* Ensures content that overflows the box is hidden */
+  text-overflow: ellipsis; /* Renders an ellipsis (...) to represent clipped text */
+  white-space: nowrap;     /* Ensures text does not wrap to the next line */
 }
+
 
 .chatButton:hover {
   background-color: lightgray;
