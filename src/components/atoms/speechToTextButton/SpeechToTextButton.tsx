@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSpeech } from "../../contexts/speechContext/SpeechContext";
 import "./SpeechToTextButton.css";
+import { Device } from "@capacitor/device";
 const SpeechToTextButton = () => {
+  const [device, setDevice] = useState<String>("");
+
+  useEffect(() => {
+    Device.getInfo().then((info) => {
+      setDevice(info.platform);
+    });
+  }, []);
+
   const {
     browserSupportsSpeechRecognition,
     transcript,
@@ -19,9 +28,10 @@ const SpeechToTextButton = () => {
     }
   };
 
-  return browserSupportsSpeechRecognition ? (
+  return browserSupportsSpeechRecognition &&
+    (device !== "ios" || device !== "android") ? (
     <button
-      className={listening ? "SpeechButton Listening" : "SpeechButton"}
+      className={`SpeechButton ${listening ? "Listening" : ""}`}
       onClick={toggleListening}
     >
       <svg
