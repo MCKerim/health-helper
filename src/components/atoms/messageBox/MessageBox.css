@@ -108,3 +108,31 @@
 .MessageBoxBotContentContainer {
   align-items: flex-start;
 }
+
+.MessageReactions {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  padding: 2px;
+  gap: 5px;
+  border-radius: 10px;
+  border: black 0.5mm solid;
+}
+
+.ReactionIcon {
+  transition: color 0.3s ease;
+}
+
+.ReactionIcon:hover {
+  cursor: pointer;
+  color: #7fbaa8;
+  text-shadow: black 5px 5px 5px;
+  color: rgba(0, 0, 0, 0.15); /* Slight change in opacity */
+  filter: drop-shadow(0 0 0.75rem rgb(0 0 0 / 0.4)); /* Change in filter */
+}
+
+.Active {
+  cursor: pointer;
+  color: #7fbaa8;
+}

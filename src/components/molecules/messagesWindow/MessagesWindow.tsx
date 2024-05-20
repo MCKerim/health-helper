@@ -21,13 +21,25 @@ export default function MessagesWindow({ messages, isLoading }: Props) {
     return (
       <div className="MessagesWindow">
         {messages.map((message, index) => {
-          return (
-            <MessageBox
-              key={message.message + index}
-              sender={message.sender}
-              message={message.message}
-            />
-          );
+          if (message.sender === "user") {
+            return (
+              <MessageBox
+                key={index}
+                sender={message.sender}
+                message={message.message}
+              />
+            );
+          } else {
+            return (
+              <MessageBox
+                key={message.message + index}
+                sender={message.sender}
+                message={message.message}
+                isLiked={message.isLiked}
+                isDisliked={message.isDisliked}
+              />
+            );
+          }
         })}
         {isLoading && (
           <div className={"LoaderContainer"}>

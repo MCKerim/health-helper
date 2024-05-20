@@ -104,7 +104,46 @@ export async function createChat(firstMessage) {
   return chatRef.id;
 }
 
-export async function likeMessage(id) {}
+export async function reactToMessage(chatId, messageContent, reaction) {
+  try {
+    const chatRef = doc(db, "chats", chatId);
+
+    const chatDoc = await getDoc(chatRef);
+    if (!chatDoc.exists) {
+      throw new Error(`Chat with ID ${chatId} does not exist.`);
+    }
+
+    const chatData = chatDoc.data();
+    if (!chatData || !Array.isArray(chatData.messages)) {
+      throw new Error(
+        `Chat data is invalid or messages field is not an array.`,
+      );
+    }
+
+    const messages = chatData.messages;
+    const messageIndex = messages.findIndex(
+      (message) => message.message === messageContent,
+    );
+
+    if (messageIndex === -1) {
+      throw new Error(`Message with content "${messageContent}" not found.`);
+    }
+
+    if (reaction === "like") {
+      const message = messages[messageIndex];
+      message.isLiked = !message.isLiked;
+    } else if (reaction === "dislike") {
+      const message = messages[messageIndex];
+      message.isDisliked = !message.isDisliked;
+    }
+
+    // Write the updated messages array back to Firestore
+    chatData.messages = messages;
+    await updateDoc(chatRef, "messages", messages);
+  } catch (error) {
+    console.error("Error updating message: ", error);
+  }
+}
 
 export async function changeChatTitle(id, newTitle) {
   const chatDocRef = doc(db, "chats", id); // Get a reference to the chat document
