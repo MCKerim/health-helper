@@ -128,7 +128,7 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
                 <NavLink
                   key={chat.id}
                   className="chatButton"
-                  to={`/chat/${chat.id}`}
+                  to={`/chats/${chat.id}`}
                   onClick={toggleDrawer}
                   style={{
                     color: "inherit",

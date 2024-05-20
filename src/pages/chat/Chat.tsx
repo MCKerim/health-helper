@@ -90,6 +90,8 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
     const newBotMessage: Message = {
       sender: "assistant",
       message: safeContent,
+      isLiked: false,
+      isDisliked: false,
     };
 
     return newBotMessage;
@@ -123,7 +125,10 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
     if (messageInput === "") return;
 
     setIsLoading(true); // Start loading at the beginning
-    const newUserMessage: Message = { sender: "user", message: messageInput };
+    const newUserMessage: Message = {
+      sender: "user",
+      message: messageInput,
+    };
     const updatedMessages = [...messages, newUserMessage];
     setMessages(updatedMessages);
 
@@ -146,7 +151,7 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
       setMessages([...updatedMessages, newBotMessage]);
 
       if (!chatId) {
-        navigate(`/chat/${docRefId}`);
+        navigate(`/chats/${docRefId}`);
         await updateChats();
       }
 

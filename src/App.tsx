@@ -12,7 +12,7 @@ function App() {
     <Routes>
       <Route path="/landingpage" element={<Landingpage />} />
       <Route path="/" element={<Chat />} />
-      <Route path="/chat/:id" element={<Chat />} />
+      <Route path="/chats/:id" element={<Chat />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/Account/:uid" element={<Account />} />
