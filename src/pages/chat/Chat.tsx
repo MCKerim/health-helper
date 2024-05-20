@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWindow";
-import { Message } from "../../components/atoms/messageBox/MessageBox";
 import SendTextFooter from "../../components/molecules/sendTextFooter/SendTextFooter";
 import Header from "../../components/organisms/header/Header";
 import withAuth from "../../components/HOCs/AuthHOC/AuthHOC";
@@ -16,6 +15,7 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { useChats } from "../../components/contexts/chatContext/ChatContext";
 import { useSpeech } from "../../components/contexts/speechContext/SpeechContext";
+import { Message } from "../../types";
 
 const Chat: React.FC = () => {
   const [messageInput, setMessageInput] = useState("");

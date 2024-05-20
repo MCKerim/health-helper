@@ -1,9 +1,5 @@
 import "./MessageBox.css";
-
-export type Message = {
-  sender: "user" | "assistant";
-  message: string;
-};
+import { Message } from "../../../types";
 
 export default function MessageBox({ sender, message }: Message) {
   return (

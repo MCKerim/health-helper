@@ -104,6 +104,8 @@ export async function createChat(firstMessage) {
   return chatRef.id;
 }
 
+export async function likeMessage(id) {}
+
 export async function changeChatTitle(id, newTitle) {
   const chatDocRef = doc(db, "chats", id); // Get a reference to the chat document
 

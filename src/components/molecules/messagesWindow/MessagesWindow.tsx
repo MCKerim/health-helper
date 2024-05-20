@@ -1,6 +1,7 @@
-import MessageBox, { Message } from "../../atoms/messageBox/MessageBox";
+import MessageBox from "../../atoms/messageBox/MessageBox";
 import "./MessagesWindow.css";
 import React, { useEffect, useRef } from "react";
+import { Message } from "../../../types";
 type Props = {
   messages: Message[];
   isLoading: boolean;
