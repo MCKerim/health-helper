@@ -19,7 +19,6 @@ export default function MessageBox(props: Message) {
   // Function to extract chatId from the URL
   const getChatIdFromUrl = () => {
     const pathParts = location.pathname.split("/");
-    console.log(pathParts);
     const chatIdIndex = pathParts.findIndex((part) => part === "chats") + 1;
     return pathParts[chatIdIndex];
   };
