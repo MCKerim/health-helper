@@ -4,6 +4,9 @@ import { reactToMessage } from "../../../firebase";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+/**
+ * Box to display messages send by users or chatbot
+ */
 export default function MessageBox(props: Message) {
   const { sender, message } = props;
   const location = useLocation();

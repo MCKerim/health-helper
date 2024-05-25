@@ -4,7 +4,7 @@ import { User as FirebaseUser } from "firebase/auth";
 import "./AuthHOC.css";
 import HeaderLogo from "../../atoms/headerLogo/HeaderLogo";
 import AuthGate from "../../molecules/authGate/AuthGate";
-import Landingpage from "../../../pages/landingpage/landingpage";
+import Landingpage from "../../../pages/landingpage/Landingpage";
 import LoadingSpinner from "../../atoms/loadingSpinner/LoadingSpinner";
 import LoadingContainer from "../../molecules/loadingContainer/LoadingContainer";
 

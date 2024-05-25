@@ -34,7 +34,7 @@ const DatenschutzWindow = () => {
         <p>Für Weitere Informationen...</p>
       </ContentBox>
 
-      <ActionButton onClick={handleDeleteChats}>Chats löschen</ActionButton>
+      <ActionButton onClick={handleDeleteChats} label="Chats löschen" />
 
       {showNotification && (
         <Notification

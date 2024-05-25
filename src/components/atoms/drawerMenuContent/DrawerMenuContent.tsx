@@ -1,7 +1,7 @@
 import "./DrawerMenuContent.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { auth, removeChat, getChatsFromUID } from "../../../firebase";
+import { auth, removeChat } from "../../../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useSwipeable } from "react-swipeable";
@@ -13,7 +13,7 @@ type Props = {
   toggleDrawer: () => void;
 };
 
-export default function DrawerMenuContent({ isOpen, toggleDrawer }: Props) {
+export default function DrawerMenuContent({ isOpen, toggleDrawer }: Readonly<Props>) {
   const [isChatListOpen, setIsChatListOpen] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");

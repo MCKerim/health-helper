@@ -1,9 +1,15 @@
 import React from "react";
 import "./DrawerHamburgerIcon.css";
-const HamburgerMenu: React.FC<{
+
+type Props = {
   isOpen: boolean;
   toggleDrawer: () => void;
-}> = ({ isOpen, toggleDrawer }) => {
+};
+
+export default function DrawerHamburgerIcon({
+  isOpen,
+  toggleDrawer,
+}: Readonly<Props>) {
   return (
     <div className={"container"}>
       <div
@@ -14,6 +20,4 @@ const HamburgerMenu: React.FC<{
       </div>
     </div>
   );
-};
-
-export default HamburgerMenu;
+}

@@ -1,11 +1,10 @@
 import React from "react";
-interface ShowPasswordIconProps {
-  showPassword: boolean;
-}
 
-export const ShowPasswordIcon: React.FC<ShowPasswordIconProps> = ({
-  showPassword,
-}) => {
+type Props = {
+  showPassword: boolean;
+};
+
+export default function ShowPasswordIcon({ showPassword }: Props) {
   return showPassword ? (
     <svg
       viewBox="0 0 24 24"
@@ -55,4 +54,4 @@ export const ShowPasswordIcon: React.FC<ShowPasswordIconProps> = ({
       </g>
     </svg>
   );
-};
+}

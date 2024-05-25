@@ -5,7 +5,7 @@ import SignIn from "./pages/signIn/SignIn";
 import Chat from "./pages/chat/Chat";
 import Account from "./pages/account/Account";
 import Datenschutz from "./pages/datenschutz/Datenschutz";
-import Landingpage from "./pages/landingpage/landingpage";
+import Landingpage from "./pages/landingpage/Landingpage";
 
 function App() {
   return (

@@ -8,10 +8,10 @@ type AccountDeletionModalProps = {
   onClose: () => void;
 };
 
-const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
+export default function AccountDeletionModal({
   isOpen,
   onClose,
-}) => {
+}: Readonly<AccountDeletionModalProps>) {
   const [error, setError] = useState("");
 
   const handleDeleteAccount = async () => {
@@ -39,6 +39,4 @@ const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
       </button>
     </Modal>
   );
-};
-
-export default AccountDeletionModal;
+}

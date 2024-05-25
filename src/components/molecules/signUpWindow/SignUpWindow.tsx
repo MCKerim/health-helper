@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate } from "react-router-dom";
 import "./SignUpWindow.css";
-import { ShowPasswordIcon } from "../../atoms/showPasswordIcon/ShowPasswordIcon";
+import ShowPasswordIcon from "../../atoms/showPasswordIcon/ShowPasswordIcon";
 import { signUp } from "../../../firebase";
 
 export default function SignUp() {

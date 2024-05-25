@@ -16,7 +16,7 @@ export default function Textfield({
   className,
   type,
   onKeyDown,
-}: Props) {
+}: Readonly<Props>) {
   return (
     <input
       type={type || "text"}

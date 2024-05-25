@@ -1,5 +1,8 @@
-import React from "react";
 import "./AuthGate.css";
+
+/**
+ * The login page
+ */
 export default function AuthGate() {
   return (
     <div className="centered-window">

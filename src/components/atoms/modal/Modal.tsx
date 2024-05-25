@@ -1,13 +1,19 @@
 import React from "react";
 import "./Modal.css";
-type ModalProps = {
+
+type Props = {
   children: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
   error?: string;
 };
 
-const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose, error }) => {
+export default function Modal({
+  children,
+  isOpen,
+  onClose,
+  error,
+}: Readonly<Props>) {
   return (
     <div className={`modal ${isOpen ? "open" : ""}`}>
       <div className="modal-content">
@@ -19,6 +25,4 @@ const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose, error }) => {
       </div>
     </div>
   );
-};
-
-export default Modal;
+}

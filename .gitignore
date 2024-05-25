@@ -43,3 +43,5 @@ pids
 # dotenv environment variables file
 .env
 
+
+*storybook.log

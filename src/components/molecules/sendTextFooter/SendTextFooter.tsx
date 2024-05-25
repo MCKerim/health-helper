@@ -10,7 +10,7 @@ type Props = {
   onClick: () => void;
 };
 
-export default function SendTextFooter({ value, onChange, onClick }: Props) {
+export default function SendTextFooter({ value, onChange, onClick }: Readonly<Props>) {
   // Function to handle key events in the Textfield
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {

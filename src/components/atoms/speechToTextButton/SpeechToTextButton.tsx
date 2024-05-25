@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSpeech } from "../../contexts/speechContext/SpeechContext";
 import "./SpeechToTextButton.css";
 import { Device } from "@capacitor/device";
+
 const SpeechToTextButton = () => {
   const [device, setDevice] = useState<String>("");
 

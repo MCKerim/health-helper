@@ -1,5 +1,13 @@
 import "./SendTextButton.css";
-export default function SendTextButton({ onClick }: { onClick: () => void }) {
+
+type Props = {
+  onClick: () => void;
+};
+
+/**
+ * Button component next to the Textfield to send the text
+ */
+export default function SendTextButton({ onClick }: Readonly<Props>) {
   return (
     <button onClick={onClick} className="SendTextButton">
       <svg
