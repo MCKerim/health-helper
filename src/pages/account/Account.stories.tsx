@@ -4,7 +4,6 @@ import Account from "./Account";
 const meta = {
   title: "Pages/Account",
   component: Account,
-  tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
   }

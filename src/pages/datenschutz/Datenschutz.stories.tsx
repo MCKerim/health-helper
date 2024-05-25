@@ -4,7 +4,6 @@ import Datenschutz from "./Datenschutz";
 const meta = {
   title: "Pages/Datenschutz",
   component: Datenschutz,
-  tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
   }

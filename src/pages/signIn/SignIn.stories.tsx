@@ -4,7 +4,6 @@ import SignIn from "./SignIn";
 const meta = {
   title: "Pages/SignIn",
   component: SignIn,
-  tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
   },
