@@ -22,22 +22,6 @@
     text-align: center;
 }
 
-.SignUpInput {
-    margin-bottom: 10px;
-    padding: 12px 20px;
-    font-size: 1rem;
-    background: #e4e4e4;
-    border: 1px solid #e0e0e0;
-    border-radius: 25px;
-    outline: none;
-    display: block;
-    width: calc(100% - 40px);
-}
-
-.SignUpInput:focus {
-    border-color: #98ceb5;
-}
-
 .password-container {
     position: relative;
     display: flex;

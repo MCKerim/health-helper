@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate } from "react-router-dom";
 import "./SignInWindow.css";
-import ShowPasswordIcon from "../../atoms/showPasswordIcon/ShowPasswordIcon";
 import { resetPassword, signIn } from "../../../firebase";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
   const handleSignIn = () => {
     if (!validateEmail(email)) {
@@ -31,14 +30,14 @@ export default function SignIn() {
   const validateEmail = (email: string) => {
     return email.match(
       // Simple email pattern check
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     );
   };
 
   const handleForgotPassword = async () => {
     if (!validateEmail(email)) {
       setAlertMessage(
-        "Please enter your email address to reset your password.",
+        "Please enter your email address to reset your password."
       );
       return;
     }
@@ -55,27 +54,17 @@ export default function SignIn() {
       <div className="SignUpBox">
         <h1 className="SignUpTitle">Sign In</h1>
         <Textfield
-          className="SignUpInput"
           placeholder="Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <div className="password-container">
-          <input
-            className="SignUpInput"
-            placeholder="Password"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <span
-            onClick={() => setShowPassword(!showPassword)}
-            className="password-toggle"
-          >
-            <ShowPasswordIcon showPassword={showPassword} />
-          </span>
-        </div>
+        <Textfield
+          placeholder="Password"
+          type={"password"}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <div className="forgot-password">
           <button
             onClick={handleForgotPassword}

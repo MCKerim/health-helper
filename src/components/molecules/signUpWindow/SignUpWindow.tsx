@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate } from "react-router-dom";
 import "./SignUpWindow.css";
-import ShowPasswordIcon from "../../atoms/showPasswordIcon/ShowPasswordIcon";
 import { signUp } from "../../../firebase";
 
 export default function SignUp() {
@@ -10,8 +9,8 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
   const handleSignUp = () => {
     if (!validateEmail(email)) {
       setAlertMessage("Please enter a valid email address.");
@@ -36,7 +35,7 @@ export default function SignUp() {
   const validateEmail = (email: string) => {
     return email.match(
       // Simple email pattern check
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     );
   };
 
@@ -45,29 +44,18 @@ export default function SignUp() {
       <div className="SignUpBox">
         <h1 className="SignUpTitle">Sign Up</h1>
         <Textfield
-          className="SignUpInput"
           placeholder="Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <div className="password-container">
-          <input
-            className="SignUpInput"
-            placeholder="Password"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <span
-            onClick={() => setShowPassword(!showPassword)}
-            className="password-toggle"
-          >
-            <ShowPasswordIcon showPassword={showPassword} />
-          </span>
-        </div>
         <Textfield
-          className="SignUpInput"
+          placeholder="Password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Textfield
           placeholder="Confirm Password"
           type="password"
           value={confirmPassword}
