@@ -1,0 +1,25 @@
+h1 {
+  font-size: 40px;
+}
+
+.logoText {
+  font-size: 60px;
+  color: #98ceb5;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+  .footerText {
+    font-size: 0.75rem;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .logoText {
+    font-size: 40px;
+  }
+
+
+}
