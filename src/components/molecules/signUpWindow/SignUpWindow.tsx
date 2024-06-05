@@ -44,19 +44,22 @@ export default function SignUp() {
       <div className="SignUpBox">
         <h1 className="SignUpTitle">Sign Up</h1>
         <Textfield
-          placeholder="Email"
+          label="Email"
+          placeholder="example@gmail.com"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Textfield
-          placeholder="Password"
+          label="Password"
+          placeholder="********"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <Textfield
-          placeholder="Confirm Password"
+          label="Confirm Password"
+          placeholder="********"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}

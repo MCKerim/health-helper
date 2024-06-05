@@ -54,13 +54,15 @@ export default function SignIn() {
       <div className="SignUpBox">
         <h1 className="SignUpTitle">Sign In</h1>
         <Textfield
-          placeholder="Email"
+          label="Email"
+          placeholder="example@gmail.com"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Textfield
-          placeholder="Password"
+          label="Password"
+          placeholder="********"
           type={"password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}

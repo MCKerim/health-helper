@@ -1,17 +1,23 @@
 .textfield {
   margin-bottom: 10px;
-  padding: 12px 20px;
+  padding: 12px 10px;
   font-size: 1rem;
-  background: #e4e4e4;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border: none;
+  border-bottom: 1px solid #292929;
   outline: none;
   display: block;
-  width: calc(100% - 40px);
+  width: 100%;
 }
 
 .textfield:focus {
   border-color: #98ceb5;
+}
+
+.textfield-label {
+  margin-bottom: 5px;
+  color: #3b3b3b;
+  font-weight: bold;
+  font-size: 0.85rem;
 }
 
 .password-container {
@@ -26,5 +32,25 @@
   right: 15px;
   cursor: pointer;
   user-select: none;
-  color: #98ceb5;
+}
+
+
+.containedTextfield {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1rem;
+  background: #e4e4e4;
+  border: 1px solid #e0e0e0;
+  margin-left: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.containedTextfield::placeholder {
+  color: #a9a9a9;
+}
+
+.containedTextfield:focus {
+  border-color: #c6c6c6;
 }

@@ -1,8 +1,8 @@
 import "./SendTextFooter.css";
-import Textfield from "../../atoms/textfield/Textfield";
 import SendTextButton from "../../atoms/sendTextButton/SendTextButton";
 import React from "react";
 import SpeechToTextButton from "../../atoms/speechToTextButton/SpeechToTextButton";
+import Textfield from "../../atoms/textfield/Textfield";
 
 type Props = {
   value: string;
@@ -23,13 +23,7 @@ export default function SendTextFooter({ value, onChange, onClick }: Readonly<Pr
     <div className="send-text-footer-container">
       <div className="footer">
         <SpeechToTextButton />
-        <Textfield
-          placeholder="Schreibe deine Frage..."
-          className="sendTextBox"
-          value={value}
-          onChange={onChange}
-          onKeyDown={handleKeyDown} // Bind the key handler
-        />
+        <Textfield placeholder="Schreibe deine Antwort..." value={value} onChange={onChange} onKeyDown={handleKeyDown} type="text" contained />
         <SendTextButton onClick={onClick} />
       </div>
     </div>

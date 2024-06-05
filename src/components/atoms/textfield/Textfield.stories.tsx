@@ -8,7 +8,6 @@ const meta = {
   tags: ["autodocs"],
   args: {
     onChange: fn(),
-    onKeyDown: fn(),
   }
 } satisfies Meta<typeof Textfield>;
 
@@ -17,9 +16,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    placeholder: "Placeholder",
+    label: "Email",
+    placeholder: "example@gmail.com",
     value: "",
-    className: "textfield",
     type: "text",
   },
 };
