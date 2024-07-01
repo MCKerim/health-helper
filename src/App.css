@@ -58,6 +58,31 @@
   text-align: center;
 }
 
+ul {
+  list-style-type: none; /* Remove default bullets */
+  padding: 0; /* Remove default padding */
+  margin: 10px 0; /* Add some space above and below the list */
+}
+
+ul li {
+  position: relative;
+  padding-left: 20px; /* Space for custom bullets */
+  margin-bottom: 8px; /* Space between list items */
+  line-height: 1.5; /* Improve readability */
+  font-size: 16px; /* Adjust font size */
+  color: #333; /* Change text color */
+}
+
+ul li::before {
+  content: '•'; /* Custom bullet symbol */
+  position: absolute;
+  left: 0;
+  color: #5c8874; /* Color of the custom bullet */
+  font-size: 20px; /* Size of the custom bullet */
+  line-height: 1.2; /* Align bullet with text */
+}
+
+
 .BackgroundText {
   color: #bcbebd;
   font-family: PT, serif;
