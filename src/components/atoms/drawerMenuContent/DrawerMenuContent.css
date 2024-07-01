@@ -100,15 +100,18 @@
 }
 
 .listStart {
+  flex-grow: 1;
   transition: max-height 0.2s ease-in;
+  height: 30px;
   max-height: 30px;
   overflow: hidden;
 }
 
 .open.listStart {
   max-height: 100%;
+  height: calc(100vh - 200px);
   overflow: auto;
-  animation: hide-scroll 1.2s backwards;
+  animation: hide-scroll 0.1s backwards;
 }
 
 @keyframes hide-scroll {
@@ -126,7 +129,7 @@
 
   overflow: hidden;        /* Ensures content that overflows the box is hidden */
   text-overflow: ellipsis; /* Renders an ellipsis (...) to represent clipped text */
-  white-space: nowrap;     /* Ensures text does not wrap to the next line */
+  white-space: wrap;     /* Ensures text does not wrap to the next line */
 }
 
 

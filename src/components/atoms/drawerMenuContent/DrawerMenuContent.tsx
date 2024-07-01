@@ -133,7 +133,6 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Readonly<Pro
                   style={{
                     color: "inherit",
                     textDecoration: "none",
-                    textOverflow: "clip",
                   }}
                 >
                   {chat.data.title || chat.data.title === "New Chat"
