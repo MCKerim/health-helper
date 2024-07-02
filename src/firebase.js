@@ -12,6 +12,8 @@ import {
   getDocs,
   query,
   where,
+  initializeFirestore,
+  persistentLocalCache,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -20,7 +22,10 @@ import {
   signOut,
   sendPasswordResetEmail,
   deleteUser,
+  initializeAuth,
+  indexedDBLocalPersistence,
 } from "firebase/auth";
+import { Capacitor } from "@capacitor/core";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,6 +43,24 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const db = initializeFirestore(app, {
+  localCache: persistentLocalCache(/*settings*/ {}),
+});
+
+function whichAuth() {
+  let auth;
+  if (Capacitor.isNativePlatform()) {
+    auth = initializeAuth(app, {
+      persistence: indexedDBLocalPersistence,
+    });
+  } else {
+    auth = getAuth();
+  }
+  return auth;
+}
+
+export const auth = whichAuth();
+
 const analytics = getAnalytics(app);
 
 export async function deleteAllChatsByUID(uid) {
@@ -232,5 +255,3 @@ export const signUp = async (email, password) => {
   );
   const user = userCredential.user;
 };
-export const db = getFirestore(app);
-export const auth = getAuth(app);
