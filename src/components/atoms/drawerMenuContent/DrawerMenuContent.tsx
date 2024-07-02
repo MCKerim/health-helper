@@ -13,7 +13,10 @@ type Props = {
   toggleDrawer: () => void;
 };
 
-export default function DrawerMenuContent({ isOpen, toggleDrawer }: Readonly<Props>) {
+export default function DrawerMenuContent({
+  isOpen,
+  toggleDrawer,
+}: Readonly<Props>) {
   const [isChatListOpen, setIsChatListOpen] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
@@ -116,14 +119,17 @@ export default function DrawerMenuContent({ isOpen, toggleDrawer }: Readonly<Pro
                 textAlign: "start",
                 paddingLeft: "15px",
                 fontWeight: "bold",
+                position: "sticky",
+                top: "0",
+                backgroundColor: "white",
               }}
             >
               Chat Verlauf
+              <div className="ArrowLeft" />
+              <div className="ArrowRight" />
             </div>
-            <div className="ArrowLeft" />
-            <div className="ArrowRight" />
 
-            <div className="menuList">
+            <div className={`menuList ${isChatListOpen ? "open" : ""}`}>
               {chats.map((chat, index) => (
                 <NavLink
                   key={chat.id}

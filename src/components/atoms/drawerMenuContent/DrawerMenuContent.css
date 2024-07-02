@@ -102,8 +102,8 @@
 .listStart {
   flex-grow: 1;
   transition: max-height 0.2s ease-in;
-  height: 30px;
-  max-height: 30px;
+  height: 28px;
+  max-height: 28px;
   overflow: hidden;
 }
 
@@ -154,7 +154,7 @@
   content: "";
   position: relative;
   top: -16px; /* Vertically centered */
-  left: 82%;
+  left: 82.5%;
   width: 10px;
   border-radius: 10px;
   height: 3px;
@@ -174,10 +174,10 @@
   color: #ff4949 !important;
 }
 
-.open > .ArrowLeft {
+.open .ArrowLeft {
   transform: rotate(-45deg); /* Rotate to vertical, pointing down */
 }
 
-.open > .ArrowRight {
+.open .ArrowRight {
   transform: rotate(45deg); /* Rotate to vertical, pointing down */
 }
