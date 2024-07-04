@@ -91,6 +91,23 @@ ul li::before {
   cursor: default;
 }
 
+a {
+  color: #98ceb5;  /* Set the link color */
+  text-decoration: none;  /* Remove the underline */
+  transition: color 0.3s ease;  /* Smooth transition for color change */
+}
+
+/* Hover effect */
+a:hover {
+  color: #76b29d;  /* Slightly darker color on hover */
+}
+
+/* Focus effect for accessibility */
+a:focus {
+  outline: none;  /* Remove default outline */
+  border-bottom: 2px solid #76b29d;  /* Add bottom border on focus */
+}
+
 .fade-in-right {
   animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }

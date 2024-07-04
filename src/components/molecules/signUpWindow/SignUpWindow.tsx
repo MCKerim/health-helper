@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Textfield from "../../atoms/textfield/Textfield";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import "./SignUpWindow.css";
 import { signUp } from "../../../firebase";
 
@@ -9,6 +9,8 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
+  const [isAccepted, setIsAccepted] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSignUp = () => {
@@ -18,6 +20,10 @@ export default function SignUp() {
     }
     if (password !== confirmPassword) {
       setAlertMessage("Passwords do not match!");
+      return;
+    }
+    if (!isAccepted) {
+      setAlertMessage("Please accept the Datenschutzerklärung to proceed.");
       return;
     }
     setAlertMessage(""); // Clear any previous messages
@@ -35,7 +41,7 @@ export default function SignUp() {
   const validateEmail = (email: string) => {
     return email.match(
       // Simple email pattern check
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     );
   };
 
@@ -64,6 +70,20 @@ export default function SignUp() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+        <div className="datenschutz-checkbox">
+          <input
+            type="checkbox"
+            id="acceptDatenschutz"
+            checked={isAccepted}
+            onChange={() => setIsAccepted(!isAccepted)}
+          />
+          <label htmlFor="acceptDatenschutz">
+            Ich Akzeptiere hiermit die{" "}
+            <NavLink to="/datenschutzerklaerung" className="custom-link">
+              Datenschutzerklärung
+            </NavLink>
+          </label>
+        </div>
         <button className="SignUpButton" onClick={handleSignUp}>
           Create Account
         </button>
