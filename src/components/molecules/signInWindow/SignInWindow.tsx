@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate } from "react-router-dom";
 import "./SignInWindow.css";
-import { resetPassword, signIn } from "../../../firebase";
+import { handleFirebaseError, resetPassword, signIn } from "../../../firebase";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -23,21 +23,21 @@ export default function SignIn() {
         navigate("/");
       })
       .catch((error) => {
-        setAlertMessage(error.message);
+        setAlertMessage(handleFirebaseError(error));
       });
   };
 
   const validateEmail = (email: string) => {
     return email.match(
       // Simple email pattern check
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     );
   };
 
   const handleForgotPassword = async () => {
     if (!validateEmail(email)) {
       setAlertMessage(
-        "Please enter your email address to reset your password."
+        "Please enter your email address to reset your password.",
       );
       return;
     }

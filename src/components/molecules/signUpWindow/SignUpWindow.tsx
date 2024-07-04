@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate, NavLink } from "react-router-dom";
 import "./SignUpWindow.css";
-import { signUp } from "../../../firebase";
+import { handleFirebaseError, signUp } from "../../../firebase";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ export default function SignUp() {
         navigate("/");
       })
       .catch((error) => {
-        setAlertMessage(error.message);
+        setAlertMessage(handleFirebaseError(error));
       });
   };
 

@@ -63,6 +63,29 @@ export const auth = whichAuth();
 
 const analytics = getAnalytics(app);
 
+export const handleFirebaseError = (error) => {
+  switch (error.code) {
+    case "auth/invalid-email":
+      return "Invalid email address.";
+    case "auth/invalid-credential":
+      return "Invalid E-Mail/Password.";
+    case "auth/user-disabled":
+      return "This user has been disabled.";
+    case "auth/user-not-found":
+      return "No user found with this email.";
+    case "auth/wrong-password":
+      return "Incorrect password.";
+    case "auth/email-already-in-use":
+      return "Email already in use.";
+    case "auth/weak-password":
+      return "Password is too weak.";
+    case "auth/too-many-requests":
+      return "Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.";
+    default:
+      return error.message;
+  }
+};
+
 export async function deleteAllChatsByUID(uid) {
   const chatsCollectionRef = collection(db, "chats");
   try {
