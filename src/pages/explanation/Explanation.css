@@ -1,0 +1,40 @@
+.SignUpContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.SignUpBox {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 20px;
+  padding-top: 0px;
+  width: 300px;
+  background: #ffffff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.SignUpTitle {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.SignUpButton {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: none;
+  background-color: #98ceb5;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.SignUpButton:hover {
+  background-color: #86b2a4;
+}
