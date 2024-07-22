@@ -110,7 +110,7 @@
 
 .open.listStart {
   max-height: 100%;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 250px);
   overflow: auto;
   animation: hide-scroll 0.1s backwards;
 }
