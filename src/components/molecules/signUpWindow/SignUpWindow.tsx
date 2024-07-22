@@ -3,8 +3,12 @@ import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate, NavLink } from "react-router-dom";
 import "./SignUpWindow.css";
 import { handleFirebaseError, signUp } from "../../../firebase";
+import { useTranslation } from 'react-i18next';
+import { TranslationKeys } from "../../../translation/types/TranslationKeys";
 
 export default function SignUp() {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -96,7 +100,7 @@ export default function SignUp() {
           </label>
         </div>
         <button className="SignUpButton" onClick={handleSignUp}>
-          Create Account
+          {t(TranslationKeys.button_create_account)}
         </button>
         {alertMessage && <div className="alertBox">{alertMessage}</div>}
       </div>

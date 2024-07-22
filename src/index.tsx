@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { ChatProvider } from "./components/contexts/chatContext/ChatContext";
 import { SpeechProvider } from "./components/contexts/speechContext/SpeechContext";
+import './translation/i18n';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
