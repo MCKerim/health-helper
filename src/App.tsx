@@ -6,6 +6,7 @@ import Chat from "./pages/chat/Chat";
 import Account from "./pages/account/Account";
 import Datenschutz from "./pages/datenschutz/Datenschutz";
 import Landingpage from "./pages/landingpage/Landingpage";
+import Explanation from "./pages/explanation/Explanation";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
       <Route path="/chats/:id" element={<Chat />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signin" element={<SignIn />} />
-      <Route path="/Account/:uid" element={<Account />} />
-      <Route path="/Datenschutz" element={<Datenschutz />} />
+      <Route path="/account/:uid" element={<Account />} />
+      <Route path="/datenschutzerklaerung" element={<Datenschutz />} />
+      <Route path="/explanation" element={<Explanation />} />
     </Routes>
   );
 }

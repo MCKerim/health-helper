@@ -136,7 +136,7 @@
     z-index: 10;
 }
 [type="checkbox"]:checked + label:before {
-    background-color: #2b8718;
+    background-color: #3cc183;
 }
 [type="checkbox"]:checked + label:after {
     margin: 0 0 0 30px;

@@ -171,7 +171,7 @@ export default function DrawerMenuContent({
             paddingTop: "5px",
           }}
         >
-          <NavLink to={"/Datenschutz"} className="menuLink">
+          <NavLink to={"/datenschutzerklaerung"} className="menuLink">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="32px"

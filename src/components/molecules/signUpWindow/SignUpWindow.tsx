@@ -18,8 +18,19 @@ export default function SignUp() {
       setAlertMessage("Please enter a valid email address.");
       return;
     }
+
+    if (!password) {
+      setAlertMessage("Please enter a password");
+      return;
+    }
+
+    if (!confirmPassword) {
+      setAlertMessage("Please confirm your password");
+      return;
+    }
+
     if (password !== confirmPassword) {
-      setAlertMessage("Passwords do not match!");
+      setAlertMessage("Passwords do not match");
       return;
     }
     if (!isAccepted) {
@@ -31,7 +42,7 @@ export default function SignUp() {
 
     signUp(email, password)
       .then(() => {
-        navigate("/");
+        navigate("/explanation");
       })
       .catch((error) => {
         setAlertMessage(handleFirebaseError(error));
@@ -41,7 +52,7 @@ export default function SignUp() {
   const validateEmail = (email: string) => {
     return email.match(
       // Simple email pattern check
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     );
   };
 
