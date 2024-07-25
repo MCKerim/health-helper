@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Modal from "../../atoms/modal/Modal";
 import "../../atoms/modal/Modal.css";
 import { removeUserAccount } from "../../../firebase";
+import { TranslationKeys } from "../../../translation/types/TranslationKeys";
+import { t } from "i18next";
 
 type AccountDeletionModalProps = {
   isOpen: boolean;
@@ -30,12 +32,10 @@ export default function AccountDeletionModal({
 
   return (
     <Modal isOpen={isOpen} error={error} onClose={onClose}>
-      <h1>Bestätige die Account Löschung</h1>
-      <p>
-        Bist du dir sicher dass du deinen Account unwiderruflich löschen willst?
-      </p>
+      <h1>{t(TranslationKeys.confirm_account_deletion)}</h1>
+      <p>{t(TranslationKeys.confirm_account_deletion_prompt)}</p>
       <button className="modal-button" onClick={handleDeleteAccount}>
-        Bestätigen
+        {t(TranslationKeys.button_confirm)}
       </button>
     </Modal>
   );

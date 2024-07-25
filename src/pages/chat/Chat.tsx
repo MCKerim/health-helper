@@ -16,6 +16,8 @@ import DOMPurify from "dompurify";
 import { useChats } from "../../components/contexts/chatContext/ChatContext";
 import { useSpeech } from "../../components/contexts/speechContext/SpeechContext";
 import { Message } from "../../types";
+import { useTranslation } from "react-i18next";
+import { TranslationKeys } from "../../translation/types/TranslationKeys";
 
 const Chat: React.FC = () => {
   const [messageInput, setMessageInput] = useState("");
@@ -24,6 +26,7 @@ const Chat: React.FC = () => {
   const { id: chatId } = useParams<{ id?: string }>();
   const navigate = useNavigate();
   const { updateChats } = useChats();
+  const { t } = useTranslation();
   const openai = new OpenAI({
     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
@@ -179,7 +182,7 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
       <div>
         <div className="BackgroundDisclaimer">
           <p className="BackgroundText">
-            ~Bitte sprechen sie mit einem richtigen Arzt~
+            {t(TranslationKeys.disclaimer_medical_advice)}
           </p>
         </div>
 

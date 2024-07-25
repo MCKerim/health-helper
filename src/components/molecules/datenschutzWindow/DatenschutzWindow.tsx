@@ -5,6 +5,8 @@ import ActionButton from "../../atoms/actionButton/ActionButton";
 import Notification from "../../atoms/notification/Notification"; // Assuming Notification is saved here
 import { auth, deleteAllChatsByUID } from "../../../firebase";
 import { NavLink } from "react-router-dom";
+import { TranslationKeys } from "../../../translation/types/TranslationKeys";
+import { t } from "i18next";
 
 const DatenschutzWindow = () => {
   const [showNotification, setShowNotification] = useState(false);
@@ -26,95 +28,83 @@ const DatenschutzWindow = () => {
   return (
     <div className={"DatenschutzContainer"}>
       <ContentBox>
-        <p>
-          Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. In diesem
-          Datenschutzhinweis informieren wir Sie darüber, welche Daten wir
-          speichern, wie wir diese verwenden und welche Rechte Sie in Bezug auf
-          Ihre Daten haben.
-        </p>
+        <p>{t(TranslationKeys.text_protection_notice)}</p>
       </ContentBox>
 
       <ContentBox>
         <p>
-          <strong>Welche Daten speichern wir?</strong>
+          <strong>{t(TranslationKeys.title_what_data_we_store)}</strong>
           <br />
-          Wir speichern hauptsächlich zwei Arten von Daten:
+          {t(TranslationKeys.text_data_storage)}
         </p>
         <ul>
           <li>
-            <strong>Chats:</strong> Alle von Ihnen geführten Chats werden
-            gespeichert. Diese Chats enthalten die Nachrichten, die Sie während
-            der Interaktion mit unserem System gesendet und empfangen haben.
+            <strong>{t(TranslationKeys.label_chats_headline)}</strong>{" "}
+            <p>{t(TranslationKeys.label_chats)}</p>
           </li>
           <li>
-            <strong>Relevante Accountinformationen:</strong> Hierzu gehören
-            Informationen, die notwendig sind, um Ihr Konto zu verwalten und
-            Ihnen einen reibungslosen Service zu bieten. Dies kann Ihre
-            E-Mail-Adresse, Benutzername, Präferenzen und andere ähnliche
-            Informationen umfassen.
+            <strong>{t(TranslationKeys.label_account_info_headline)}</strong>{" "}
+            <p>{t(TranslationKeys.label_account_info)}</p>
           </li>
         </ul>
       </ContentBox>
 
       <ContentBox>
         <p>
-          <strong>Verwendungszwecke der gespeicherten Daten</strong>
+          <strong>{t(TranslationKeys.title_data_usage)}</strong>
           <br />
-          Die von uns gespeicherten Daten werden für verschiedene Zwecke
-          verwendet:
+          {t(TranslationKeys.text_data_usage)}
         </p>
         <ul>
           <li>
-            <strong>Servicebereitstellung:</strong> Die Chats und
-            Accountinformationen helfen uns dabei, Ihnen unseren Dienst zur
-            Verfügung zu stellen und Ihre Anfragen zu bearbeiten.
+            <strong>
+              {t(TranslationKeys.label_service_provision_headline)}
+            </strong>{" "}
+            {t(TranslationKeys.label_service_provision)}
           </li>
           <li>
-            <strong>Feedback und Verbesserung des Modells:</strong> Um unseren
-            Service kontinuierlich zu verbessern, verwenden wir möglicherweise
-            ausgewählte Nachrichten für Feedbackzwecke. Diese ausgewählten
-            Nachrichten helfen uns dabei, das zugrunde liegende Modell zu
-            optimieren und Ihre Benutzererfahrung zu verbessern.
+            <strong>
+              {t(TranslationKeys.label_model_improvement_headline)}
+            </strong>{" "}
+            {t(TranslationKeys.label_model_improvement)}
           </li>
         </ul>
       </ContentBox>
 
       <ContentBox>
         <p>
-          <strong>Löschung Ihrer Daten</strong>
+          <strong>{t(TranslationKeys.text_data_deletion)}</strong>
           <br />
-          Sie haben jederzeit das Recht, Ihre Daten zu löschen. Wenn Sie
-          möchten, dass Ihre Chats und Accountinformationen gelöscht werden,
-          können Sie uns dies mitteilen, und wir werden Ihre Daten aus unseren
-          Systemen entfernen. Um die Löschung Ihrer Daten zu beantragen,
-          kontaktieren Sie bitte unseren Support.
+          {t(TranslationKeys.text_data_deletion)}
         </p>
       </ContentBox>
 
       <ContentBox>
         <p>
-          <strong>Kontakt</strong>
+          <strong>{t(TranslationKeys.contact_info)}</strong>
           <br />
-          Bei Fragen oder Anliegen zu diesem Datenschutzhinweis oder zur
-          Verarbeitung Ihrer Daten können Sie sich jederzeit per E-Mail (
+          {t(TranslationKeys.text_contact)}
           <a style={{}} href="mailto:aldo.costa@hhu.de">
             Aldo.Costa@hhu.de
           </a>
-          ) an uns wenden.
+          {t(TranslationKeys.text_contact_continued)}
         </p>
       </ContentBox>
 
       {auth.currentUser ? (
-        <ActionButton onClick={handleDeleteChats} label="Chats löschen" />
+        <ActionButton
+          onClick={handleDeleteChats}
+          label={t(TranslationKeys.button_delete_chats)}
+        />
       ) : (
         <NavLink className={"ReturnButton"} to={"/"}>
-          Zurück
+          {t(TranslationKeys.button_return)}
         </NavLink>
       )}
 
       {showNotification && (
         <Notification
-          message="Alle Chats wurden erfolgreich gelöscht."
+          message={t(TranslationKeys.notification_chats_deleted)}
           onClose={closeNotification}
         />
       )}

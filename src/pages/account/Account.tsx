@@ -3,6 +3,8 @@ import withAuth from "../../components/HOCs/AuthHOC/AuthHOC";
 import Header from "../../components/organisms/header/Header";
 import AccountDeletionModal from "../../components/molecules/accountDeletionModal/AccountDeletionModal";
 import { signOutUser } from "../../firebase";
+import { TranslationKeys } from "../../translation/types/TranslationKeys";
+import { t } from "i18next";
 
 const Account: React.FC = () => {
   // State to control visibility of the confirmation modal
@@ -32,7 +34,8 @@ const Account: React.FC = () => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)",
+            boxShadow:
+              "0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)",
             backgroundColor: "#ffffff",
             paddingLeft: "20px",
             paddingRight: "20px",
@@ -52,10 +55,10 @@ const Account: React.FC = () => {
             Account
           </h1>
           <button className={"ActionButton fade-in-fwd"} onClick={signOutUser}>
-            Abmelden
+            {t(TranslationKeys.button_logout)}
           </button>
           <button className={"ActionButton fade-in-fwd"} onClick={toggleModal}>
-            Account löschen
+            {t(TranslationKeys.button_delete_account)}
           </button>
           <AccountDeletionModal
             isOpen={isOpen}

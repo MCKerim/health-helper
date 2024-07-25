@@ -3,7 +3,7 @@ import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate, NavLink } from "react-router-dom";
 import "./SignUpWindow.css";
 import { handleFirebaseError, signUp } from "../../../firebase";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../../translation/types/TranslationKeys";
 
 export default function SignUp() {
@@ -56,7 +56,7 @@ export default function SignUp() {
   const validateEmail = (email: string) => {
     return email.match(
       // Simple email pattern check
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     );
   };
 

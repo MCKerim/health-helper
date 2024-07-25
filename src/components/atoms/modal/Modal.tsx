@@ -1,5 +1,7 @@
 import React from "react";
 import "./Modal.css";
+import { TranslationKeys } from "../../../translation/types/TranslationKeys";
+import { t } from "i18next";
 
 type Props = {
   children: React.ReactNode;
@@ -19,7 +21,7 @@ export default function Modal({
       <div className="modal-content">
         {children}
         <button className={"modal-button cancel"} onClick={onClose}>
-          Schließen
+          {t(TranslationKeys.button_close)}
         </button>
         {error && <p className="modal-alert-box">{error}</p>}
       </div>

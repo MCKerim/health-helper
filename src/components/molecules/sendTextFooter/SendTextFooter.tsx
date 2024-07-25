@@ -3,6 +3,8 @@ import SendTextButton from "../../atoms/sendTextButton/SendTextButton";
 import React from "react";
 import SpeechToTextButton from "../../atoms/speechToTextButton/SpeechToTextButton";
 import Textfield from "../../atoms/textfield/Textfield";
+import { useTranslation } from "react-i18next";
+import { TranslationKeys } from "../../../translation/types/TranslationKeys";
 
 type Props = {
   value: string;
@@ -10,7 +12,12 @@ type Props = {
   onClick: () => void;
 };
 
-export default function SendTextFooter({ value, onChange, onClick }: Readonly<Props>) {
+export default function SendTextFooter({
+  value,
+  onChange,
+  onClick,
+}: Readonly<Props>) {
+  const { t } = useTranslation();
   // Function to handle key events in the Textfield
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -23,7 +30,14 @@ export default function SendTextFooter({ value, onChange, onClick }: Readonly<Pr
     <div className="send-text-footer-container">
       <div className="footer">
         <SpeechToTextButton />
-        <Textfield placeholder="Schreibe deine Antwort..." value={value} onChange={onChange} onKeyDown={handleKeyDown} type="text" contained />
+        <Textfield
+          placeholder={t(TranslationKeys.placeholder_write_reply)}
+          value={value}
+          onChange={onChange}
+          onKeyDown={handleKeyDown}
+          type="text"
+          contained
+        />
         <SendTextButton onClick={onClick} />
       </div>
     </div>
