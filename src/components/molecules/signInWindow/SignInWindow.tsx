@@ -3,6 +3,8 @@ import Textfield from "../../atoms/textfield/Textfield";
 import { useNavigate } from "react-router-dom";
 import "./SignInWindow.css";
 import { handleFirebaseError, resetPassword, signIn } from "../../../firebase";
+import { TranslationKeys } from "../../../translation/types/TranslationKeys";
+import { t } from "i18next";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -52,16 +54,16 @@ export default function SignIn() {
   return (
     <div className="SignUpContainer">
       <div className="SignUpBox">
-        <h1 className="SignUpTitle">Sign In</h1>
+        <h1 className="SignUpTitle">{t(TranslationKeys.sign_in)}</h1>
         <Textfield
-          label="Email"
+          label={t(TranslationKeys.email)}
           placeholder="example@gmail.com"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Textfield
-          label="Password"
+          label={t(TranslationKeys.password)}
           placeholder="********"
           type={"password"}
           value={password}
@@ -72,11 +74,11 @@ export default function SignIn() {
             onClick={handleForgotPassword}
             className="forgot-password-button"
           >
-            Forgot Password?
+            {t(TranslationKeys.forgot_password)}
           </button>
         </div>
         <button className="SignUpButton" onClick={handleSignIn}>
-          Sign In
+          {t(TranslationKeys.sign_in_button)}
         </button>
         {alertMessage && <div className="alertBox">{alertMessage}</div>}
       </div>

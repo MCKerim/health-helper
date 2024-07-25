@@ -63,23 +63,23 @@ export default function SignUp() {
   return (
     <div className="SignUpContainer">
       <div className="SignUpBox">
-        <h1 className="SignUpTitle">Sign Up</h1>
+        <h1 className="SignUpTitle">{t(TranslationKeys.sign_up)}</h1>
         <Textfield
-          label="Email"
+          label={t(TranslationKeys.email)}
           placeholder="example@gmail.com"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Textfield
-          label="Password"
+          label={t(TranslationKeys.password)}
           placeholder="********"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <Textfield
-          label="Confirm Password"
+          label={t(TranslationKeys.confirm_password)}
           placeholder="********"
           type="password"
           value={confirmPassword}
@@ -93,9 +93,9 @@ export default function SignUp() {
             onChange={() => setIsAccepted(!isAccepted)}
           />
           <label htmlFor="acceptDatenschutz">
-            Ich Akzeptiere hiermit die{" "}
+            {t(TranslationKeys.accept_privacy_policy)}{" "}
             <NavLink to="/datenschutzerklaerung" className="custom-link">
-              Datenschutzerklärung
+              {t(TranslationKeys.privacy_policy)}
             </NavLink>
           </label>
         </div>

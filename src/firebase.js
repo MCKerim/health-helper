@@ -26,6 +26,8 @@ import {
   indexedDBLocalPersistence,
 } from "firebase/auth";
 import { Capacitor } from "@capacitor/core";
+import { TranslationKeys } from "./translation/types/TranslationKeys";
+import { t } from "i18next";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -66,21 +68,21 @@ const analytics = getAnalytics(app);
 export const handleFirebaseError = (error) => {
   switch (error.code) {
     case "auth/invalid-email":
-      return "Invalid email address.";
+      return t(TranslationKeys.auth_invalid_email);
     case "auth/invalid-credential":
-      return "Invalid E-Mail/Password.";
+      return t(TranslationKeys.auth_invalid_credential);
     case "auth/user-disabled":
-      return "This user has been disabled.";
+      return t(TranslationKeys.auth_user_disabled);
     case "auth/user-not-found":
-      return "No user found with this email.";
+      return t(TranslationKeys.auth_user_not_found);
     case "auth/wrong-password":
-      return "Incorrect password.";
+      return t(TranslationKeys.auth_wrong_password);
     case "auth/email-already-in-use":
-      return "Email already in use.";
+      return t(TranslationKeys.auth_email_already_in_use);
     case "auth/weak-password":
-      return "Password is too weak.";
+      return t(TranslationKeys.auth_weak_password);
     case "auth/too-many-requests":
-      return "Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.";
+      return t(TranslationKeys.auth_too_many_requests);
     default:
       return error.message;
   }
