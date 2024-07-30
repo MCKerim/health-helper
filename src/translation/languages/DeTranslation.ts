@@ -72,5 +72,6 @@ export const DeTranslation: ITranslation = {
   landingpage_text_2: "Diese App wurde für akademische Zwecke erstellt",
   landingpage_disclaimer_1: "Dieses Produkt ist völlig kostenlos und noch in der",
   landingpage_disclaimer_2: "Bitte beachten Sie, dass wir uns das Recht vorbehalten, den Zugang zu den hochgeladenen Daten zu sperren und diese zu löschen.",
-  landingpage_sign_up: "Probiere es kostenlos aus"
+  landingpage_sign_up: "Probiere es kostenlos aus",
+  messagebox_user_term: "Du",
 };

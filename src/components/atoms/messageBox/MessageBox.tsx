@@ -3,6 +3,8 @@ import { Message } from "../../../types";
 import { reactToMessage } from "../../../firebase";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import {TranslationKeys} from "../../../translation/types/TranslationKeys";
+import {t} from "i18next";
 
 /**
  * Box to display messages send by users or chatbot
@@ -74,7 +76,7 @@ export default function MessageBox(props: Message) {
         }
       >
         <p className="MessageSender">
-          {sender === "user" ? "Du" : "Health Helper"}
+          {sender === "user" ? t(TranslationKeys.messagebox_user_term) : "Health Helper"}
         </p>
         <p
           dangerouslySetInnerHTML={{ __html: message }}

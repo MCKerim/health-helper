@@ -60,7 +60,8 @@ export const TranslationKeys = {
   landingpage_text_2: "landingpage_text_2",
   landingpage_disclaimer_1: "landingpage_disclaimer_1",
   landingpage_disclaimer_2: "landingpage_disclaimer_2",
-  landingpage_sign_up: "landingpage_sign_up"
+  landingpage_sign_up: "landingpage_sign_up",
+  messagebox_user_term: "messagebox_user_term",
 };
 
 export type ITranslation = typeof TranslationKeys;

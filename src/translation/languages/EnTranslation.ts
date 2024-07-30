@@ -71,5 +71,6 @@ export const EnTranslation: ITranslation = {
   landingpage_text_2: "This app was created for educational purposes",
   landingpage_disclaimer_1: "This product is fully free and still in",
   landingpage_disclaimer_2: "Keep in mind that we reserve the rights to remove access and delete any data uploaded",
-  landingpage_sign_up: "Try for Free"
+  landingpage_sign_up: "Try for Free",
+  messagebox_user_term: "You"
 };
