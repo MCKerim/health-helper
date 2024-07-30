@@ -56,6 +56,11 @@ export const TranslationKeys = {
   auth_weak_password: "auth_weak_password",
   auth_too_many_requests: "auth_too_many_requests",
   default: "default",
+  landingpage_text_1: "landingpage_text_1",
+  landingpage_text_2: "landingpage_text_2",
+  landingpage_disclaimer_1: "landingpage_disclaimer_1",
+  landingpage_disclaimer_2: "landingpage_disclaimer_2",
+  landingpage_sign_up: "landingpage_sign_up"
 };
 
 export type ITranslation = typeof TranslationKeys;

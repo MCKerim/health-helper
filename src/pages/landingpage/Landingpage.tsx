@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "./Landingpage.css";
 import LandingpageScreenshot from "../../assets/LandingpageScreenshot.png";
+import {TranslationKeys} from "../../translation/types/TranslationKeys";
+import {t} from "i18next";
 
 export default function Landingpage() {
   return (
@@ -44,7 +46,7 @@ export default function Landingpage() {
             }}
             to={"/signIn"}
           >
-            Log In
+              {t(TranslationKeys.sign_in_button)}
           </NavLink>
         </button>
       </header>
@@ -66,7 +68,7 @@ export default function Landingpage() {
               textAlign: "center",
             }}
           >
-            Get your health related questions quickly answered with{" "}
+              {t(TranslationKeys.landingpage_text_1)}{" "}
             <span
               className="logoText"
             >
@@ -80,7 +82,7 @@ export default function Landingpage() {
               textAlign: "center",
             }}
           >
-            This app was created for educational purposes
+              {t(TranslationKeys.landingpage_text_2)}
           </p>
           <button
             style={{
@@ -108,7 +110,7 @@ export default function Landingpage() {
               }}
               to={"/signUp"}
             >
-              Try for free
+                {t(TranslationKeys.landingpage_sign_up)}
             </NavLink>
           </button>
           <img
@@ -154,10 +156,9 @@ export default function Landingpage() {
             marginRight: "10px",
           }}
         >
-          This product is fully free and still in{" "}
+            {t(TranslationKeys.landingpage_disclaimer_1)}{" "}
           <span style={{ color: "#98ceb5", fontWeight: "bold" }}>BETA</span>.
-          Keep in mind that we reserve the rights to remove access and delete
-          any data uploaded
+            {" "}{t(TranslationKeys.landingpage_disclaimer_2)}
         </p>
       </footer>
     </div>

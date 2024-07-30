@@ -67,4 +67,9 @@ export const EnTranslation: ITranslation = {
   auth_too_many_requests:
     "Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.",
   default: "An unknown error occurred.",
+  landingpage_text_1: "Get your health related questions quickly answered with",
+  landingpage_text_2: "This app was created for educational purposes",
+  landingpage_disclaimer_1: "This product is fully free and still in",
+  landingpage_disclaimer_2: "Keep in mind that we reserve the rights to remove access and delete any data uploaded",
+  landingpage_sign_up: "Try for Free"
 };

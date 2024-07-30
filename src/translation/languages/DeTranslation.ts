@@ -68,4 +68,9 @@ export const DeTranslation: ITranslation = {
   auth_too_many_requests:
     "Der Zugriff auf dieses Konto wurde vorübergehend deaktiviert, da zu viele fehlgeschlagene Anmeldeversuche unternommen wurden. Sie können es sofort wiederherstellen, indem Sie Ihr Passwort zurücksetzen, oder Sie können es später erneut versuchen.",
   default: "Ein unbekannter Fehler ist aufgetreten.",
+  landingpage_text_1: "Schnelle Antworten auf deine Fragen zur Gesundheit erhalten beim",
+  landingpage_text_2: "Diese App wurde für akademische Zwecke erstellt",
+  landingpage_disclaimer_1: "Dieses Produkt ist völlig kostenlos und noch in der",
+  landingpage_disclaimer_2: "Bitte beachten Sie, dass wir uns das Recht vorbehalten, den Zugang zu den hochgeladenen Daten zu sperren und diese zu löschen.",
+  landingpage_sign_up: "Probiere es kostenlos aus"
 };
