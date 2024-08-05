@@ -3,7 +3,7 @@ import Modal from "../../atoms/modal/Modal";
 import "../../atoms/modal/Modal.css";
 import { removeUserAccount } from "../../../firebase";
 import { TranslationKeys } from "../../../translation/types/TranslationKeys";
-import { t } from "i18next";
+import {useTranslation} from "react-i18next";
 
 type AccountDeletionModalProps = {
   isOpen: boolean;
@@ -15,7 +15,7 @@ export default function AccountDeletionModal({
   onClose,
 }: Readonly<AccountDeletionModalProps>) {
   const [error, setError] = useState("");
-
+  const {t} = useTranslation();
   const handleDeleteAccount = async () => {
     try {
       console.log("Deleting account...");

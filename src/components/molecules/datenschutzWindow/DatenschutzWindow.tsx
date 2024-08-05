@@ -6,11 +6,11 @@ import Notification from "../../atoms/notification/Notification"; // Assuming No
 import { auth, deleteAllChatsByUID } from "../../../firebase";
 import { NavLink } from "react-router-dom";
 import { TranslationKeys } from "../../../translation/types/TranslationKeys";
-import { t } from "i18next";
+import {useTranslation} from "react-i18next";
 
 const DatenschutzWindow = () => {
   const [showNotification, setShowNotification] = useState(false);
-
+  const {t} = useTranslation()
   const handleDeleteChats = async () => {
     try {
       await deleteAllChatsByUID(auth.currentUser?.uid);

@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import "./SignInWindow.css";
 import { handleFirebaseError, resetPassword, signIn } from "../../../firebase";
 import { TranslationKeys } from "../../../translation/types/TranslationKeys";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
-
+  const {t} = useTranslation()
   const navigate = useNavigate();
   const handleSignIn = () => {
     if (!validateEmail(email)) {

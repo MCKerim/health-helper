@@ -4,6 +4,7 @@ import {
   getFirestore,
   doc,
   getDoc,
+    setDoc,
   deleteDoc,
   arrayUnion,
   updateDoc,
@@ -28,6 +29,7 @@ import {
 import { Capacitor } from "@capacitor/core";
 import { TranslationKeys } from "./translation/types/TranslationKeys";
 import { t } from "i18next";
+import {Languages} from "./translation/languages/Languages";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -101,6 +103,28 @@ export async function deleteAllChatsByUID(uid) {
     console.error("Error getting chats from Firestore:", error);
   }
 }
+
+
+export const getUserCountryCodeFromFirestore = async (uid) => {
+  try {
+    // Define a query to find the document where the UID property matches
+    const usersCollection = collection(db, 'users');
+    const q = query(usersCollection, where('uid', '==', uid));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      // Get the first matching document
+      const docSnap = querySnapshot.docs[0];
+      return docSnap.data().languageCode || null;
+    } else {
+      return null; // No document found with the given UID
+    }
+  } catch (error) {
+    console.error('Error fetching user data from Firestore:', error);
+    return null;
+  }
+};
+
 
 export async function removeChat(id) {
   const chatDocRef = doc(db, "chats", id);
@@ -258,25 +282,121 @@ export const signOutUser = async () => {
 export const removeUserAccount = async () => {
   const user = auth.currentUser;
   try {
+    // Delete the user's document from Firestore
+    await deleteUserFromFirestore(user.uid);
+
+    // Delete the user from Firebase Auth
     await deleteUser(user);
   } catch (error) {
-    if (error.code === "auth/requires-recent-login") {
-      throw new Error("Recent login required");
+    if (error.code === 'auth/requires-recent-login') {
+      throw new Error('Recent login required');
     } else {
       throw error; // Other errors are thrown as is
     }
   }
 };
 
+async function deleteUserFromFirestore(uid) {
+  try {
+    const userDocRef = doc(db, 'users', uid);
+    await deleteDoc(userDocRef);
+    console.log('User document deleted successfully');
+  } catch (error) {
+    console.error('Error deleting user document:', error);
+    throw error;
+  }
+}
+
+
 export const resetPassword = async (email) => {
   await sendPasswordResetEmail(auth, email);
 };
 
-export const signUp = async (email, password) => {
-  const userCredential = await createUserWithEmailAndPassword(
-    auth,
-    email,
-    password,
-  );
-  const user = userCredential.user;
+export async function updateUserLanguage(uid, newLanguageCode = 'ENG') {
+  try {
+    const userDocRef = doc(db, 'users', uid); // Reference to the user's document
+
+    // Check if the user's document already exists
+    const userDoc = await getDoc(userDocRef);
+
+    if (userDoc.exists()) {
+      // If the document exists, update the language code
+      await updateDoc(userDocRef, {
+        language: newLanguageCode,
+      });
+      console.log('User language updated successfully');
+    } else {
+      // If the document does not exist, create it with the default language code
+      await setDoc(userDocRef, {
+        uid: uid,
+        language: newLanguageCode,
+      });
+      console.log('User document created successfully with language code');
+    }
+  } catch (error) {
+    console.error('Error updating or creating user document:', error);
+    throw error;
+  }
+}
+
+
+export const signUp = async (email, password, languageCode = Languages.English) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+    );
+    const user = userCredential.user;
+
+    // Add a document for the user in Firestore
+    await addUserToFirestore(user.uid, languageCode);
+  } catch (error) {
+    console.error('Error signing up:', error);
+    throw error;
+  }
+};
+
+async function addUserToFirestore(uid, languageCode) {
+  try {
+    const userDocRef = doc(db, 'users',uid); // 'users' is the collection name
+    await setDoc(userDocRef, {
+      uid: uid,
+      languageCode: languageCode,
+    });
+    console.log('User document created successfully');
+  } catch (error) {
+    console.error('Error creating user document:', error);
+    throw error;
+  }
+}
+
+export const updateUserLanguageCodeInFirestore = async (
+    uid,
+    languageCode
+) => {
+  try {
+    // Reference the 'users' collection and create a query to find the document with the matching UID
+    const usersCollection = collection(db, 'users');
+    const q = query(usersCollection, where('uid', '==', uid));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      // Get the first matching document
+      const userDocRef = querySnapshot.docs[0].ref;
+
+      // Update the language code field
+      await updateDoc(userDocRef, {
+        languageCode,
+      });
+
+      console.log(`Language code updated to ${languageCode} for user ${uid}.`);
+    } else {
+      await addUserToFirestore(uid, languageCode)
+      console.log(`No user found with UID: ${uid}`);
+    }
+  } catch (error) {
+    console.error('Error updating language code:', error);
+    throw new Error('Unable to update language code.');
+  }
 };

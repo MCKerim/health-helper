@@ -2,9 +2,10 @@ import { NavLink } from "react-router-dom";
 import "./Landingpage.css";
 import LandingpageScreenshot from "../../assets/LandingpageScreenshot.png";
 import {TranslationKeys} from "../../translation/types/TranslationKeys";
-import {t} from "i18next";
+import {useTranslation} from "react-i18next";
 
 export default function Landingpage() {
+    const {t} = useTranslation();
   return (
     <div>
       <header

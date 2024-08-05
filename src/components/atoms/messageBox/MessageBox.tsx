@@ -4,7 +4,7 @@ import { reactToMessage } from "../../../firebase";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {TranslationKeys} from "../../../translation/types/TranslationKeys";
-import {t} from "i18next";
+import {useTranslation} from "react-i18next";
 
 /**
  * Box to display messages send by users or chatbot
@@ -14,7 +14,7 @@ export default function MessageBox(props: Message) {
   const location = useLocation();
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
-
+  const {t} = useTranslation();
   useEffect(() => {
     if (props.sender !== "user") {
       setIsLiked(props.isLiked);

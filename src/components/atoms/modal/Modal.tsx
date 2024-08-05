@@ -1,7 +1,7 @@
 import React from "react";
 import "./Modal.css";
 import { TranslationKeys } from "../../../translation/types/TranslationKeys";
-import { t } from "i18next";
+import {useTranslation} from "react-i18next";
 
 type Props = {
   children: React.ReactNode;
@@ -16,6 +16,9 @@ export default function Modal({
   onClose,
   error,
 }: Readonly<Props>) {
+
+  const {t} = useTranslation();
+
   return (
     <div className={`modal ${isOpen ? "open" : ""}`}>
       <div className="modal-content">

@@ -11,11 +11,12 @@ import './translation/i18n';
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
+
 root.render(
   <BrowserRouter>
     <ChatProvider>
       <SpeechProvider>
-        <App />
+              <App />
       </SpeechProvider>
     </ChatProvider>
   </BrowserRouter>,

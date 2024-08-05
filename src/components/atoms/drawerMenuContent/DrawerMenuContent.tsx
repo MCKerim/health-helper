@@ -8,7 +8,9 @@ import { useSwipeable } from "react-swipeable";
 import Notification from "../notification/Notification";
 import { useChats } from "../../contexts/chatContext/ChatContext";
 import { TranslationKeys } from "../../../translation/types/TranslationKeys";
-import { t } from "i18next";
+import {useTranslation} from "react-i18next";
+import {Languages} from "../../../translation/languages/Languages";
+import i18n from "i18next";
 
 type Props = {
   isOpen: boolean;
@@ -25,7 +27,7 @@ export default function DrawerMenuContent({
   const navigate = useNavigate();
   const location = useLocation();
   const { chats, updateChats } = useChats();
-
+    const {t} = useTranslation()
   useEffect(() => {
     updateChats();
   }, []);
@@ -180,7 +182,7 @@ export default function DrawerMenuContent({
           }}
         >
           <Link
-            to={"https://forms.gle/XmqCoBxea51XhVnq8"}
+            to={i18n.language == Languages.English ? 'https://forms.gle/6STjhMe9yXjtvkKSA' : 'https://forms.gle/XmqCoBxea51XhVnq8'}
             className={"menuLink"}
             target="_blank"
             rel="noopener noreferrer"

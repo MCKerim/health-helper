@@ -7,26 +7,40 @@ import AuthGate from "../../molecules/authGate/AuthGate";
 import Landingpage from "../../../pages/landingpage/Landingpage";
 import LoadingSpinner from "../../atoms/loadingSpinner/LoadingSpinner";
 import LoadingContainer from "../../molecules/loadingContainer/LoadingContainer";
+import { initializeI18n } from "../../../translation/i18n"; // Import the i18n initializer
 
-function withAuth<T>(Component: ComponentType<T>) {
-  const AuthenticatedComponent: React.FC<T> = (props) => {
+interface WithAuthProps {
+  user: FirebaseUser;
+}
+
+function withAuth<T extends WithAuthProps>(Component: ComponentType<T>) {
+  const AuthenticatedComponent: React.FC<Omit<T, "user">> = (props) => {
     const [user, setUser] = useState<FirebaseUser | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isI18nInitialized, setIsI18nInitialized] = useState(false);
 
     useEffect(() => {
+      // Initialize i18next
+      const initI18n = async () => {
+        await initializeI18n();
+        setIsI18nInitialized(true);
+      };
+
+      initI18n();
+
       // Listen for auth state changes
       const unsubscribe = auth.onAuthStateChanged((user) => {
         setUser(user);
         setIsLoading(false);
       });
-      console.log(user);
+
       // Clean up the subscription
       return () => {
         unsubscribe();
       };
     }, []);
 
-    if (isLoading) {
+    if (isLoading || !isI18nInitialized) {
       return <LoadingContainer />;
     }
 
@@ -34,12 +48,8 @@ function withAuth<T>(Component: ComponentType<T>) {
       return <Landingpage />;
     }
 
-    // If the user is logged in, render the passed component with all its props
-    return (
-      <>
-        <Component {...props} user={user} />
-      </>
-    );
+    // If the user is logged in and i18n is initialized, render the passed component with all its props
+    return <Component {...(props as T)} user={user} />;
   };
 
   return AuthenticatedComponent;

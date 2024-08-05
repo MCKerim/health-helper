@@ -4,12 +4,13 @@ import Header from "../../components/organisms/header/Header";
 import AccountDeletionModal from "../../components/molecules/accountDeletionModal/AccountDeletionModal";
 import { signOutUser } from "../../firebase";
 import { TranslationKeys } from "../../translation/types/TranslationKeys";
-import { t } from "i18next";
+import LanguageDropdown from "../../components/atoms/dropDownMenu/DropDownMenu";
+import {useTranslation} from "react-i18next";
 
 const Account: React.FC = () => {
   // State to control visibility of the confirmation modal
   const [isOpen, setIsOpen] = useState(false);
-
+  const {t} = useTranslation()
   // Function to toggle modal visibility
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -54,6 +55,7 @@ const Account: React.FC = () => {
           >
             Account
           </h1>
+            <LanguageDropdown></LanguageDropdown>
           <button className={"ActionButton fade-in-fwd"} onClick={signOutUser}>
             {t(TranslationKeys.button_logout)}
           </button>
