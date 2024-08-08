@@ -81,7 +81,7 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
       top_p: 0.7,
       frequency_penalty: 0.5,
       presence_penalty: 0.4,
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
     });
 
     const content =
@@ -118,7 +118,7 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
       max_tokens: 20,
       frequency_penalty: 0.5,
       presence_penalty: 0.4,
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
     });
 
     return completion.choices[completion.choices.length - 1].message.content;
