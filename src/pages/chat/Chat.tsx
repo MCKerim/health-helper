@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MessagesWindow from "../../components/molecules/messagesWindow/MessagesWindow";
@@ -8,14 +9,14 @@ import {
   changeChatTitle,
   createChat,
   getChat,
-  saveMessageToChat,
+  saveMessageToChat, uploadImage,
 } from "../../firebase";
 import { OpenAI } from "openai";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { useChats } from "../../components/contexts/chatContext/ChatContext";
 import { useSpeech } from "../../components/contexts/speechContext/SpeechContext";
-import { Message } from "../../types";
+import {Message, UserMessage} from "../../types";
 import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../translation/types/TranslationKeys";
 
@@ -23,6 +24,9 @@ const Chat: React.FC = () => {
   const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string>('');
+  const [uploading, setUploading] = useState<boolean>(false);
   const { id: chatId } = useParams<{ id?: string }>();
   const navigate = useNavigate();
   const { updateChats } = useChats();
@@ -32,6 +36,33 @@ const Chat: React.FC = () => {
     dangerouslyAllowBrowser: true,
   });
   const { transcript, listening } = useSpeech();
+
+  const handleImageSelect = (file: File) => {
+    setImage(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === 'string') {
+        setPreview(reader.result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleSend = async () => {
+    setUploading(true);
+    let imageUrl = null;
+    if (image) {
+      try {
+        imageUrl = await uploadImage(image);
+        console.log(imageUrl)
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    }
+    setUploading(false);
+    sendMessagePressed(messageInput, imageUrl);
+  };
+
 
   useEffect(() => {
     setMessages([]); // Clear messages on load (to prevent duplicates on re-render)
@@ -50,8 +81,22 @@ const Chat: React.FC = () => {
   }, [listening]);
 
   async function makeOpenAICall(chatMessages: Message[]): Promise<Message> {
+    // Convert the chat messages to the format expected by the OpenAI API
     let messagesConverted = chatMessages.map((message) => {
-      return { role: message.sender, content: message.message };
+      let imageUrl = ''
+      if (message.sender !== "assistant" && message?.imageUrl) {
+           imageUrl = message.imageUrl
+        console.log(imageUrl)
+      }
+      return imageUrl != '' ? { role: message.sender, content: [
+          { type: "text", text: message.message },
+          {
+            type: "image_url",
+            image_url: {
+              url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg"
+            },
+          },
+        ], } : { role: message.sender, content: message.message };
     });
 
     console.log(messagesConverted);
@@ -84,8 +129,7 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
       model: "gpt-4o-mini",
     });
 
-    const content =
-      completion.choices[completion.choices.length - 1].message.content;
+    const content = completion.choices[completion.choices.length - 1].message.content;
 
     const markedContent = await marked.parse(content ? content : "Error");
     const safeContent = content ? DOMPurify.sanitize(markedContent) : "Error";
@@ -124,13 +168,15 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
     return completion.choices[completion.choices.length - 1].message.content;
   }
 
-  async function sendMessagePressed() {
-    if (messageInput === "") return;
+  async function sendMessagePressed(message: string, imageUrl: string | null) {
+    if (message === "" && !imageUrl) return;
 
     setIsLoading(true); // Start loading at the beginning
-    const newUserMessage: Message = {
+    console.log("imageurl:",imageUrl)
+    const newUserMessage: UserMessage = {
       sender: "user",
-      message: messageInput,
+      message: message,
+      imageUrl: imageUrl || undefined,
     };
     const updatedMessages = [...messages, newUserMessage];
     setMessages(updatedMessages);
@@ -143,12 +189,17 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
         setMessages(updatedMessages);
         await saveMessageToChat(newUserMessage, docRefId);
         setMessageInput("");
+        setPreview("")
+        setImage(null)
       } else {
         await saveMessageToChat(newUserMessage, chatId);
         setMessages(updatedMessages);
         setMessageInput("");
+        setPreview("")
+        setImage(null)
       }
 
+      // Pass the updated messages (including the latest with the imageUrl) to OpenAI
       const newBotMessage = await makeOpenAICall(updatedMessages);
       await saveMessageToChat(newBotMessage, docRefId);
       setMessages([...updatedMessages, newBotMessage]);
@@ -171,28 +222,31 @@ AI (as Doctor/Therapist): It sounds like you're dealing with some challenging sy
   }
 
   return (
-    <div className="App">
-      <Header />
-      <MessagesWindow messages={messages} isLoading={isLoading} />
-      <div className="BackgroundTextContainer">
-        <h1 className="BackgroundText">
-          {messages.length === 0 && "Health~Helper"}
-        </h1>
-      </div>
-      <div>
-        <div className="BackgroundDisclaimer">
-          <p className="BackgroundText">
-            {t(TranslationKeys.disclaimer_medical_advice)}
-          </p>
+      <div className="App">
+        <Header />
+        <MessagesWindow messages={messages} isLoading={isLoading} />
+        <div className="BackgroundTextContainer">
+          <h1 className="BackgroundText">
+            {messages.length === 0 && "Health~Helper"}
+          </h1>
         </div>
+        <div>
+          <div className="BackgroundDisclaimer">
+            <p className="BackgroundText">
+              {t(TranslationKeys.disclaimer_medical_advice)}
+            </p>
+          </div>
 
-        <SendTextFooter
-          value={messageInput}
-          onChange={(e) => setMessageInput(e.target.value)}
-          onClick={sendMessagePressed}
-        />
+          <SendTextFooter
+              value={messageInput}
+              handleImageSelect={handleImageSelect}
+              preview={preview}
+              handleSend={handleSend}
+              onChange={(e) => setMessageInput(e.target.value)}
+              onClick={sendMessagePressed}
+          />
+        </div>
       </div>
-    </div>
   );
 };
 

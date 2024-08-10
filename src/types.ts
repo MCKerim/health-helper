@@ -1,6 +1,7 @@
 export type UserMessage = {
   sender: "user";
   message: string;
+  imageUrl?: string;
 };
 
 export type BotMessage = {

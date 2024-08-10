@@ -1,34 +1,34 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import {initializeApp} from "firebase/app";
+import {getAnalytics} from "firebase/analytics";
+import {getStorage,ref,uploadBytes,getDownloadURL} from "firebase/storage"
 import {
-  getFirestore,
+  addDoc,
+  arrayUnion,
+  collection,
+  deleteDoc,
   doc,
   getDoc,
-    setDoc,
-  deleteDoc,
-  arrayUnion,
-  updateDoc,
-  collection,
-  addDoc,
   getDocs,
-  query,
-  where,
   initializeFirestore,
   persistentLocalCache,
+  query,
+  setDoc,
+  updateDoc,
+  where,
 } from "firebase/firestore";
 import {
-  getAuth,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  signOut,
-  sendPasswordResetEmail,
   deleteUser,
-  initializeAuth,
+  getAuth,
   indexedDBLocalPersistence,
+  initializeAuth,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-import { Capacitor } from "@capacitor/core";
-import { TranslationKeys } from "./translation/types/TranslationKeys";
-import { t } from "i18next";
+import {Capacitor} from "@capacitor/core";
+import {TranslationKeys} from "./translation/types/TranslationKeys";
+import {t} from "i18next";
 import {Languages} from "./translation/languages/Languages";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -50,7 +50,13 @@ const app = initializeApp(firebaseConfig);
 export const db = initializeFirestore(app, {
   localCache: persistentLocalCache(/*settings*/ {}),
 });
+const storage = getStorage(app);
 
+export const uploadImage = async (image) => {
+  const storageRef = ref(storage, `images/${Date.now()}-${image.name}`);
+  await uploadBytes(storageRef, image);
+  return await getDownloadURL(storageRef);
+};
 function whichAuth() {
   let auth;
   if (Capacitor.isNativePlatform()) {

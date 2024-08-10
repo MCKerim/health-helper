@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import SendTextFooter from "./SendTextFooter";
+import {string} from "prop-types";
 
 const meta = {
   title: "Molecules/SendTextFooter",
@@ -15,5 +16,8 @@ export const Default: Story = {
     value: "",
     onChange: () => {},
     onClick: () => {},
+    handleSend: () => {},
+    handleImageSelect: (file: File) => {},
+    preview: "",
   },
 };

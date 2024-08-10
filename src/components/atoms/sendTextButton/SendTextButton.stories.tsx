@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import SendTextButton from "./SendTextButton";
 import { fn } from "@storybook/test";
+import {bool} from "prop-types";
 
 const meta = {
   title: "Atoms/SendTextButton",
@@ -15,4 +16,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    onClick: fn(),
+    uploading: false,
+  },
 };
