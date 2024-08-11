@@ -52,6 +52,28 @@
     background-color: #86b2a4;
 }
 
+.SecondaryButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: #98ceb5;
+    border-style: solid;
+    color: #98ceb5;
+    background-color: white;
+    box-shadow: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.SecondaryButton:hover {
+    background-color: #86b2a4;
+    border-color: #86b2a4;
+    color: white;
+}
+
+
 .alertBox {
     margin-top: 10px;
     color: #d8000c;

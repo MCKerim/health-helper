@@ -102,6 +102,9 @@ export default function SignUp() {
         <button className="SignUpButton" onClick={handleSignUp}>
           {t(TranslationKeys.button_create_account)}
         </button>
+        <button className="SecondaryButton" onClick={() => {navigate("/signIn")}}>
+          {t(TranslationKeys.sign_in_button)}
+        </button>
         {alertMessage && <div className="alertBox">{alertMessage}</div>}
       </div>
     </div>
