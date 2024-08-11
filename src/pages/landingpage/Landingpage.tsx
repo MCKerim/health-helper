@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 import "./Landingpage.css";
 import LandingpageScreenshot from "../../assets/LandingpageScreenshot.png";
-import {TranslationKeys} from "../../translation/types/TranslationKeys";
-import {useTranslation} from "react-i18next";
+import { TranslationKeys } from "../../translation/types/TranslationKeys";
+import { useTranslation } from "react-i18next";
 
 export default function Landingpage() {
-    const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div>
       <header
@@ -47,7 +47,7 @@ export default function Landingpage() {
             }}
             to={"/signIn"}
           >
-              {t(TranslationKeys.sign_in_button)}
+            {t(TranslationKeys.sign_in_button)}
           </NavLink>
         </button>
       </header>
@@ -69,12 +69,8 @@ export default function Landingpage() {
               textAlign: "center",
             }}
           >
-              {t(TranslationKeys.landingpage_text_1)}{" "}
-            <span
-              className="logoText"
-            >
-              Health Helper
-            </span>
+            <span className="logoText">Health Helper:</span>{" "}
+            {t(TranslationKeys.landingpage_text_1)}
           </h1>
           <p
             style={{
@@ -83,7 +79,7 @@ export default function Landingpage() {
               textAlign: "center",
             }}
           >
-              {t(TranslationKeys.landingpage_text_2)}
+            {t(TranslationKeys.landingpage_text_2)}
           </p>
           <button
             style={{
@@ -111,7 +107,7 @@ export default function Landingpage() {
               }}
               to={"/signUp"}
             >
-                {t(TranslationKeys.landingpage_sign_up)}
+              {t(TranslationKeys.landingpage_sign_up)}
             </NavLink>
           </button>
           <img
@@ -127,9 +123,7 @@ export default function Landingpage() {
           style={{
             minHeight: "100vh",
           }}
-        >
-          
-        </div>
+        ></div>
       </section>
 
       <footer
@@ -157,9 +151,9 @@ export default function Landingpage() {
             marginRight: "10px",
           }}
         >
-            {t(TranslationKeys.landingpage_disclaimer_1)}{" "}
-          <span style={{ color: "#98ceb5", fontWeight: "bold" }}>BETA</span>.
-            {" "}{t(TranslationKeys.landingpage_disclaimer_2)}
+          {t(TranslationKeys.landingpage_disclaimer_1)}{" "}
+          <span style={{ color: "#98ceb5", fontWeight: "bold" }}>BETA</span>.{" "}
+          {t(TranslationKeys.landingpage_disclaimer_2)}
         </p>
       </footer>
     </div>
