@@ -183,7 +183,7 @@ export default function DrawerMenuContent({
         >
           <Link
             to={i18n.language == Languages.English ? 'https://forms.gle/6STjhMe9yXjtvkKSA' : 'https://forms.gle/XmqCoBxea51XhVnq8'}
-            className={"menuLink"}
+            className="menuLink surveyLink"
             target="_blank"
             rel="noopener noreferrer"
           >

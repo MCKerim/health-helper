@@ -96,6 +96,15 @@
   background-color: lightgray;
 }
 
+.surveyLink {
+  background-color: #98ceb5;
+}
+
+.surveyLink:hover {
+  background-color: rgb(114, 171, 145);
+  color: black;
+}
+
 .menuLink.active {
   font-weight: bold;
 }
