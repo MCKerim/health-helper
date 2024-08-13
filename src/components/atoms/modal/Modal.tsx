@@ -23,7 +23,7 @@ export default function Modal({
     <div className={`modal ${isOpen ? "open" : ""}`}>
       <div className="modal-content">
         {children}
-        <button className={"modal-button cancel"} onClick={onClose}>
+        <button className="ActionButtonSecondary" onClick={onClose}>
           {t(TranslationKeys.button_close)}
         </button>
         {error && <p className="modal-alert-box">{error}</p>}

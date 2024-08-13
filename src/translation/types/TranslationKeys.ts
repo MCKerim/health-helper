@@ -1,6 +1,9 @@
 export const TranslationKeys = {
+  heading_account: "heading_account",
   button_create_account: "button_create_account",
   button_logout: "button_logout",
+  text_account_settings: "text_account_settings",
+  text_account_danger: "text_account_danger",
   button_delete_account: "button_delete_account",
   button_return: "button_return",
   text_protection_notice: "text_protection_notice",

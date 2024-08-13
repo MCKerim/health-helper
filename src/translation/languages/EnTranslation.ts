@@ -1,8 +1,11 @@
 import { ITranslation } from "../types/TranslationKeys";
 
 export const EnTranslation: ITranslation = {
+  heading_account: "Account",
   button_create_account: "Create Account",
   button_logout: "Logout",
+  text_account_settings: "Language",
+  text_account_danger: "Account Management",
   button_delete_account: "Delete Account",
   button_return: "Return",
   text_protection_notice:
@@ -42,7 +45,7 @@ export const EnTranslation: ITranslation = {
   notification_chat_deleted_error: "Error deleting chat",
   notification_chats_deleted: "Chats deleted",
   notification_chats_deleted_error: "Error deleting chats",
-  confirm_account_deletion: "Confirm Account Deletion",
+  confirm_account_deletion: "Are you sure?",
   confirm_account_deletion_prompt:
     "Are you sure you want to delete your account irreversibly?",
   button_confirm: "Confirm",

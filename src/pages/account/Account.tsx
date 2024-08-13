@@ -4,13 +4,14 @@ import Header from "../../components/organisms/header/Header";
 import AccountDeletionModal from "../../components/molecules/accountDeletionModal/AccountDeletionModal";
 import { signOutUser } from "../../firebase";
 import { TranslationKeys } from "../../translation/types/TranslationKeys";
-import LanguageDropdown from "../../components/atoms/dropDownMenu/DropDownMenu";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
+import { LanguageDropdown } from "../../components/atoms/dropDownMenu/DropDownMenu";
 
 const Account: React.FC = () => {
   // State to control visibility of the confirmation modal
   const [isOpen, setIsOpen] = useState(false);
-  const {t} = useTranslation()
+  const { t } = useTranslation();
+
   // Function to toggle modal visibility
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -50,16 +51,51 @@ const Account: React.FC = () => {
             className={"fade-in-fwd"}
             style={{
               margin: "0px",
-              marginBottom: "20px",
+              marginBottom: "10px",
             }}
           >
-            Account
+            {t(TranslationKeys.heading_account)}
           </h1>
-            <LanguageDropdown></LanguageDropdown>
-          <button className={"ActionButton fade-in-fwd"} onClick={signOutUser}>
+          <hr
+            style={{
+              width: "100%",
+              margin: "0px",
+              marginBottom: "20px",
+              padding: "0px",
+              borderColor: "#ffffff",
+            }}
+          />
+          <p
+            style={{
+              fontSize: "14px",
+              fontWeight: "bold",
+              textAlign: "left",
+              width: "100%",
+              paddingLeft: "10px",
+              color: "#1e1e1e",
+            }}
+          >
+            {t(TranslationKeys.text_account_settings)}
+          </p>
+          <LanguageDropdown />
+
+          <p
+            style={{
+              fontSize: "14px",
+              fontWeight: "bold",
+              textAlign: "left",
+              width: "100%",
+              paddingLeft: "10px",
+              color: "#1e1e1e",
+            }}
+          >
+            {t(TranslationKeys.text_account_danger)}
+          </p>
+          <button className="ActionButtonSecondary fade-in-fwd" onClick={signOutUser}>
             {t(TranslationKeys.button_logout)}
           </button>
-          <button className={"ActionButton fade-in-fwd"} onClick={toggleModal}>
+          
+          <button className="ActionButton fade-in-fwd" onClick={toggleModal}>
             {t(TranslationKeys.button_delete_account)}
           </button>
           <AccountDeletionModal
