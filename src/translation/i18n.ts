@@ -1,11 +1,10 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import { DeTranslation } from "./languages/DeTranslation";
-import { EnTranslation } from "./languages/EnTranslation";
-import { getUserCountryCodeFromFirestore } from "../firebase"; // Import the Firestore helper function
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { DeTranslation } from './languages/DeTranslation';
+import { EnTranslation } from './languages/EnTranslation';
+import { getUserCountryCodeFromFirestore } from '../firebase'; // Import the Firestore helper function
 import { auth } from '../firebase'; // Import Firebase auth instance
-import { User } from "firebase/auth"; // Use the User type from firebase/auth
-import { Languages } from "./languages/Languages";
+import { User } from 'firebase/auth'; // Use the User type from firebase/auth
 
 // Define the resources with translations
 const resources = {
@@ -32,18 +31,18 @@ const determineInitialLanguage = async (): Promise<string> => {
       // Attempt to get the language code from Firestore
       const firestoreLanguageCode = await getUserCountryCodeFromFirestore(currentUser.uid);
       if (firestoreLanguageCode) {
-        console.log("Language from Firestore:", firestoreLanguageCode);
+        console.log('Language from Firestore:', firestoreLanguageCode);
         return firestoreLanguageCode;
       }
     } catch (error) {
-      console.error("Error retrieving language from Firestore:", error);
+      console.error('Error retrieving language from Firestore:', error);
     }
   }
 
   // Fallback to browser language if Firestore does not have a language code
-  const browserLanguage = navigator.language || navigator.languages[0];
-  console.log("Fallback to browser language:", browserLanguage);
-  return browserLanguage.startsWith("de") ? "de" : "en";
+  const browserLanguage = navigator.languages ? navigator.languages[0] : navigator.language;
+  console.log('Fallback to browser language:', browserLanguage);
+  return browserLanguage.startsWith('de') ? 'de' : 'en';
 };
 
 // Initialize i18next with the determined language
@@ -72,9 +71,7 @@ export function getSupportedLanguages(): Language[] {
   const supportedLanguages = Object.keys(resources);
 
   // Create an instance of Intl.DisplayNames for displaying language names
-  const displayNames = new Intl.DisplayNames(i18n.language, {
-    type: "language",
-  });
+  const displayNames = new Intl.DisplayNames(['en'], { type: 'language' });
 
   // Map supported languages to their respective display names and codes
   return supportedLanguages.map((language) => ({

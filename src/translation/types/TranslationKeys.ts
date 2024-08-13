@@ -62,6 +62,13 @@ export const TranslationKeys = {
   landingpage_disclaimer_2: "landingpage_disclaimer_2",
   landingpage_sign_up: "landingpage_sign_up",
   messagebox_user_term: "messagebox_user_term",
+
+  explanationpage_header: "explanationpage_header",
+  explanationpage_text_1: "explanationpage_text_1",
+  explanationpage_text_2: "explanationpage_text_2",
+  explanationpage_text_3: "explanationpage_text_3",
+  explanationpage_text_4: "explanationpage_text_4",
+  explanationpage_continue_button: "explanationpage_continue_button",
 };
 
 export type ITranslation = typeof TranslationKeys;

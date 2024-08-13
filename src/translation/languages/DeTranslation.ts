@@ -74,4 +74,11 @@ export const DeTranslation: ITranslation = {
   landingpage_disclaimer_2: "Bitte beachten Sie, dass wir uns das Recht vorbehalten, den Zugang zu den hochgeladenen Daten zu sperren und diese zu löschen.",
   landingpage_sign_up: "Probiere es kostenlos aus",
   messagebox_user_term: "Du",
+
+  explanationpage_header: "Willkommen bei Health-Helper!",
+  explanationpage_text_1: "Mithilfe dieser App möchten wir die Nutzerfreundlichkeit von KI im Gesundheitswesen erforschen.",
+  explanationpage_text_2: "Health Helper wurde von uns entwickelt um dich bei alltäglichen Gesundheitsfragen zu unterstützen",
+  explanationpage_text_3: "Teste die App für ein paar Tage und gib uns dein Feedback über die integrierte Umfrage",
+  explanationpage_text_4: "Die Nutzung ist anonym und kostenlos. Viel Spaß mit Health-Helper!",
+  explanationpage_continue_button: "Alles klar!",
 };

@@ -72,5 +72,12 @@ export const EnTranslation: ITranslation = {
   landingpage_disclaimer_1: "This product is fully free and still in",
   landingpage_disclaimer_2: "Keep in mind that we reserve the rights to remove access and delete any data uploaded",
   landingpage_sign_up: "Try for Free",
-  messagebox_user_term: "You"
+  messagebox_user_term: "You",
+
+  explanationpage_header: "Welcome to Health Helper!",
+  explanationpage_text_1: "With this app, we aim to explore the user-friendliness of AI in healthcare.",
+  explanationpage_text_2: "Health Helper was developed by us to support you with everyday health questions.",
+  explanationpage_text_3: "Try the app for a few days and share your feedback through the integrated survey.",
+  explanationpage_text_4: "Usage is anonymous and free. Enjoy using Health Helper!",
+  explanationpage_continue_button: "Got it!",
 };
