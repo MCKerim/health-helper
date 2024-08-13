@@ -83,7 +83,7 @@ export default function MessageBox(props: Message) {
           className="MessageText"
         ></p>
         {sender === "assistant" && (
-          <div className={"MessageReactions"}>
+          <div className="MessageReactions">
             <svg
               className={"ReactionIcon " + (isLiked ? "Active" : "")}
               viewBox="0 0 24 24"
