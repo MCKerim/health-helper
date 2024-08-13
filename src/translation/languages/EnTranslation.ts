@@ -39,7 +39,7 @@ export const EnTranslation: ITranslation = {
   menu_survey: "Survey",
   menu_privacy: "Privacy",
   menu_account: "Account",
-  disclaimer_medical_advice: "~Please consult a real doctor~",
+  disclaimer_medical_advice: "~This chatbot does not replace medical advice~",
   placeholder_write_reply: "Write your reply...",
   notification_chat_deleted: "Chat deleted",
   notification_chat_deleted_error: "Error deleting chat",

@@ -40,7 +40,7 @@ export const DeTranslation: ITranslation = {
   menu_survey: "Umfrage",
   menu_privacy: "Datenschutz",
   menu_account: "Konto",
-  disclaimer_medical_advice: "~Bitte sprechen sie mit einem richtigen Arzt~",
+  disclaimer_medical_advice: "~Dieser Chatbot ersetzt keine medizinische Beratung~",
   placeholder_write_reply: "Schreibe deine Antwort...",
   notification_chat_deleted: "Chat gelöscht",
   notification_chat_deleted_error: "Fehler beim Löschen des Chats",
