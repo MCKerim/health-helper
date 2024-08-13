@@ -77,7 +77,7 @@ export const EnTranslation: ITranslation = {
   landingpage_sign_up: "Try for Free",
   messagebox_user_term: "You",
 
-  explanationpage_header: "Welcome to Health Helper!",
+  explanationpage_header: "Welcome to Health-Helper!",
   explanationpage_text_1: "With this app, we aim to explore the user-friendliness of AI in healthcare.",
   explanationpage_text_2: "Health Helper was developed by us to support you with everyday health questions.",
   explanationpage_text_3: "Try the app for a few days and share your feedback through the integrated survey.",
