@@ -29,6 +29,7 @@ export const TranslationKeys = {
   label_chat_history: "label_chat_history",
   menu_survey: "menu_survey",
   menu_privacy: "menu_privacy",
+  menu_share: "menu_share",
   menu_account: "menu_account",
   disclaimer_medical_advice: "disclaimer_medical_advice",
   placeholder_write_reply: "placeholder_write_reply",

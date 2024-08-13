@@ -8,8 +8,8 @@ import { useSwipeable } from "react-swipeable";
 import Notification from "../notification/Notification";
 import { useChats } from "../../contexts/chatContext/ChatContext";
 import { TranslationKeys } from "../../../translation/types/TranslationKeys";
-import {useTranslation} from "react-i18next";
-import {Languages} from "../../../translation/languages/Languages";
+import { useTranslation } from "react-i18next";
+import { Languages } from "../../../translation/languages/Languages";
 import i18n from "i18next";
 
 type Props = {
@@ -27,7 +27,7 @@ export default function DrawerMenuContent({
   const navigate = useNavigate();
   const location = useLocation();
   const { chats, updateChats } = useChats();
-    const {t} = useTranslation()
+  const { t } = useTranslation();
   useEffect(() => {
     updateChats();
   }, []);
@@ -52,7 +52,7 @@ export default function DrawerMenuContent({
       .catch((error) => {
         setShowNotification(true);
         setNotificationMessage(
-          t(TranslationKeys.notification_chat_deleted_error),
+          t(TranslationKeys.notification_chat_deleted_error)
         );
         console.error("Error removing chat:", error);
       });
@@ -67,6 +67,20 @@ export default function DrawerMenuContent({
     trackMouse: true,
     delta: 10, // How far the swipe needs to move to be recognized
   });
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Try Health Helper for free!',
+        text: 'Discover Health Helper, an app developed for our Bachelor’s thesis. It uses AI to answer your health questions quickly and accurately. Check it out and support our research!',
+        url: 'https://health-helper-0.web.app/', // Replace with your app's URL
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing:', error));
+    } else {
+      console.log('Web Share API not supported.');
+    }
+  };
 
   return (
     <>
@@ -182,7 +196,11 @@ export default function DrawerMenuContent({
           }}
         >
           <Link
-            to={i18n.language == Languages.English ? 'https://forms.gle/6STjhMe9yXjtvkKSA' : 'https://forms.gle/XmqCoBxea51XhVnq8'}
+            to={
+              i18n.language == Languages.English
+                ? "https://forms.gle/6STjhMe9yXjtvkKSA"
+                : "https://forms.gle/XmqCoBxea51XhVnq8"
+            }
             className="menuLink surveyLink"
             target="_blank"
             rel="noopener noreferrer"
@@ -214,6 +232,17 @@ export default function DrawerMenuContent({
             </svg>
             {t(TranslationKeys.menu_survey)}
           </Link>
+          <button className="menuLink" onClick={handleShare}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 30 30"
+              width="30px"
+              height="30px"
+            >
+              <path d="M 23 3 A 4 4 0 0 0 19 7 A 4 4 0 0 0 19.09375 7.8359375 L 10.011719 12.376953 A 4 4 0 0 0 7 11 A 4 4 0 0 0 3 15 A 4 4 0 0 0 7 19 A 4 4 0 0 0 10.013672 17.625 L 19.089844 22.164062 A 4 4 0 0 0 19 23 A 4 4 0 0 0 23 27 A 4 4 0 0 0 27 23 A 4 4 0 0 0 23 19 A 4 4 0 0 0 19.986328 20.375 L 10.910156 15.835938 A 4 4 0 0 0 11 15 A 4 4 0 0 0 10.90625 14.166016 L 19.988281 9.625 A 4 4 0 0 0 23 11 A 4 4 0 0 0 27 7 A 4 4 0 0 0 23 3 z" />
+            </svg>
+            {t(TranslationKeys.menu_share)}
+          </button>
           <NavLink to={"/datenschutzerklaerung"} className="menuLink">
             <svg
               xmlns="http://www.w3.org/2000/svg"

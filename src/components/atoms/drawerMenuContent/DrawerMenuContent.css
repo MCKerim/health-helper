@@ -90,10 +90,15 @@
   display: flex;
   align-items: center;
   gap: 10px;
+
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
 }
 
 .menuLink:hover {
   background-color: lightgray;
+  color: black;
 }
 
 .surveyLink {

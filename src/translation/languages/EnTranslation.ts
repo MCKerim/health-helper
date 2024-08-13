@@ -38,6 +38,7 @@ export const EnTranslation: ITranslation = {
   label_chat_history: "Chat History",
   menu_survey: "Survey",
   menu_privacy: "Privacy",
+  menu_share: "Share",
   menu_account: "Account",
   disclaimer_medical_advice: "~This chatbot does not replace medical advice~",
   placeholder_write_reply: "Write your reply...",

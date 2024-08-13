@@ -39,6 +39,7 @@ export const DeTranslation: ITranslation = {
   label_chat_history: "Chat Verlauf",
   menu_survey: "Umfrage",
   menu_privacy: "Datenschutz",
+  menu_share: "Teilen",
   menu_account: "Konto",
   disclaimer_medical_advice: "~Dieser Chatbot ersetzt keine medizinische Beratung~",
   placeholder_write_reply: "Schreibe deine Antwort...",
