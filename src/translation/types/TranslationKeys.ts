@@ -1,3 +1,5 @@
+import Landingpage from "../../pages/landingpage/Landingpage";
+
 export const TranslationKeys = {
   heading_account: "heading_account",
   button_create_account: "button_create_account",
@@ -63,8 +65,14 @@ export const TranslationKeys = {
   landingpage_text_1: "landingpage_text_1",
   landingpage_text_2: "landingpage_text_2",
   landingpage_disclaimer_1: "landingpage_disclaimer_1",
-  landingpage_disclaimer_2: "landingpage_disclaimer_2",
   landingpage_sign_up: "landingpage_sign_up",
+  Landingpage_download_app: "Landingpage_download_app",
+  Landingpage_section2_title: "Landingpage_section2_title",
+  Landingpage_section2_text: "Landingpage_section2_text",
+  Landingpage_section3_title: "Landingpage_section3_title",
+  Landingpage_section3_text: "Landingpage_section3_text",
+  Landingpage_section3_text_2: "Landingpage_section3_text_2",
+  Landingpage_section3_text_3: "Landingpage_section3_text_3",
   messagebox_user_term: "messagebox_user_term",
 
   explanationpage_header: "explanationpage_header",

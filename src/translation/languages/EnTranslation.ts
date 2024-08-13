@@ -73,9 +73,16 @@ export const EnTranslation: ITranslation = {
   default: "An unknown error occurred.",
   landingpage_text_1: "Your Personal Doctor for Everyday Life",
   landingpage_text_2: "This app was created for educational purposes",
-  landingpage_disclaimer_1: "This product is fully free and still in",
-  landingpage_disclaimer_2: "Keep in mind that we reserve the rights to remove access and delete any data uploaded",
+  landingpage_disclaimer_1: "This product is fully free. We reserve the rights to remove access and delete any data uploaded.",
   landingpage_sign_up: "Try for Free",
+  Landingpage_download_app: "Download the App",
+  Landingpage_section2_title: "What is Health Helper?",
+  Landingpage_section2_text: "We proudly present our Bachelor’s thesis project: Health Helper, a conversational AI based on ChatGPT, designed to answer your everyday health questions. Acting as your personal health assistant, Health Helper is here to support you with various inquiries related to your well-being.",
+  Landingpage_section3_title: "Join Our Research",
+  Landingpage_section3_text: "As part of our research, we aim to closely examine the user-friendliness of this app. Your feedback is crucial to us! We invite you to use Health Helper and share your experiences through the integrated survey or in a personal interview. Your participation is invaluable to our study.",
+  Landingpage_section3_text_2: "Using Health Helper is completely free and anonymous. We assure you that all your information will be treated with confidentiality.",
+  Landingpage_section3_text_3: "Thank you for your support! We look forward to your feedback and hope that Health Helper proves to be a helpful tool in your daily life.",
+  
   messagebox_user_term: "You",
 
   explanationpage_header: "Welcome to Health-Helper!",

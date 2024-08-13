@@ -17,22 +17,19 @@ export default function Landingpage() {
           fontWeight: "bold",
         }}
       >
-        <div>
-          Health Helper |{" "}
-          <span style={{ color: "#98ceb5", fontWeight: "bold" }}>BETA</span>
-        </div>
+        <div>Health~Helper</div>
         <button
           style={{
             color: "white",
-            fontSize: "16px",
+            fontSize: "14px",
             fontWeight: "bold",
             cursor: "pointer",
-            backgroundColor: "#121212",
+            backgroundColor: "#2d2d2d",
             border: "none",
             paddingRight: "20px",
             paddingLeft: "20px",
-            paddingTop: "8px",
-            paddingBottom: "8px",
+            paddingTop: "6px",
+            paddingBottom: "6px",
             borderRadius: "4px",
           }}
         >
@@ -54,40 +51,44 @@ export default function Landingpage() {
       <section>
         <div
           style={{
-            minHeight: "100vh",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             padding: "20px",
             paddingTop: "100px",
+            marginBottom: "100px",
           }}
         >
           <h1
+            className="logoText"
             style={{
               marginBottom: "5px",
               marginTop: "0px",
               textAlign: "center",
             }}
           >
-            <span className="logoText">Health Helper:</span>{" "}
-            {t(TranslationKeys.landingpage_text_1)}
+            Health~Helper
           </h1>
-          <p
+          <h2
             style={{
-              marginBottom: "20px",
               marginTop: "0px",
               textAlign: "center",
+              fontWeight: "bold",
+              color: "#484848",
+              marginBottom: "20px",
+              maxWidth: "600px",
             }}
           >
-            {t(TranslationKeys.landingpage_text_2)}
-          </p>
+            {t(TranslationKeys.landingpage_text_1)}
+          </h2>
+
           <button
             style={{
               color: "white",
               fontSize: "16px",
               fontWeight: "bold",
               cursor: "pointer",
-              backgroundColor: "#121212",
+              backgroundColor: "#252525",
               border: "none",
               paddingRight: "40px",
               paddingLeft: "40px",
@@ -110,9 +111,42 @@ export default function Landingpage() {
               {t(TranslationKeys.landingpage_sign_up)}
             </NavLink>
           </button>
+          <button
+            style={{
+              color: "white",
+              fontSize: "16px",
+              fontWeight: "bold",
+              cursor: "pointer",
+              backgroundColor: "#59c794",
+              border: "none",
+              paddingRight: "40px",
+              paddingLeft: "40px",
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              borderRadius: "4px",
+              marginTop: "10px",
+            }}
+          >
+            <NavLink
+              style={{
+                textDecoration: "none", // Removes underline from links
+                color: "inherit", // Inherits color from parent element
+                backgroundColor: "transparent", // Ensures no background color
+                border: "none", // No borders
+                padding: 0, // No padding
+                cursor: "pointer",
+              }}
+              to={
+                "https://play.google.com/store/apps/details?id=com.kblanks.healthhelper"
+              }
+              target="_blank"
+            >
+              {t(TranslationKeys.Landingpage_download_app)}
+            </NavLink>
+          </button>
           <img
             alt="Screenshot of the chat page"
-            style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
+            style={{ maxWidth: "100%", height: "auto", marginTop: "40px" }}
             src={LandingpageScreenshot}
           />
         </div>
@@ -121,9 +155,38 @@ export default function Landingpage() {
       <section>
         <div
           style={{
-            minHeight: "100vh",
+            padding: "20px 20px",
+            paddingBottom: "100px",
+            textAlign: "justify",
+            backgroundColor: "#f5f5f5",
           }}
-        ></div>
+        >
+          <h2 style={{ textAlign: "center" }}>{t(TranslationKeys.Landingpage_section2_title)}</h2>
+          <p style={{ maxWidth: "800px", margin: "0 auto" }}>
+            {t(TranslationKeys.Landingpage_section2_text)}
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div
+          style={{
+            padding: "50px 20px",
+            textAlign: "justify",
+            marginBottom: "200px",
+          }}
+        >
+          <h2 style={{ textAlign: "center" }}>{t(TranslationKeys.Landingpage_section3_title)}</h2>
+          <p style={{ maxWidth: "800px", margin: "0 auto" }}>
+            {t(TranslationKeys.Landingpage_section3_text)}
+          </p>
+          <p style={{ maxWidth: "800px", margin: "20px auto" }}>
+            {t(TranslationKeys.Landingpage_section3_text_2)}
+          </p>
+          <p style={{ maxWidth: "800px", margin: "20px auto" }}>
+            {t(TranslationKeys.Landingpage_section3_text_3)}
+          </p>
+        </div>
       </section>
 
       <footer
@@ -151,9 +214,7 @@ export default function Landingpage() {
             marginRight: "10px",
           }}
         >
-          {t(TranslationKeys.landingpage_disclaimer_1)}{" "}
-          <span style={{ color: "#98ceb5", fontWeight: "bold" }}>BETA</span>.{" "}
-          {t(TranslationKeys.landingpage_disclaimer_2)}
+          {t(TranslationKeys.landingpage_disclaimer_1)} <br /> © 2024 Kerim Ismail, Aldo Costa
         </p>
       </footer>
     </div>

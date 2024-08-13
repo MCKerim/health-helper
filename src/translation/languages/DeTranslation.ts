@@ -74,9 +74,16 @@ export const DeTranslation: ITranslation = {
   default: "Ein unbekannter Fehler ist aufgetreten.",
   landingpage_text_1: "Dein persönlicher Arzt für den Alltag",
   landingpage_text_2: "Diese App wurde für akademische Zwecke erstellt",
-  landingpage_disclaimer_1: "Dieses Produkt ist völlig kostenlos und noch in der",
-  landingpage_disclaimer_2: "Bitte beachten Sie, dass wir uns das Recht vorbehalten, den Zugang zu den hochgeladenen Daten zu sperren und diese zu löschen.",
+  landingpage_disclaimer_1: "Dieses Produkt ist völlig kostenlos. Wir behalten uns das Recht vor, den Zugang zu hochgeladenen Daten zu sperren oder diese zu löschen.",
   landingpage_sign_up: "Probiere es kostenlos aus",
+  Landingpage_download_app: "Lade die App herunter!",
+  Landingpage_section2_title: "Was ist Health Helper?",
+  Landingpage_section2_text: "Wir präsentieren stolz unsere Bachelorarbeit: Health Helper, eine auf ChatGPT basierende Conversational AI, die darauf spezialisiert ist, deine alltäglichen Gesundheitsfragen zu beantworten. Health Helper fungiert als dein persönlicher Gesundheitsassistent und unterstützt dich bei verschiedenen Fragen rund um dein Wohlbefinden.",
+  Landingpage_section3_title: "Nimm an unserer Forschung teil",
+  Landingpage_section3_text: "Im Rahmen unserer Forschung möchten wir die Nutzerfreundlichkeit dieser App genauer untersuchen. Dein Feedback ist für uns von entscheidender Bedeutung! Wir laden dich ein, Health Helper zu nutzen und uns deine Erfahrungen über die integrierte Umfrage oder in einem persönlichen Interview mitzuteilen. Deine Teilnahme ist für unsere Studie von unschätzbarem Wert.",
+  Landingpage_section3_text_2: "Die Nutzung von Health Helper ist völlig kostenlos und anonym. Wir versichern dir, dass alle deine Angaben vertraulich behandelt werden.",
+  Landingpage_section3_text_3: "Vielen Dank für deine Unterstützung! Wir freuen uns auf dein Feedback und hoffen, dass dir Health Helper im Alltag eine hilfreiche Unterstützung bietet.",
+
   messagebox_user_term: "Du",
 
   explanationpage_header: "Willkommen bei Health-Helper!",
