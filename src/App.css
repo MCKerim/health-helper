@@ -81,12 +81,13 @@
 .BackgroundDisclaimer {
   position: fixed;
   z-index: -2;
-  bottom: 65px;
+  bottom: 70px;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   text-align: center;
+  font-size: 12px;
 }
 
 ul {
