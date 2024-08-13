@@ -5,8 +5,8 @@ import "./HeaderLogo.css";
  */
 export default function HeaderLogo() {
   return (
-    <div className="HeaderLogo">
-      <h1>Health Helper</h1>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "-40px" }}>
+      <h1 className="HeaderLogo">Health Helper</h1>
     </div>
   );
 }
