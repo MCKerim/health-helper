@@ -33,7 +33,7 @@ export const DeTranslation: ITranslation = {
   contact_info: "Kontakt",
   text_contact:
     "Bei Fragen oder Anliegen zu diesem Datenschutzhinweis oder zur Verarbeitung Ihrer Daten können Sie sich jederzeit per E-Mail (",
-  text_contact_continued: "Aldo.Costa@hhu.de) an uns wenden.",
+  text_contact_continued: ") an uns wenden.",
   button_delete_chats: "Chats löschen",
   placeholder_new_chat: "Neuer Chat",
   label_chat_history: "Chat Verlauf",

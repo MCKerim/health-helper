@@ -9,7 +9,10 @@ interface NotificationProps {
 const Notification: React.FC<NotificationProps> = ({ message, onClose }) => {
   return (
     <div className="notification fade-in-top">
-      <p>{message}</p>
+      <p style={{
+        fontWeight: "bold",
+        padding: "0 10px 0 10px",
+      }}>{message}</p>
       <div className={""} onClick={onClose}>
         <svg
           width={24}
@@ -19,7 +22,7 @@ const Notification: React.FC<NotificationProps> = ({ message, onClose }) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g stroke="currentcolor" strokeWidth="1.5">
+          <g stroke="currentcolor" strokeWidth="2">
             <circle cx="12" cy="12" r="10" />
             <path d="m14.5 9.5-5 5m0-5 5 5" strokeLinecap="round" />
           </g>

@@ -97,10 +97,14 @@ const DatenschutzWindow = () => {
           label={t(TranslationKeys.button_delete_chats)}
         />
       ) : (
-        <NavLink className={"ReturnButton"} to={"/"}>
+        <NavLink className="ReturnButton" to={"/"}>
           {t(TranslationKeys.button_return)}
         </NavLink>
       )}
+
+      <div style={{
+        height: "40px",
+      }} />
 
       {showNotification && (
         <Notification

@@ -10,8 +10,8 @@
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
     font-weight: bold;
-    color: #070707;
-    background-color: #06f88a;
+    color: white;
+    background-color: #1e1e1e;
     border: none;
     border-radius: 20px; /* Rounded corners */
     padding: 10px 20px;
@@ -32,5 +32,5 @@
 }
 
 .ReturnButton:hover {
-    background-color: #05d677;
+    background-color: #3a3a3a;
 }
