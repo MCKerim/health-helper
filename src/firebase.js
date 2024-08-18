@@ -4,7 +4,7 @@ import {
   getFirestore,
   doc,
   getDoc,
-    setDoc,
+  setDoc,
   deleteDoc,
   arrayUnion,
   updateDoc,
@@ -29,7 +29,7 @@ import {
 import { Capacitor } from "@capacitor/core";
 import { TranslationKeys } from "./translation/types/TranslationKeys";
 import { t } from "i18next";
-import {Languages} from "./translation/languages/Languages";
+import { Languages } from "./translation/languages/Languages";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -104,12 +104,11 @@ export async function deleteAllChatsByUID(uid) {
   }
 }
 
-
 export const getUserCountryCodeFromFirestore = async (uid) => {
   try {
     // Define a query to find the document where the UID property matches
-    const usersCollection = collection(db, 'users');
-    const q = query(usersCollection, where('uid', '==', uid));
+    const usersCollection = collection(db, "users");
+    const q = query(usersCollection, where("uid", "==", uid));
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
@@ -120,11 +119,10 @@ export const getUserCountryCodeFromFirestore = async (uid) => {
       return null; // No document found with the given UID
     }
   } catch (error) {
-    console.error('Error fetching user data from Firestore:', error);
+    console.error("Error fetching user data from Firestore:", error);
     return null;
   }
 };
-
 
 export async function removeChat(id) {
   const chatDocRef = doc(db, "chats", id);
@@ -246,7 +244,6 @@ export async function getChat(id) {
 
 export async function saveMessageToChat(newMessage, id) {
   if (newMessage && id) {
-    console.log(newMessage, id);
     const chatDocRef = doc(db, "chats", id); // Adjust "chats" to your actual collection name
     try {
       const chatDoc = await getDoc(chatDocRef);
@@ -288,8 +285,8 @@ export const removeUserAccount = async () => {
     // Delete the user from Firebase Auth
     await deleteUser(user);
   } catch (error) {
-    if (error.code === 'auth/requires-recent-login') {
-      throw new Error('Recent login required');
+    if (error.code === "auth/requires-recent-login") {
+      throw new Error("Recent login required");
     } else {
       throw error; // Other errors are thrown as is
     }
@@ -298,23 +295,22 @@ export const removeUserAccount = async () => {
 
 async function deleteUserFromFirestore(uid) {
   try {
-    const userDocRef = doc(db, 'users', uid);
+    const userDocRef = doc(db, "users", uid);
     await deleteDoc(userDocRef);
-    console.log('User document deleted successfully');
+    console.log("User document deleted successfully");
   } catch (error) {
-    console.error('Error deleting user document:', error);
+    console.error("Error deleting user document:", error);
     throw error;
   }
 }
-
 
 export const resetPassword = async (email) => {
   await sendPasswordResetEmail(auth, email);
 };
 
-export async function updateUserLanguage(uid, newLanguageCode = 'ENG') {
+export async function updateUserLanguage(uid, newLanguageCode = "ENG") {
   try {
-    const userDocRef = doc(db, 'users', uid); // Reference to the user's document
+    const userDocRef = doc(db, "users", uid); // Reference to the user's document
 
     // Check if the user's document already exists
     const userDoc = await getDoc(userDocRef);
@@ -324,61 +320,75 @@ export async function updateUserLanguage(uid, newLanguageCode = 'ENG') {
       await updateDoc(userDocRef, {
         language: newLanguageCode,
       });
-      console.log('User language updated successfully');
+      console.log("User language updated successfully");
     } else {
       // If the document does not exist, create it with the default language code
       await setDoc(userDocRef, {
         uid: uid,
         language: newLanguageCode,
       });
-      console.log('User document created successfully with language code');
+      console.log("User document created successfully with language code");
     }
   } catch (error) {
-    console.error('Error updating or creating user document:', error);
+    console.error("Error updating or creating user document:", error);
     throw error;
   }
 }
 
-
-export const signUp = async (email, password, languageCode = Languages.English) => {
+export const signUp = async (
+  email,
+  password,
+  languageCode = Languages.English,
+) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
+      auth,
+      email,
+      password,
     );
     const user = userCredential.user;
 
     // Add a document for the user in Firestore
     await addUserToFirestore(user.uid, languageCode);
   } catch (error) {
-    console.error('Error signing up:', error);
+    console.error("Error signing up:", error);
     throw error;
   }
 };
 
 async function addUserToFirestore(uid, languageCode) {
   try {
-    const userDocRef = doc(db, 'users',uid); // 'users' is the collection name
+    const userDocRef = doc(db, "users", uid); // 'users' is the collection name
     await setDoc(userDocRef, {
       uid: uid,
       languageCode: languageCode,
     });
-    console.log('User document created successfully');
+    console.log("User document created successfully");
   } catch (error) {
-    console.error('Error creating user document:', error);
+    console.error("Error creating user document:", error);
     throw error;
   }
 }
 
-export const updateUserLanguageCodeInFirestore = async (
-    uid,
-    languageCode
-) => {
+export const getStartingPrompt = async (uid) => {
+  try {
+    const promptDocRef = doc(db, "startingprompts", uid);
+    const promptDoc = await getDoc(promptDocRef);
+
+    if (promptDoc.exists()) {
+      console.log("Prompt found:", promptDoc.data().prompt);
+      return promptDoc.data().prompt;
+    }
+  } catch (error) {
+    console.error("Error getting starting prompt:", error);
+  }
+};
+
+export const updateUserLanguageCodeInFirestore = async (uid, languageCode) => {
   try {
     // Reference the 'users' collection and create a query to find the document with the matching UID
-    const usersCollection = collection(db, 'users');
-    const q = query(usersCollection, where('uid', '==', uid));
+    const usersCollection = collection(db, "users");
+    const q = query(usersCollection, where("uid", "==", uid));
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
@@ -392,11 +402,11 @@ export const updateUserLanguageCodeInFirestore = async (
 
       console.log(`Language code updated to ${languageCode} for user ${uid}.`);
     } else {
-      await addUserToFirestore(uid, languageCode)
+      await addUserToFirestore(uid, languageCode);
       console.log(`No user found with UID: ${uid}`);
     }
   } catch (error) {
-    console.error('Error updating language code:', error);
-    throw new Error('Unable to update language code.');
+    console.error("Error updating language code:", error);
+    throw new Error("Unable to update language code.");
   }
 };
