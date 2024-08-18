@@ -376,7 +376,6 @@ export const getStartingPrompt = async (uid) => {
     const promptDoc = await getDoc(promptDocRef);
 
     if (promptDoc.exists()) {
-      console.log("Prompt found:", promptDoc.data().prompt);
       return promptDoc.data().prompt;
     }
   } catch (error) {
