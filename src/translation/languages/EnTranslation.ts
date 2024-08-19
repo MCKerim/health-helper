@@ -91,4 +91,6 @@ export const EnTranslation: ITranslation = {
   explanationpage_text_3: "Try the app for a few days and share your feedback through the integrated survey.",
   explanationpage_text_4: "Usage is anonymous and free. Enjoy using Health Helper!",
   explanationpage_continue_button: "Got it!",
+
+  header_survey_text: "Click here to take part in the anonymous survey!",
 };

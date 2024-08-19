@@ -5,8 +5,11 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import i18n from "../../../translation/i18n";
 import { Languages } from "../../../translation/languages/Languages";
+import { useTranslation } from "react-i18next";
+import { TranslationKeys } from "../../../translation/types/TranslationKeys";
 
 export default function Header() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -61,6 +64,41 @@ export default function Header() {
           <path d="M44.4 19.6H33.2a4.81 4.81 0 0 1-4.8-4.8V3.6A1.6 1.6 0 0 0 26.8 2h-16A4.81 4.81 0 0 0 6 6.8v38.4a4.81 4.81 0 0 0 4.8 4.8h30.4a4.81 4.81 0 0 0 4.8-4.8v-24a1.6 1.6 0 0 0-1.6-1.6zm-32-1.6a1.62 1.62 0 0 1 1.6-1.55h6.55A1.56 1.56 0 0 1 22.12 18v1.59a1.63 1.63 0 0 1-1.59 1.58H14a1.55 1.55 0 0 1-1.58-1.58zm24 20.77a1.6 1.6 0 0 1-1.6 1.6H14a1.6 1.6 0 0 1-1.6-1.6V37.2a1.6 1.6 0 0 1 1.6-1.6h20.8a1.6 1.6 0 0 1 1.6 1.6zm3.2-9.6A1.6 1.6 0 0 1 38 30.8H14a1.6 1.6 0 0 1-1.6-1.6v-1.6A1.6 1.6 0 0 1 14 26h24a1.6 1.6 0 0 1 1.6 1.6z" />
         </svg>
       </Link>
+      <div
+        style={{
+          backgroundColor: "#e5e5e5",
+          position: "absolute",
+          width: "100%",
+          left: "0",
+          alignItems: "center",
+        }}
+      >
+        <p style={{
+          padding: "10px",
+          margin: "0px",
+          marginLeft: "5px",
+          marginRight: "5px",
+        }}>
+          <Link
+            to={
+              i18n.language == Languages.English
+                ? "https://forms.gle/6STjhMe9yXjtvkKSA"
+                : "https://forms.gle/XmqCoBxea51XhVnq8"
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              paddingLeft: "5px",
+              paddingRight: "5px",
+              textDecoration: "underline",
+              fontWeight: "bold",
+              color: "#2b2b2b",
+            }}
+          >
+            {t(TranslationKeys.header_survey_text)}
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

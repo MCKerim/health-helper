@@ -81,6 +81,8 @@ export const TranslationKeys = {
   explanationpage_text_3: "explanationpage_text_3",
   explanationpage_text_4: "explanationpage_text_4",
   explanationpage_continue_button: "explanationpage_continue_button",
+
+  header_survey_text: "header_survey_text",
 };
 
 export type ITranslation = typeof TranslationKeys;

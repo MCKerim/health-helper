@@ -92,4 +92,6 @@ export const DeTranslation: ITranslation = {
   explanationpage_text_3: "Teste die App für ein paar Tage und gib uns dein Feedback über die integrierte Umfrage",
   explanationpage_text_4: "Die Nutzung ist anonym und kostenlos. Viel Spaß mit Health-Helper!",
   explanationpage_continue_button: "Alles klar!",
+
+  header_survey_text: "Hier klicken, um an der anonymen Umfrage teilzunehmen!",
 };
